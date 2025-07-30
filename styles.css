@@ -1,0 +1,110 @@
+/* Diseño página de about us */
+
+/* Fuentes importadas*/
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif; 
+}
+
+h2, h3 {
+    font-family: 'Nunito', sans-serif;
+}
+h1 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container-mtb {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #fff;
+}
+
+.introduccion {
+    background-color: #7ab021;
+    text-align: center;
+    padding: 10px 0;
+    margin-bottom: 25px;
+
+}
+
+.clase-parrafo, #texto-oculto-mision-vision {
+    margin: 25px 50px;
+    padding: 25px;
+    text-align: justify;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 7px grey;
+
+}
+
+.img-quienes-somos {
+    width: 100%;
+    
+}
+
+.img-quienes-somos img {
+    margin: 0 auto;
+    max-width: 600px;
+    width: 75%;
+    display: block;
+    border-radius: 10px;
+    border: 1px solid #7ab021;
+}
+
+button {
+    background-color: #2b3618;
+    border: none;
+    color: #fefae0;
+    font-size: 20px;
+    padding: 20px 40px;
+    border-radius: 10px;
+    border: 5px solid rgba(0,0,0,0);
+    display: block;
+    margin: 25px auto;
+
+}
+
+button:hover {
+    border: 5px solid #7ab021;
+    cursor: pointer;
+}
+
+#texto-oculto-mision-vision {
+    display: none;
+}
+
+.referencia-presentacion {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 100px;
+}
+
+.tarjetas-presentacion {
+    flex: 0 0 calc((100% - 200px)/3);
+    max-width: 300px;
+    padding: 10px;
+    background-color: rgb(202, 235, 194);
+    border-radius: 10px;
+}
+
+.tarjetas-presentacion img{
+    width: calc(100% - 10px);
+    border-radius: 50%;
+    margin: 20px 0;
+}
+
+.tarjetas-presentacion h3 {
+    text-align: center;
+    margin: 10px 0;
+    font-size: 25px;
+}
+
+.tarjetas-presentacion p {
+    padding: 10px;
+    text-align: justify;
+}
