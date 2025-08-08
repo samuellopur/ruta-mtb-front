@@ -92,7 +92,7 @@ button:hover {
 
 .tarjetas-presentacion {
     flex: 0 0 calc((100% - 200px)/3);
-    max-width: 300px;
+    max-width: 330px;
     padding: 10px;
     background-color: rgb(202, 235, 194);
     border-radius: 10px;
