@@ -1,4 +1,5 @@
 /* Diseño página de about us */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
 
 /* Fuentes importadas*/
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
@@ -12,9 +13,11 @@
 
 h2, h3 {
     font-family: 'Nunito', sans-serif;
+    font-size: 24px;
 }
 h1 {
     font-family: 'Montserrat', sans-serif;
+    font-size: 36px;
 }
 
 .container-mtb {
@@ -60,16 +63,17 @@ button {
     border: none;
     color: #fefae0;
     font-size: 20px;
-    padding: 20px 40px;
+    padding: 10px 20px;
     border-radius: 10px;
-    border: 5px solid rgba(0,0,0,0);
+    border: 2px solid rgba(0,0,0,0);
     display: block;
     margin: 25px auto;
+    border: 5px solid rgba(0,0,0,0);
 
 }
 
 button:hover {
-    border: 5px solid #7ab021;
+    background: #7ab021;
     cursor: pointer;
 }
 
@@ -80,7 +84,8 @@ button:hover {
 .referencia-presentacion {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: stretch;
+    flex-grow: 1;
     flex-wrap: wrap;
     gap: 100px;
 }
@@ -112,4 +117,24 @@ button:hover {
 
 h3 {
     text-align: center;
+}
+
+/* Aplicable únicamente a la sección de contacto*/
+.mtbCardExample {
+    margin: 40px;
+    padding: 20px;
+    background: white;
+    border-radius: 5px
+}
+
+.mtbCardExample img {
+    width: 100%;
+}
+
+.mtbContacto {
+    background: #2b3618;
+}
+
+.mtbColorBlanco {
+    color: white;
 }
