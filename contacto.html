@@ -8,27 +8,29 @@
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
     <title>Contacto</title>
+    <script src="script.js"></script>
 </head>
 
 <body class="mtbContacto">
+    <div id="mtbNavbar"></div>
     <div class="row m-0">
         <div class="col">
             <h1 class="text-center fw-bold pt-4 mtbColorBlanco">Contáctanos</h1>
         </div>
     </div>
-    <main class="row m-0">
-        <section class="col-md-6">
-            <article class="mtbCardExample">
-                <h2 class="text-center fw-bold">¿Cómo podemos ayudarte?</h2>
-                <br>
-                <p>Si eres cliente actual de RutaMTB, comunícate con nuestro equipo de soporte técnico a través de tu
-                    cuenta, para obtener el servicio más rápido. O llena el siguiente formulario, te responderemos lo
-                    más pronto posible.</p>
-                <img src="imag/RUTAMTB_SLOGAN.png" alt="Logo RutaMTB">
-            </article>
-        </section>
-        <section class="col-md-6 p-0">
-            <form class="mtbCardExample" action="https://formspree.io/f/xwpqwgbk" method="POST">
+    <main class="row m-0 g-3">
+
+        <article class="mtbCardExample col-md-6 p-5" >
+            <h2 class="text-center fw-bold">¿Cómo podemos ayudarte?</h2>
+            <br>
+            <p>Si eres cliente actual de RutaMTB, comunícate con nuestro equipo de soporte técnico a través de tu
+                cuenta, para obtener el servicio más rápido. O llena el siguiente formulario, te responderemos lo
+                más pronto posible.</p>
+            <img src="imag/RUTAMTB_SLOGAN.png" alt="Logo RutaMTB">
+        </article>
+
+        
+            <form class="mtbCardExample col-md-6 p-5" action="https://formspree.io/f/xwpqwgbk" method="POST">
                 <h2 class="text-center fw-bold">Formulario</h2>
                 <div class="mb-3">
                     <label for="name" class="form-label">¿Cuál es tu nombre?</label>
@@ -51,7 +53,7 @@
                 </div>
                 <button type="submit" class="d-flex justify-content-end">Enviar<i class="bi bi-send ps-2"></i></button>
             </form>
-        </section>
+        
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
