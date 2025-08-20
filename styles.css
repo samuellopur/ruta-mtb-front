@@ -485,24 +485,24 @@ h2 {
 
 #box {
     
-  max-width: 400px;      /* ancho máximo de la cajita */
-  margin: 40px auto;     /* centrado horizontal + espacio arriba/abajo */
-  padding: 20px;         /* espacio interno */
-  background: #fff;      /* color de fondo */
-  border-radius: 8px;    /* esquinas redondeadas */
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* sombrita */
-  text-align: center;    /* centra los títulos */
+  max-width: 400px;      
+  margin: 40px auto;     
+  padding: 20px;         
+  background: #fff;      
+  border-radius: 8px;    
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
+  text-align: center;    
 }
 
 
 
 #box .formulario input {
-  width: 100%;         /* cada campo ocupa todo el ancho */
-  margin: 10px 0;      /* espacio entre campos */
+  width: 100%;        
+  margin: 10px 0;     
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  display: block;      /* garantiza que queden uno debajo del otro */
+  display: block;     
 }
 
 #box .formulario input[type="button"] {
