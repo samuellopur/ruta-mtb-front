@@ -1,14 +1,22 @@
-
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Administrador</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
   <section class="crudAdmin">
+    <form action="" id="adminAgregar">
+      <input type="text" name="" id="title" placeholder="Título">
+      <input type="text" name="" id="description">
+      <input type="number" name="" id="price" placeholder="Precio">
+      <button type="submit">Enviar</button>
+    </form>
+    <script src="admin.js"></script>
     <h2>Listado de Productos</h2>
 
     <table class="tabla-productos">
@@ -24,16 +32,10 @@
       </thead>
       <tbody>
         <tr>
-          <td id= "nombreProducto" >MTR Pro</td>
-          <td><div id="imgProduc" class="img-placeholder"><img src="imagenes/bicicletamtb1.jpg" alt="img progucto"></div></td>
-          <td >Lorem Ipsum</td>
-          <td>$12.890</td>
-          <td><span class="estado disponible">Disponible</span></td>
-          <td><button class="btn-editar"><i class="bi bi-pencil"></i></button></td>
-        </tr>
-        <tr>
-          <td>Lorem Ipsum</td>
-          <td><div class="img-placeholder"></div></td>
+          <td id="nombreProducto">MTR Pro</td>
+          <td>
+            <div id="imgProduc" class="img-placeholder"><img src="imagenes/bicicletamtb1.jpg" alt="img progucto"></div>
+          </td>
           <td>Lorem Ipsum</td>
           <td>$12.890</td>
           <td><span class="estado disponible">Disponible</span></td>
@@ -41,7 +43,19 @@
         </tr>
         <tr>
           <td>Lorem Ipsum</td>
-          <td><div class="img-placeholder"></div></td>
+          <td>
+            <div class="img-placeholder"></div>
+          </td>
+          <td>Lorem Ipsum</td>
+          <td>$12.890</td>
+          <td><span class="estado disponible">Disponible</span></td>
+          <td><button class="btn-editar"><i class="bi bi-pencil"></i></button></td>
+        </tr>
+        <tr>
+          <td>Lorem Ipsum</td>
+          <td>
+            <div class="img-placeholder"></div>
+          </td>
           <td>Lorem Ipsum</td>
           <td>$12.890</td>
           <td><span class="estado disponible">Disponible</span></td>
@@ -60,4 +74,5 @@
     </div>
   </section>
 </body>
+
 </html>
