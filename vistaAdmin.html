@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administrador</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <section class="crudAdmin">
+    <h2>Listado de Productos</h2>
+
+    <table class="tabla-productos">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Imagen</th>
+          <th>Categoría</th>
+          <th>Precio</th>
+          <th>Estado</th>
+          <th id agregar mas><i class="bi bi-pencil"></i></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td id= "nombreProducto" >MTR Pro</td>
+          <td><div id="imgProduc" class="img-placeholder"><img src="imagenes/bicicletamtb1.jpg" alt="img progucto"></div></td>
+          <td >Lorem Ipsum</td>
+          <td>$12.890</td>
+          <td><span class="estado disponible">Disponible</span></td>
+          <td><button class="btn-editar"><i class="bi bi-pencil"></i></button></td>
+        </tr>
+        <tr>
+          <td>Lorem Ipsum</td>
+          <td><div class="img-placeholder"></div></td>
+          <td>Lorem Ipsum</td>
+          <td>$12.890</td>
+          <td><span class="estado disponible">Disponible</span></td>
+          <td><button class="btn-editar"><i class="bi bi-pencil"></i></button></td>
+        </tr>
+        <tr>
+          <td>Lorem Ipsum</td>
+          <td><div class="img-placeholder"></div></td>
+          <td>Lorem Ipsum</td>
+          <td>$12.890</td>
+          <td><span class="estado disponible">Disponible</span></td>
+          <td><button class="btn-editar"><i class="bi bi-pencil"></i></button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- paginación -->
+    <div class="paginacion">
+      <button>&lt;</button>
+      <button class="activo">1</button>
+      <button>2</button>
+      <button>3</button>
+      <button>&gt;</button>
+    </div>
+  </section>
+</body>
+</html>
