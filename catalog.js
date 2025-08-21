@@ -1,4 +1,4 @@
-import products from './products.js'; 
+import { products } from './products.js'; 
 //Funcionalidad catalogo
 document.addEventListener("DOMContentLoaded", () => {
   // Si no hay productos en localStorage, los inicializa con el array base
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <img src="${producto.img}" alt="${producto.title}" class="imagenMtb">
       <h3 class="titleMtb">${producto.title}</h3>
       <p class="descriptionMtb">${producto.description}</p>
-      <p>$<span class="priceMtb">${producto.price}</span></p>
+      <p>$<span class="priceMtb">${producto.price.toLocaleString('es-CO')}</span></p>
     `;
     contenedor.appendChild(card);
   });
