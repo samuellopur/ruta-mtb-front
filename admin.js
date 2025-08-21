@@ -25,8 +25,31 @@ formulario.addEventListener("submit", (evento) => {
         localStorage.setItem("infoCatalogo", JSON.stringify(json));
         alert("Producto agregado correctamente");
         formulario.reset();
+        listarProductos();
     } else {
         alert("Por favor, completa todos los campos.");
     }
 });
+
+
+function listarProductos() {
+    
+    const tabla = document.getElementById("tbody");
+    json.forEach((producto) => {
+        const fila = document.createElement("tr");
+        fila.innerHTML = `            
+            <td id="nombreProducto">${producto.title}</td>
+            <td>
+            <div id="imgProduc" class="img-placeholder"><img src="${producto.img}" alt="${producto.title}"></div>
+            </td>
+            <td>${producto.description}</td>
+            <td>${producto.price}</td>
+            <td><span class="estado disponible">Disponible</span></td>
+          <td><button class="btn-editar"><i class="bi bi-pencil"></i></button></td>
+        `;
+        tabla.appendChild(fila);
+    });
+}
+
+listarProductos();
     
