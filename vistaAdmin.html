@@ -15,7 +15,6 @@
         <span class="cerrar" onclick="cerrarModal()">&times;</span>
         <div id="box">
           <form action="" id="adminAgregar" class="formulario">
-            <button class="close">&times;</button>
             <h2>Agregar nuevo producto</h2>
             <p>Para agregar un nuevo producto al catálogo llene el siguiente formulario</p>
             <input type="text" name="" id="title" placeholder="Título">
@@ -39,7 +38,7 @@
           <th>Estado</th>
           <th id="agregar-mas">
             <button class="btn btn-success">
-              <i class="bi bi-plus"></i>
+               <i class="bi bi-plus icono-plus" onclick="abrirModal()" title="Agregar nuevo producto"></i>
             </button>
           </th>
         </tr>
