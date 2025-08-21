@@ -10,15 +10,21 @@
 
 <body>
   <section class="crudAdmin">
-    <div id="box">
-      <h2>Agregar nuevo producto</h2>
-      <p>Para agregar un nuevo producto al catálogo llene el siguiente formulario</p>
-      <form action="" id="adminAgregar" class="formulario">
-        <input type="text" name="" id="title" placeholder="Título">
-        <input type="text" name="" id="description">
-        <input type="number" name="" id="price" placeholder="Precio">
-        <button type="submit">Enviar</button>
-      </form>
+    <div id="modalProducto" class="modal">
+      <div class="modal-contenido">
+        <span class="cerrar" onclick="cerrarModal()">&times;</span>
+        <div id="box">
+          <form action="" id="adminAgregar" class="formulario">
+            <button class="close">&times;</button>
+            <h2>Agregar nuevo producto</h2>
+            <p>Para agregar un nuevo producto al catálogo llene el siguiente formulario</p>
+            <input type="text" name="" id="title" placeholder="Título">
+            <input type="text" name="" id="description">
+            <input type="number" name="" id="price" placeholder="Precio">
+            <button type="submit">Enviar</button>
+          </form>
+        </div>
+      </div>
       <script src="admin.js"></script>
     </div>
     <h2>Listado de Productos</h2>
@@ -31,14 +37,19 @@
           <th>Categoría</th>
           <th>Precio</th>
           <th>Estado</th>
-          <th id agregar mas><i class="bi bi-pencil"></i></th>
+          <th id="agregar-mas">
+            <button class="btn btn-success">
+              <i class="bi bi-plus"></i>
+            </button>
+          </th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td id="nombreProducto">MTR Pro</td>
           <td>
-            <div id="imgProduc" class="img-placeholder"><img src="imagenes/bicicletamtb1.jpg" alt="img progucto"></div>
+            <div id="imgProduc" class="img-placeholder"><img src="imagenes/bicicletamtb1.jpg" alt="img progucto">
+            </div>
           </td>
           <td>
             <select class="categoria" onchange="mostrarInput(this)">
@@ -101,6 +112,7 @@
       <button>&gt;</button>
     </div>
   </section>
+  <script src="funcionesboton.js"></script>
 </body>
 
 </html>
