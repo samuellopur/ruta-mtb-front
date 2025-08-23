@@ -1,0 +1,183 @@
+/* Importar fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;500&family=Montserrat:wght@600;700&family=Nunito:wght@500;600&display=swap');
+
+/* ---------- RESET ---------- */
+body {
+  font-family: 'Lato', sans-serif;
+  background-color: #FEFAE0;
+  color: #333333;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+/* ---------- TIPOGRAFÍA ---------- */
+h1, h2, h3 {
+  font-family: 'Montserrat', sans-serif;
+  color: #BC6C25;
+}
+
+h4, h5, h6 {
+  font-family: 'Nunito', sans-serif;
+  color: #283618;
+}
+
+p, li, span {
+  font-family: 'Lato', sans-serif;
+  font-size: 1rem;
+  color: #333333;
+}
+
+
+/* ---------- BOTONES ---------- */
+.btn-dark {
+  background-color: #283618;
+  border: none;
+  color: #FEFAE0;
+}
+
+.btn-dark:hover {
+  background-color: #7AB021;
+  color: #FEFAE0;
+}
+
+/* ---------- SECCIONES ---------- */
+#destacados{
+  padding: 3rem 0;
+}
+
+.card {
+  border: 1px solid #97BC62;
+  background-color: #ffff;
+  border-radius: 0.5rem;
+  transition: transform 0.2s ease-in-out;
+}
+
+.card img {
+  height: 200px;        /* altura fija */
+  object-fit: cover;    /* recorta bien la imagen */
+}
+
+.card h3 {
+    font-size: medium;
+}
+.card h4{
+    font-size: medium;
+    color: #7AB021;
+}
+
+.card p {
+    font-size: small;
+}
+
+.producto-descripcion {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* máximo 2 líneas */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 40px;
+}
+
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card .btn {
+  margin-top: 1rem;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  background-color: #333333;
+  color: #FEFAE0;
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: #FEFAE0;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: #7AB021;
+}
+/*banner*
+/* Asegura que el carrusel tenga altura mínima */
+#heroCarrucel .carousel-item {
+  height: 100vh; /* ocupa toda la altura de la pantalla */
+  min-height: 500px; /* altura mínima para pantallas pequeñas */
+  position: relative;
+}
+
+/* Imagen o video adaptados al contenedor */
+#heroCarrucel .carousel-item img,
+#heroCarrucel .carousel-item video {
+  object-fit: cover; /* recorta sin deformar */
+  height: 100%;
+}
+
+/* Texto centrado */
+#heroCarrucel .carousel-caption {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  bottom: auto; /* evita que se pegue abajo */
+  text-align: center;
+  z-index: 10;
+}
+
+/* Colores de los textos (según tu guía de estilos) */
+#heroCarrucel .carousel-caption h2,
+#heroCarrucel .carousel-caption p {
+  color: #FEFAE0; /* color crema de tu paleta */
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.6); /* para mejor contraste */
+}
+
+/* Botón */
+#heroCarrucel .carousel-caption .btn {
+  background-color: #283618; /* verde oliva */
+  border: none;
+  color: #FEFAE0;
+  padding: 0.7rem 1.5rem;
+  font-size: 1.1rem;
+}
+
+#heroCarrucel .carousel-caption .btn:hover {
+  background-color: #7AB021; /* verde brillante en hover */
+}
+
+/* Overlay para carrusel */
+.carousel-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4); /* ajusta opacidad a tu gusto */
+  z-index: 1;
+}
+
+/* Botón */
+.carousel-caption .btn {
+  background-color: #283618; /* verde oliva */
+  border: none;
+  color: #FEFAE0;
+}
+
+.carousel-caption .btn:hover {
+  background-color: #7AB021; /* verde brillante */
+}
+
+/* Flechas personalizadas */
+.carousel-control-prev, 
+.carousel-control-next {
+  width: 5%;
+}
+
+.carousel-control-prev i,
+.carousel-control-next i {
+  color: #7AB021; /* verde brillante */
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
+}

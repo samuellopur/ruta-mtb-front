@@ -140,6 +140,9 @@ h3 {
 
 /*Estilos NavBar*/
 nav{
+    position:sticky;/*la nav no se mueve si se desliza el contenido*/
+    top: 0;
+    z-index: 1030; /* para que quede sobre el contenido */
     display: block;
     width: 100%;
     min-height: 100px;
@@ -506,4 +509,5 @@ h2 {
 #box .formulario input[type="button"]:hover {
   background: #7ab021;
 }
+
 
