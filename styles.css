@@ -234,6 +234,7 @@ nav{
 }
 
 /*Propiedades Responsive*/
+/*Propiedades Responsive*/
 @media (max-width:800px){ 
     .section2 {
     display: none;
@@ -507,7 +508,5 @@ h2 {
 
 
 #box .formulario input[type="button"]:hover {
-  background: #7ab021;
+    background: #7ab021;
 }
-
-
