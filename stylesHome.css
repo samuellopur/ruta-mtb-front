@@ -55,7 +55,7 @@ p, li, span {
 
 .card img {
   height: 200px;        /* altura fija */
-  object-fit: cover;    /* recorta bien la imagen */
+  object-fit: contain; /* mantiene proporciones sin cortar */
 }
 
 .card h3 {
@@ -181,3 +181,62 @@ footer a:hover {
   color: #7AB021; /* verde brillante */
   text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
 }
+
+.logo-marca {
+  max-width: 100%;   
+  max-height: 80%;   
+  object-fit: contain; 
+  display: block;
+}
+
+.brand-box {
+  width: 150px;         
+  height: 100px;        
+  display: flex;        
+  align-items: center;  
+  justify-content: center; 
+  border-radius: 8px;  
+}
+
+.brand-logo {
+  max-width: 100%;   /* se ajusta al ancho */
+  max-height: 80%;   /* se ajusta a la altura */
+  object-fit: contain; /* mantiene proporciones sin cortar */
+}
+
+/* Botón WhatsApp flotante */
+.btn-whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25D366; /* verde WhatsApp */
+  color: white;
+  font-size: 28px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+  z-index: 1050;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: pulse 1.5s infinite;
+}
+
+/* Hover efecto */
+.btn-whatsapp:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 6px 15px rgba(0,0,0,0.4);
+}
+
+/* Animación de pulso */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+
+
