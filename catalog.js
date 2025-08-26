@@ -26,6 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
       <h3 class="titleMtb">${producto.title}</h3>
       <p class="descriptionMtb">${producto.description}</p>
       <p>$<span class="priceMtb">${producto.price.toLocaleString('es-CO')}</span></p>
+      <button onclick="agregarAlCarrito(${producto.id})" class="btnAgregar" data-id="${producto.id}">Agregar al carrito</button>
+      <input id="cantidadMtb-${producto.id}" type="number" class="cantidadMtb" min="1" value="1">
     `;
     contenedor.appendChild(card);
   });
