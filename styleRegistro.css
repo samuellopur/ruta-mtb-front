@@ -1,0 +1,178 @@
+/* Diseño página de about us */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
+
+/* Fuentes importadas*/
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Fondo general */
+body {
+    background: linear-gradient(#2b3618, #7ab021);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Caja principal */
+#box {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Título */
+#box h2 {
+    margin-bottom: 0.5rem;
+    color: #333;
+    padding: 15px;
+}
+
+#box p {
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Formulario */
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Campos de entrada */
+.formulario input[type="text"],
+.formulario input[type="email"],
+.formulario input[type="password"] {
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.formulario input:focus {
+    border: 1px solid #7ab021;
+    box-shadow: 0 0 5px #2b3610;
+}
+
+.g-recaptcha {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 16px 0;
+}
+
+#botonRecap {
+    display: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Botón */
+.formulario input[type="button"] {
+    background:  #7ab021;
+    color: #fff;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.formulario input[type="button"]:hover {
+    background: linear-gradient(#2b3618, #7ab021);
+    background: #2b3618;
+    transform: scale(1.05);
+}
+
+.textfield-label {
+    position: absolute;
+    z-index: 1;
+    top: var(--label-inset-block-start);
+    left: var(--label-inset-inline-start);
+    color: var(--x-card-text-color-subdued);
+    font-size: var(--label-font-size);
+}
+
+.textfield:not(:placeholder-shown):not(.textfield--label-outside)+.textfield-label {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+}
+
+
+
+.textfield-wrapper {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.textfield {
+    width: 100%;
+    padding: 1rem 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+}
+
+.textfield:focus {
+    border-color: #BC6C25;
+    box-shadow: 0 0 4px #7ab021;
+}
+
+.textfield-label {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    color: #666;
+    font-size: 0.9rem;
+    pointer-events: none;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Cuando hay texto o el input está en foco → el label sube */
+.textfield:focus + .textfield-label,
+.textfield:not(:placeholder-shown) + .textfield-label {
+    top: -8px;
+    left: 8px;
+    font-size: 0.75rem;
+    color: #BC6C25;
+    background: #fff;
+    padding: 0 4px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #7ab021;
+    font-size: 1.2rem;
+    z-index: 2;
+    user-select: none;
+}
+.textfield-wrapper {
+    position: relative;
+}

@@ -243,6 +243,15 @@ nav{
     vertical-align: top;
 }
 
+.section3 a {
+    text-decoration: none;
+    color: #7ab021;
+}
+
+.section3 a:hover{
+    color: #fefae0;
+}
+
 .section3 div{
     display: inline-block;
     text-align: center;

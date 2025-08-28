@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro Usuario</title>
+    <link rel="stylesheet" href="styleRegistro.css">
+    <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
+</head>
+
+<body>
+    <div id="box">
+        <h2>Registro de Usuario</h2>
+
+        <form action="" id="registroUsuario" class="formulario">
+            <div class="textfield-wrapper">
+                <input type="text" id="nombre" name="nombre" class="textfield" placeholder=" " required>
+                <label for="nombre" class="textfield-label">Nombre completo</label>
+            </div>
+
+            <div class="textfield-wrapper">
+                <input type="email" id="Correo" name="correo" class="textfield" placeholder=" " required>
+                <label for="correo" class="textfield-label" required>Correo electrónico</label>
+            </div>
+
+            <div class="textfield-wrapper">
+                <input type="password" id="contraseña" name="contraseña" class="textfield" placeholder=" " required>
+                <label for="contraseña" class="textfield-label">Contraseña</label>
+                <span class="toggle-password" onclick="togglePassword('contraseña', this)">
+                    <i class="bi bi-eye"></i>
+                </span>
+            </div>
+
+            <div class="textfield-wrapper">
+                <input type="password" id="confirmarContraseña" name="confirmarContraseña" class="textfield"
+                    placeholder=" " required>
+                <label for="confirmarContraseña" class="textfield-label">Confirmar contraseña</label>
+            </div>
+
+
+            <div class="g-recaptcha" data-sitekey="6LcREa8rAAAAAAbobuz8FGo9BVKJznZjycCgOfNX" data-action="LOGIN">
+            </div>
+
+            <input type="submit" id="botonRecap" value="Submit">
+            <input type="button" value="Registrarse">
+
+            <!-- Enlace debajo del botón -->
+            <p class="link-login">
+                ¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a>
+            </p>
+        </form>
+    </div>
+
+</body>
+
+</html>
