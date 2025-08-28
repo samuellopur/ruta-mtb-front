@@ -29,9 +29,17 @@ function mostrarDiv() {
 }
 
 // Función menú Hambuerguesa
-function mostrarMenu() {
-  document.getElementById("hamburguesa").classList.toggle("active");
+
+function mostrarAdmin() {
+  const mtbLinks = document.querySelector(".mtbUserVisual");
+  mtbLinks.classList.toggle("oculto");
 }
+function mostrarMenu() {
+  const mtbLinks = document.querySelector(".hamburguesa");
+  mtbLinks.classList.toggle("oculto");
+}
+
+
 
 let data = JSON.parse(localStorage.getItem("infoCatalogo"));
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
@@ -39,8 +47,7 @@ let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 function agregarAlCarrito(dataId) {
   // Busca el producto por id en el array data
   const index = data.find(item => item.id == dataId);
-  const cantidadInput = document.getElementById(`cantidadMtb-${dataId}`);
-  const cantidad = parseInt(cantidadInput.value);
+  const cantidad = 1;
   if (index) {
     // Verifica si ya está en el carrito
     const existe = carrito.find(item => item.id == dataId);
@@ -101,12 +108,14 @@ function actualizarCarrito() {
     const valorAcumulado = producto.price * producto.cantidad;
     productoCarrito.innerHTML = `
       <img src="${producto.img}" alt="${producto.title}">
+      <div class="mtbCardContent">
       <h3>${producto.title}</h3>
       <p>Cantidad: <span class="cantidad">${producto.cantidad}</span></p>
       <p>Precio: <span class="precio">${valorAcumulado.toLocaleString('es-CO')}</span></p>
-      <button onclick="reducirCantidad(${producto.id})">-</button>
-      <button onclick="aumentarCantidad(${producto.id})">+</button>
-      <button onclick="borrarCantidad(${producto.id})">Borrar</button>
+      <button class="mtbCartButton" onclick="aumentarCantidad(${producto.id})"><i class="bi bi-plus-lg"></i></button>
+      <button class="mtbCartButton" onclick="reducirCantidad(${producto.id})"><i class="bi bi-dash"></i></button>
+      <button class="mtbCartButton" onclick="borrarCantidad(${producto.id})"><i class="bi bi-trash3-fill"></i></button>
+      </div>
     `;
     cartItems.appendChild(productoCarrito);
   });
