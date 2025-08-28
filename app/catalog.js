@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Selecciona el contenedor donde se mostrarán las cards
-  const contenedor = document.body; // O usa un div específico si lo prefieres
+  const contenedor = document.getElementById("mtbCatalogo"); // O usa un div específico si lo prefieres
 
   // Limpia las cards existentes
   document.querySelectorAll(".cardMtb").forEach(card => card.remove());
@@ -22,12 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
     card.setAttribute("data-id", producto.id);
 
     card.innerHTML = `
-      <img src="${producto.img}" alt="${producto.title}" class="imagenMtb">
-      <h3 class="titleMtb">${producto.title}</h3>
-      <p class="descriptionMtb">${producto.description}</p>
-      <p>$<span class="priceMtb">${producto.price.toLocaleString('es-CO')}</span></p>
-      <button onclick="agregarAlCarrito(${producto.id})" class="btnAgregar" data-id="${producto.id}">Agregar al carrito</button>
-      <input id="cantidadMtb-${producto.id}" type="number" class="cantidadMtb" min="1" value="1">
+      <img src="${producto.img}" alt="${producto.title}">
+      <h3>${producto.title}</h3>
+      <p>${producto.description}</p>
+      <p>$<span>${producto.price.toLocaleString('es-CO')}</span></p>
+      <button onclick="agregarAlCarrito(${producto.id})" class="btnAgregar" data-id="${producto.id}">Agregar</button>
     `;
     contenedor.appendChild(card);
   });
