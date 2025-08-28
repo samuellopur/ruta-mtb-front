@@ -1,64 +1,207 @@
-/* Diseño página de about us */
+/* Iconografía y fuentes */
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
-
-/* Fuentes importadas*/
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Lato', sans-serif; 
+    font-family: 'Lato', sans-serif;
 }
 
+body {
+    background: gainsboro;
+}
+
+/* ========================================= */
+/* MTB - Estilos Navbar (Barra de Navegación */
+.oculto {display: block !important;}
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: block;
+    width: 100%;
+    height: 75px;
+    background: #333;
+    font-size: 0;
+}
+
+/* Solo Imagen del Navbar*/
+.section1 {
+    display: inline-block;
+    vertical-align: top;
+    height: 75px;
+    padding: 14px;
+}
+
+.section1 img {
+    height: 100%;
+}
+
+/* Solo Enlaces del Navbar*/
+.section2 {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.botonHamburguesa {
+    display: none !important;
+}
+
+.section2 a,
+.mtbMobileButtons a {
+    display: inline-block;
+    text-align: center;
+    margin: 14px 0;
+    padding: 10px 20px;
+    height: 50px;
+    color: #7ab021;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.section2 a:hover,
+.mtbMobileButtons a:hover {
+    background: #7ab021;
+    color: #fefae0;
+    border-radius: 7px;
+}
+
+.mtbMobileButtons {
+    display: inline-block;
+    position: absolute;
+    top: 0px;
+    right: 0;
+    font-size: 18px;
+}
+
+.mtbMobileButtons a {
+    display: inline-block;
+}
+
+.mtbUserVisual {
+    display: none;
+    position: absolute;
+    top: 75px;
+    right: 0;
+    width: 200px;
+    padding: 14px;
+    background: gainsboro;
+}
+
+.mtbUserVisual * {
+    text-align: left;
+    font-size: 18px;
+}
+
+.mtbUserVisual a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 7px 14px;
+    background: #7ab021;
+    color: white;
+    border-radius: 7px;
+}
+
+/* Fin de la Sección del Navbar */
+/* ========================================= */
+
+/* ========================================= */
 /* Carrito Code (temporal) */
-            .carritoProductos {
-                display: inline-block;
-                position: fixed;
-                top: 0;
-                right: 0;
-                background: gainsboro;
-                width: 400px;
-                height: 100vh;
-                z-index: 1;
-                font-size: 16px;
-                overflow-y: scroll;
-            }
+.carritoProductos {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: gainsboro;
+    width: 400px;
+    height: 100vh;
+    z-index: 1;
+    font-size: 16px;
+    overflow: hidden;
+}
 
-            .productoCarrito {
-                border: 1px solid black;
-                margin: 14px;
-                padding: 14px;
-            }
+.infoCarrito {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 150px;
+    padding: 14px;
+    color: black;
+    background: gainsboro;
+}
 
-            .productoCarrito img {
-                width: 100px;
-                min-height: 100px;
-                background: gray;
-                display: inline-block;
-            }
+.mtbCartButton {
+    font-size: 18px;
+    background: #7ab021;
+    color: white;
+    padding: 7px 14px;
+    margin: 4px;
+    border: none;
+    border-radius: 7px;
+}
 
-            .productoCarrito h3, .productoCarrito p {
-                display: inline-block;
-                width: 100%;
-                text-align: left;
-                font-size: 16px;
-                margin: 0;
-                padding: 0;
-            }
-            .productoCarrito button {
-                border: none;
-                padding: 7px;
-                margin: 0;
-                display: inline-block;
-            }
+.mtbFloatRight {
+    position: absolute;
+    right: 20px;
+}
 
+.mtbCartButton:hover {
+    background: #333;
+    color: #7AB021;
+}
 
+.carritoScroll {
+    overflow-y: scroll;
+    height: calc(100vh - 150px);
+    width: 100%;
+}
 
-h2, h3 {
+.productoCarrito {
+    background: #333;
+    color: gainsboro;
+    margin: 0;
+    padding: 14px;
+}
+
+.productoCarrito img {
+    width: 50px;
+    background: gray;
+    display: inline-block;
+    border-radius: 7px;
+}
+
+.mtbCardContent {
+    display: inline-block;
+    vertical-align: top;
+    padding: 0 14px;
+    width: calc(100% - 100px);
+}
+
+.productoCarrito h3,
+.productoCarrito p {
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+}
+
+/* fin de carrito code */
+/* ========================================= */
+
+/* Generalidades (en revisión) */
+
+h2,h3 {
     font-family: 'Nunito', sans-serif;
     font-size: 24px;
 }
+
 h1 {
     font-family: 'Montserrat', sans-serif;
     font-size: 36px;
@@ -79,7 +222,8 @@ h1 {
 
 }
 
-.clase-parrafo, #texto-oculto-mision-vision {
+.clase-parrafo,
+#texto-oculto-mision-vision {
     margin: 25px auto;
     padding: 25px;
     text-align: justify;
@@ -90,7 +234,7 @@ h1 {
 
 .img-quienes-somos {
     width: 100%;
-    
+
 }
 
 .img-quienes-somos img {
@@ -102,17 +246,17 @@ h1 {
     border: 1px solid #7ab021;
 }
 
-button {
+aside button {
     background-color: #2b3618;
     border: none;
     color: #fefae0;
     font-size: 20px;
     padding: 10px 20px;
     border-radius: 10px;
-    border: 2px solid rgba(0,0,0,0);
+    border: 2px solid rgba(0, 0, 0, 0);
     display: block;
     margin: 25px auto;
-    border: 5px solid rgba(0,0,0,0);
+    border: 5px solid rgba(0, 0, 0, 0);
 
 }
 
@@ -142,7 +286,7 @@ button:hover {
     border-radius: 10px;
 }
 
-.tarjetas-presentacion img{
+.tarjetas-presentacion img {
     width: calc(100% - 10px);
     border-radius: 50%;
     margin: 20px 0;
@@ -164,36 +308,30 @@ h3 {
 }
 
 /* Aplicable únicamente a la sección de contacto*/
-.mtbCardExample {
-    padding: 20px;
-    background: white;
-    border-radius: 5px
+.mtbCardExample {padding: 20px; text-align: center;}
+.mtbCardExample img {display: block; width: 50%; margin: 0 auto;}
+
+/*Catalogo*/
+.mtbCatalogo {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
-.mtbCardExample img {
-    width: 100%;
-}
-
-.mtbContacto {
-    background: #2b3618;
-}
-
-.mtbColorBlanco {
-    color: white;
-}
-
-/*Estilos NavBar*/
-nav{
-    position:sticky;/*la nav no se mueve si se desliza el contenido*/
-    top: 0;
-    z-index: 1030; /* para que quede sobre el contenido */
-    display: block;
-    width: 100%;
-    min-height: 100px;
-    background: #333;
+.cardMtb {
+    display: inline-block;
+    width: 300px;
+    margin: 14px;
+    padding: 14px 7px;
+    background-color: #fff;
+    color: black;
+    border-radius: 7px;
+    border: 1px solid #333;
+    text-align: center;
     font-size: 0;
 }
 
+<<<<<<< HEAD
 .section1 {
     display: inline-block;
     height: 100px;
@@ -279,57 +417,90 @@ nav{
     background-color: #fefae0;
     border-radius: 10px;
     box-shadow: 0 0 7px grey;
+=======
+.cardMtb:hover {
+    border: 1px solid #7ab021;
+>>>>>>> ccd218fcd05ee21589de11ebc26876e6269e4e40
 }
 
 .cardMtb img {
-    width: 100%;
-    border-radius: 10px;
-}
-
-/*Propiedades Responsive*/
-/*Propiedades Responsive*/
-@media (max-width:800px){ 
-    .section2 {
-    display: none;
-    width: 100%;
-    position: absolute;
-    top: 100px;
-    left: 0;
-    background: rgba(51, 51, 51, .90);
-}
-
-.section2.active{
-    display: inline-block;
-}
-
-.botonHamburguesa{
-    display: inline-block !important;
-}
-
-.section2 a{
     display: block;
-    text-align: center;
-    color: #7ab021;
-    text-decoration: none;
-    padding: 14px;
-    font-size: 18px;
-    font-weight: bold;
-    margin: 14px 0;
-    border: 5px solid transparent;
-}
-
-.section2 a:hover{
-    background: #7ab021;
-    color: #fefae0;
-    border: 5px solid #2b3618;
+    height: 100px;
+    margin: 0 auto;
     border-radius: 7px;
 }
+
+.cardMtb p {
+    font-size: 16px;
+    margin: 0 0 14px;
 }
+
+.cardMtb button {
+    border: none;
+    border: 2px solid #7ab021;
+    background: #7ab021;
+    padding: 7px 14px;
+    width: 40%;
+    border-radius: 7px
+}
+
+
+/* =============================== */
+/* SECCION RESPONSIVE DE LA PAGINA */
+@media (max-width:1000px) {
+    .hamburguesa {
+        display: none;
+        width: 100%;
+        position: absolute;
+        top: 75px;
+        left: 0;
+        background: #333;
+    }
+
+    .mtbMobileButtons {
+        display: inline-block;
+        position: absolute;
+        top: 0px;
+        right: 0;
+        font-size: 18px;
+    }
+
+    .mtbMobileButtons a {
+        display: inline-block;
+    }
+
+    .oculto {
+        display: block !important;
+    }
+
+    .section2 a {
+        display: block;
+    }
+
+    .botonHamburguesa {
+        display: inline-block !important;
+        cursor: pointer;
+    }
+
+    .carritoProductos {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: 1;
+        font-size: 16px;
+        overflow-y: scroll;
+    }
+
+}
+
 
 
 /*estilos vista admin*/
 
-li{
+li {
     display: block;
     width: 100%;
     min-height: 100px;
@@ -343,6 +514,7 @@ li{
     padding: 15px;
     width: 20%;
 }
+
 encabezadoTablaAdmin {
     display: inline-block;
     height: 100px;
@@ -350,208 +522,125 @@ encabezadoTablaAdmin {
     width: 20%;
 }
 
-.section1 h1{
+.section1 h1 {
     height: 100%;
     text-align: center;
 }
 
 
-.section2 {
-    display: inline-block;
-    vertical-align: top;
-}
 
-.botonHamburguesa{
-    display: none !important;
 
-}
 
-.section2 a{
-    display: inline-block;
-    text-align: center;
-    height: 100%;
-    color: #7ab021;
-    text-decoration: none;
-    padding: 14px;
-    font-size: 18px;
-    font-weight: bold;
-    margin: 14px 0;
-    border: 5px solid transparent;
-}
 
-.section2 a:hover{
-    background: #7ab021;
-    color: #fefae0;
-    border: 5px solid #2b3618;
-    border-radius: 7px;
-}
 
-.section3{
-    position: absolute;
-    right: 0;
-    top: 0;
-    display: inline-block;
-    vertical-align: top;
-}
 
-.section3 div{
-    display: inline-block;
-    text-align: center;
-    color: #7ab021;
-    padding: 10px;
-    font-size: 22px; 
-    margin: 14px 0;
-    border: 5px solid transparent;
-}
 
-.section3 div:hover{
-    background: #7ab021;
-    color: #fefae0;
-    border: 5px solid #2b3618;
-    border-radius: 7px;
-}
 
-/*Propiedades Responsive*/
-@media (max-width:800px){ 
-    .section2 {
-    display: none;
-    width: 100%;
-    position: absolute;
-    top: 100px;
-    left: 0;
-    background: rgba(51, 51, 51, .90);
-}
 
-.section2.active{
-    display: inline-block;
-}
-
-.botonHamburguesa{
-    display: inline-block !important;
-}
-
-.section2 a{
-    display: block;
-    text-align: center;
-    color: #7ab021;
-    text-decoration: none;
-    padding: 14px;
-    font-size: 18px;
-    font-weight: bold;
-    margin: 14px 0;
-    border: 5px solid transparent;
-}
-
-.section2 a:hover{
-    background: #7ab021;
-    color: #fefae0;
-    border: 5px solid #2b3618;
-    border-radius: 7px;
-}
-}
 
 /*estilo cgpt*/
 
 
 h2 {
-  margin-bottom: 15px;
-  text-align: center;
+    margin-bottom: 15px;
+    text-align: center;
 }
 
 .tabla-productos {
-  width: 95%;
-  margin: 20px auto;
-  border-collapse: collapse;
-  background: #fff;
-  box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
-    
+    width: 95%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+
 }
 
-.tabla-productos th, .tabla-productos td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
+.tabla-productos th,
+.tabla-productos td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
 }
 
 .tabla-productos th {
-  background: #f2f2f2;
-  text-transform: capitalize;
+    background: #f2f2f2;
+    text-transform: capitalize;
 }
 
-#imgProduc img{
-  max-width: 219px;  
-  height: 128px;     
-  display: block;  
-  margin: 0 auto;
-  /*width: 25px;
+#imgProduc img {
+    max-width: 219px;
+    height: 128px;
+    display: block;
+    margin: 0 auto;
+    /*width: 25px;
   height: 30px; */
-  border: 1px solid #999;
-  display: inline-block ;
-  align-items: center;
-  justify-content: center;
+    border: 1px solid #999;
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
 }
 
 
 .estado {
-  padding: 5px 10px;
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 .disponible {
-  background: #d9fdd3;
-  color: #2e7d32;
+    background: #d9fdd3;
+    color: #2e7d32;
 }
 
 .btn-editar {
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  font-size: 16px;
-  color: #2b3618;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 16px;
+    color: #2b3618;
 }
 
 .paginacion {
-  margin-top: 15px;
-  text-align: right;
+    margin-top: 15px;
+    text-align: right;
 }
 
 .paginacion button {
-  border: 1px solid #ccc;
-  background: #fff;
-  margin: 0 2px;
-  padding: 5px 10px;
-  cursor: pointer;
+    border: 1px solid #ccc;
+    background: #fff;
+    margin: 0 2px;
+    padding: 5px 10px;
+    cursor: pointer;
 }
 
 .paginacion button.activo {
-  background: #333;
-  color: #fff;
+    background: #333;
+    color: #fff;
 }
 
 /* Estilos de formulario Admin*/
 
 #box {
-    
-  max-width: 400px;      
-  margin: 40px auto;     
-  padding: 20px;         
-  background: #fff;      
-  border-radius: 8px;    
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
-  text-align: center;    
+
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 
 
 #box .formulario input {
-  width: 100%;        
-  margin: 10px 0;     
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  display: block;     
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: block;
 }
 
 #box .formulario input[type="button"] {
@@ -562,4 +651,217 @@ h2 {
 
 #box .formulario input[type="button"]:hover {
     background: #7ab021;
+}
+
+
+/**/
+/**/
+/**/
+/* ---------- BOTONES ---------- */
+.btn-dark {
+  background-color: #283618;
+  border: none;
+  color: #FEFAE0;
+}
+
+.btn-dark:hover {
+  background-color: #7AB021;
+  color: #FEFAE0;
+}
+
+/* ---------- SECCIONES ---------- */
+#destacados{
+  padding: 3rem 0;
+}
+
+.card {
+  border: 1px solid #97BC62;
+  background-color: #ffff;
+  border-radius: 0.5rem;
+  transition: transform 0.2s ease-in-out;
+}
+
+.card img {
+  height: 200px;        /* altura fija */
+  object-fit: contain; /* mantiene proporciones sin cortar */
+}
+
+.card h3 {
+    font-size: medium;
+}
+.card h4{
+    font-size: medium;
+    color: #7AB021;
+}
+
+.card p {
+    font-size: small;
+}
+
+.producto-descripcion {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* máximo 2 líneas */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 40px;
+}
+
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card .btn {
+  margin-top: 1rem;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  background-color: #333333;
+  color: #FEFAE0;
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: #FEFAE0;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: #7AB021;
+}
+/*banner*
+/* Asegura que el carrusel tenga altura mínima */
+#heroCarrucel .carousel-item {
+  height: 100vh; /* ocupa toda la altura de la pantalla */
+  min-height: 500px; /* altura mínima para pantallas pequeñas */
+  position: relative;
+}
+
+/* Imagen o video adaptados al contenedor */
+#heroCarrucel .carousel-item img,
+#heroCarrucel .carousel-item video {
+  object-fit: cover; /* recorta sin deformar */
+  height: 100%;
+}
+
+/* Texto centrado */
+#heroCarrucel .carousel-caption {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  bottom: auto; /* evita que se pegue abajo */
+  text-align: center;
+  z-index: 10;
+}
+
+/* Colores de los textos (según tu guía de estilos) */
+#heroCarrucel .carousel-caption h2,
+#heroCarrucel .carousel-caption p {
+  color: #FEFAE0; /* color crema de tu paleta */
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.6); /* para mejor contraste */
+}
+
+/* Botón */
+#heroCarrucel .carousel-caption .btn {
+  background-color: #283618; /* verde oliva */
+  border: none;
+  color: #FEFAE0;
+  padding: 0.7rem 1.5rem;
+  font-size: 1.1rem;
+}
+
+#heroCarrucel .carousel-caption .btn:hover {
+  background-color: #7AB021; /* verde brillante en hover */
+}
+
+/* Overlay para carrusel */
+.carousel-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4); /* ajusta opacidad a tu gusto */
+  z-index: 1;
+}
+
+/* Botón */
+.carousel-caption .btn {
+  background-color: #283618; /* verde oliva */
+  border: none;
+  color: #FEFAE0;
+}
+
+.carousel-caption .btn:hover {
+  background-color: #7AB021; /* verde brillante */
+}
+
+/* Flechas personalizadas */
+.carousel-control-prev, 
+.carousel-control-next {
+  width: 5%;
+}
+
+.carousel-control-prev i,
+.carousel-control-next i {
+  color: #7AB021; /* verde brillante */
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
+}
+
+.logo-marca {
+  max-width: 100%;   
+  max-height: 80%;   
+  object-fit: contain; 
+  display: block;
+}
+
+.brand-box {
+  width: 150px;         
+  height: 100px;        
+  display: flex;        
+  align-items: center;  
+  justify-content: center; 
+  border-radius: 8px;  
+}
+
+.brand-logo {
+  max-width: 100%;   /* se ajusta al ancho */
+  max-height: 80%;   /* se ajusta a la altura */
+  object-fit: contain; /* mantiene proporciones sin cortar */
+}
+
+/* Botón WhatsApp flotante */
+.btn-whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25D366; /* verde WhatsApp */
+  color: white;
+  font-size: 28px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+  z-index: 1050;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: pulse 1.5s infinite;
+}
+
+/* Hover efecto */
+.btn-whatsapp:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 6px 15px rgba(0,0,0,0.4);
+}
+
+/* Animación de pulso */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
 }

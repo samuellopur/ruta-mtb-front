@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Navbar</title>
+        <script src="script.js" defer></script>
+    <script src="catalog.js" type="module" defer></script>
+    <script src="carrito.js" defer></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -12,17 +15,17 @@
     <nav>
 
         <div class="section1">
-            <img src="imag/logo-verde.png" alt="Logo">
+            <img src="img/MBT_NEWLOGO.png" alt="Logo">
         </div>
 
-        <div class="section2" id="hamburguesa">
-            <a href="inicio.html" class="navegacion">Inicio</a>
-            <a href="catalog.html" class="navegacion">Catálogo</a>
-            <a href="contacto.html" class="navegacion">Contáctenos</a>
-            <a href="aboutUs.html" class="navegacion">Quiénes somos</a>
-            <a href="vistaAdmin.html" class="navegacion">Administrador</a>
-        </div>
+        <div class="section2">
+        <div class="hamburguesa">
+            <a href="index.html">Inicio</a>
+            <a href="catalog.html">Catálogo</a>
+            <a href="contacto.html">Contáctenos</a>
+            <a href="aboutUs.html">Quiénes somos</a>
 
+<<<<<<< HEAD
         <div class="section3">
             <div class="accion">
                 <a href="registroUsuario.html" class="navegacion">
@@ -51,6 +54,41 @@
                     <h3>Total: $<span id="total">$0</span></h3>
                     <button id="vaciarCarrito">Vaciar carrito</button>
                     <button id="procesarCompra">Procesar compra</button>
+=======
+        </div>
+        </div>
+        <div class="mtbMobileButtons">
+            <a href="#" onclick="mostrarAdmin()"><div>
+                <i class="bi bi-person-circle"></i>
+            </div></a>
+            <a href="#" id="mtbOpen"><i class="bi bi-cart-fill"></i></a>
+            <a class="botonHamburguesa" onclick="mostrarMenu()"><i class="bi bi-list"></i></a>
+        </div>
+
+        <div class="mtbUserVisual">
+            <h3>Hola, Usuario</h3>
+            <p>Eres admin</p>
+            <a href="vistaAdmin.html"><div>
+                Administrador</i>
+            </div></a>
+        </div>
+
+        <div class="mtbCarrito">
+                <div id="mtbBox" class="carritoProductos">
+                    <button id="mtbClose" class="mtbCartButton mtbFloatRight"><i class="bi bi-x"></i></button>
+                    
+                    <div id="carritoProductos" class="carritoScroll"></div>
+                    <div class="infoCarrito">
+                        <p>Cantidad de productos: <span id="mtbInfo1">0</span></p>
+                        <p>Subtotal: $<span id="mtbInfo2">0</span></p>
+                        <p>Envío: $<span id="mtbInfo3">0</span></p>
+                        <p>Total: $<span id="mtbInfo4">0</span></p>
+                        <button class="mtbCartButton" id="vaciarCarrito">Vaciar carrito</button>
+                        <button class="mtbCartButton" id="procesarCompra">Procesar compra</button>
+                    </div>
+
+
+>>>>>>> ccd218fcd05ee21589de11ebc26876e6269e4e40
                 </div>
 
             </div>
