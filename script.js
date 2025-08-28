@@ -3,18 +3,20 @@ fetch("navbar.html")
   .then((data) => {
     document.getElementById("mtbNavbar").innerHTML = data;
 
+    // Espera a que el HTML esté en el DOM
     const mtbOpen = document.getElementById("mtbOpen");
-const mtbClose = document.getElementById("mtbClose");
-const mtbBox = document.getElementsByClassName("mtbBox")[0];
+    const mtbClose = document.getElementById("mtbClose");
+    const mtbBox = document.getElementById("mtbBox"); // Cambiado aquí
 
-
-mtbOpen.addEventListener("click", () => {
-mtbBox.style.display = "inline-block";
-})
-mtbClose.addEventListener("click", () => {
-mtbBox.style.display = "none";
-})
-});
+    if (mtbOpen && mtbClose && mtbBox) {
+      mtbOpen.addEventListener("click", () => {
+        mtbBox.style.display = "inline-block";
+      });
+      mtbClose.addEventListener("click", () => {
+        mtbBox.style.display = "none";
+      });
+    }
+  });
 
 // Botón de conoce más - página de about us
 function mostrarDiv() {
