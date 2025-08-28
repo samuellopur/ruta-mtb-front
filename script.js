@@ -2,7 +2,19 @@ fetch("navbar.html")
   .then((response) => response.text())
   .then((data) => {
     document.getElementById("mtbNavbar").innerHTML = data;
-  });
+
+    const mtbOpen = document.getElementById("mtbOpen");
+const mtbClose = document.getElementById("mtbClose");
+const mtbBox = document.getElementsByClassName("mtbBox")[0];
+
+
+mtbOpen.addEventListener("click", () => {
+mtbBox.style.display = "inline-block";
+})
+mtbClose.addEventListener("click", () => {
+mtbBox.style.display = "none";
+})
+});
 
 // Botón de conoce más - página de about us
 function mostrarDiv() {
@@ -19,5 +31,95 @@ function mostrarMenu() {
   document.getElementById("hamburguesa").classList.toggle("active");
 }
 
+let data = JSON.parse(localStorage.getItem("infoCatalogo"));
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
+function agregarAlCarrito(dataId) {
+  // Busca el producto por id en el array data
+  const index = data.find(item => item.id == dataId);
+  const cantidadInput = document.getElementById(`cantidadMtb-${dataId}`);
+  const cantidad = parseInt(cantidadInput.value);
+  if (index) {
+    // Verifica si ya está en el carrito
+    const existe = carrito.find(item => item.id == dataId);
+    if (existe) {
+      existe.cantidad += cantidad;
+    } else {
+      carrito.push({ ...index, cantidad });
+    }
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    actualizarCarrito();
+  }
+}
 
+function aumentarCantidad(mtbId) {
+    const index = carrito.find(index => index.id == mtbId);
+    index.cantidad += 1;
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    actualizarCarrito();
+}
+function reducirCantidad(mtbId) {
+  const index = carrito.find(index => index.id == mtbId);
+    if (index.cantidad > 1) {
+      index.cantidad -= 1;
+    } else {
+      carrito.splice(index, 1)
+    }
+    
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    actualizarCarrito();
+}
+function borrarCantidad(mtbId) {
+    const index = carrito.find(index => index.id == mtbId);
+    carrito.splice(index, 1)
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    actualizarCarrito();
+}
+
+function calcularTotal() {
+  return carrito.reduce((total, item) => {
+    const precio = parseInt(item.precio.replace(/\D/g, ""));
+    return total + precio;
+  }, 0);
+}
+
+function actualizarCarrito() {
+  const cartItems = document.getElementById("carritoProductos");
+  cartItems.innerHTML = "";
+
+  if (carrito.length === 0) {
+    cartItems.innerHTML =
+      '<p>Carrito vacío</p>';
+    return;
+  }
+
+  carrito.forEach((producto, index) => {
+    const productoCarrito = document.createElement("div");
+    productoCarrito.className = "productoCarrito";
+    const valorAcumulado = producto.price * producto.cantidad;
+    productoCarrito.innerHTML = `
+      <img src="${producto.img}" alt="${producto.title}">
+      <h3>${producto.title}</h3>
+      <p>Cantidad: <span class="cantidad">${producto.cantidad}</span></p>
+      <p>Precio: <span class="precio">${valorAcumulado.toLocaleString('es-CO')}</span></p>
+      <button onclick="reducirCantidad(${producto.id})">-</button>
+      <button onclick="aumentarCantidad(${producto.id})">+</button>
+      <button onclick="borrarCantidad(${producto.id})">Borrar</button>
+    `;
+    cartItems.appendChild(productoCarrito);
+  });
+
+//   const total = calcularTotal();
+//   const totalItem = document.createElement("li");
+//   totalItem.innerHTML = `<span class="dropdown-item-text fw-bold">Total: $${total.toLocaleString()}</span>`;
+//   cartItems.appendChild(totalItem);
+
+//   const vaciarBtnItem = document.createElement("li");
+//   vaciarBtnItem.innerHTML = `
+//   <button class="dropdown-item text-danger" onclick="vaciarCarrito()">Vaciar carrito</button>
+// `;
+//   cartItems.appendChild(vaciarBtnItem);
+
+}
+
+actualizarCarrito();

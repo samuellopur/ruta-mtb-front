@@ -27,7 +27,7 @@
             <div class="accion">
                 <i class="bi bi-person-circle"></i>
             </div>
-            <div class="accion">
+            <div class="accion" id="mtbOpen">
                 <i class="bi bi-cart-fill"></i>
             </div>
             <div class="accion botonHamburguesa" onclick="mostrarMenu()">
@@ -35,111 +35,21 @@
             </div>
         </div>
 
-        <style>
-
-            .botonSencillo {
-                background: none;
-                border: none;
-                cursor: pointer;
-                font-size: 16px;
-                color: #007bff;
-            }
-
-            .mtbCarrito {
-                display: block;
-                position: absolute;
-                top: 60px;
-                right: 10px;
-                width: 300px;
-                background-color: #fff;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-                padding: 10px;
-                z-index: 1000;
-            }
-
-            .mtbCarrito h3 {
-                margin-top: 0;
-                font-size: 18px;
-                text-align: center;
-            }
-
-            .carritoProductos {
-                max-height: 200px;
-                overflow-y: auto;
-            }
-
-            .productoCarrito {
-                display: flex;
-                align-items: center;
-                margin-bottom: 10px;
-            }
-
-            .productoCarrito img {
-                width: 50px;
-                height: 50px;
-                object-fit: cover;
-                margin-right: 10px;
-            }
-
-            .productoCarrito h3 {
-                font-size: 16px;
-                margin: 0;
-                flex-grow: 1;
-            }
-
-            .productoCarrito p {
-                margin: 0 5px;
-            }
-
-            .totalCarrito {
-                text-align: center;
-                margin-top: 10px;
-            }
-
-            .totalCarrito h3 {
-                margin: 0 0 10px 0;
-            }
-
-            .totalCarrito button {
-                background-color: #28a745;
-                color: #fff;
-                border: none;
-                padding: 5px 10px;
-                border-radius: 3px;
-                cursor: pointer;
-                margin: 5px;
-            }
-
-            .totalCarrito button:hover {
-                background-color: #218838;
-            }
-        </style>
-
         <div class="mtbCarrito">
             <div>
                 <h3>Carrito de compras</h3>
             </div>
-            <div>
-                <div id="carritoProductos" class="carritoProductos">
-                    <p class="textoCarrito">No hay productos en el carrito</p>
-                    <div class="productoCarrito">
-                        <img src="" alt="">
-                        <h3>title</h3>
-                        <p class="cantidad">Cantidad: </p>
-                        <p class="precio">Precio: 1</p>
+                <div id="mtbBox" class="carritoProductos">
+                    <button id="mtbClose">X</button>
+                    <div id="carritoProductos"></div>
+                    <div class="totalCarrito">
+                        <h3>Total: $<span id="total">$0</span></h3>
+                        <button id="vaciarCarrito">Vaciar carrito</button>
+                        <button id="procesarCompra">Procesar compra</button>
                     </div>
 
                 </div>
-            </div>
-            <div>
-                <div class="totalCarrito">
-                    <h3>Total: $<span id="total">$0</span></h3>
-                    <button id="vaciarCarrito">Vaciar carrito</button>
-                    <button id="procesarCompra">Procesar compra</button>
-                </div>
-            </div>
+
         </div>
     </nav>
 
