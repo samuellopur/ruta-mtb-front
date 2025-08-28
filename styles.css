@@ -216,6 +216,56 @@ nav{
     border-radius: 7px;
 }
 
+/*Vista carrito
+.mtbCarrito { 
+    display: none !important;
+}
+*/
+.mtbCarrito { 
+    color: #000;
+    background-color: #fefae0;
+    z-index: auto;
+    position: absolute;
+    top: 0;
+    float: right;
+    right: 0;
+    width: 450px;
+    padding: 15px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: auto;
+}
+
+.finalCarrito {
+    text-align: center;
+    margin-top: auto;
+    /*padding: 10px 0; creo que este hace que se ponga abajo y quede fijo, toca revisar*/ 
+}
+
+.totalCarrito h3 {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.botonesCarrito {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.botonesCarrito button {
+    height: 40px;
+    padding: 0 20px;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /*Catalogo*/
 
 .cardMtb {
