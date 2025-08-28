@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "nombre": "Bicicleta MTB Pro",
+    "descripcion": "Una bicicleta ligera y resistente para montaña",
+    "precio": 2500000,
+    "imagen": "imagenes/bicicletamtb1.jpg"
+  },
+  {
+    "id": 2,
+    "nombre": "Casco de seguridad",
+    "descripcion": "Protección premium con ventilación avanzada",
+    "precio": 350000,
+    "imagen": "imagenes/casco.jpg"
+  },
+  
+  { "id": 3, "nombre": "Bicicleta MTB Pro", "precio": 1200000, "imagen": "imagenes/bicicletamtb3.jpg" },
+  { "id": 4, "nombre": "Gafas Ruta MTB", "precio": 180000, "imagen": "imagenes/gafas.jpg" },
+  { "id": 6, "nombre": "Guantes MTB", "precio": 75000, "imagen": "imagenes/guantes.jpg" },
+  { "id": 7, "nombre": "Jersey MTB", "precio": 95000, "imagen": "imagenes/jersey1.jpg" }
+]
+
+
