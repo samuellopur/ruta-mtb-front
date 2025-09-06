@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +11,7 @@
 <body>
     <div id="box">
         <h2>Registro de Usuario</h2>
-
+        
         <form action="" id="registroUsuario" class="formulario">
             <div class="textfield-wrapper">
                 <input type="text" id="nombre" name="nombre" class="textfield" placeholder=" " required>
@@ -21,7 +20,7 @@
 
             <div class="textfield-wrapper">
                 <input type="email" id="Correo" name="correo" class="textfield" placeholder=" " required>
-                <label for="correo" class="textfield-label" required>Correo electrónico</label>
+                <label for="Correo" class="textfield-label">Correo electrónico</label>
             </div>
 
             <div class="textfield-wrapper">
@@ -33,27 +32,65 @@
             </div>
 
             <div class="textfield-wrapper">
-                <input type="password" id="confirmarContraseña" name="confirmarContraseña" class="textfield"
-                    placeholder=" " required>
+                <input type="password" id="confirmarContraseña" name="confirmarContraseña" class="textfield" placeholder=" " required>
                 <label for="confirmarContraseña" class="textfield-label">Confirmar contraseña</label>
-                <span class="toggle-password" onclick="togglePassword('contraseña', this)">
+                <span class="toggle-password" onclick="togglePassword('confirmarContraseña', this)">
                     <i class="bi bi-eye"></i>
                 </span>
             </div>
 
-
             <div class="g-recaptcha" data-sitekey="6LcREa8rAAAAAAbobuz8FGo9BVKJznZjycCgOfNX" data-action="LOGIN">
             </div>
 
-            <input type="submit" id="botonRecap" value="Submit">
-            <input type="button" value="Registrarse">
+            <input type="submit" id="botonRecap" value="Registrarse">
+
+            
+            <!-- Botón para abrir modal de login -->
+            <input type="button" value="Registrarse" class="open-modal-btn" onclick="openLoginModal()">
 
             <!-- Enlace debajo del botón -->
             <p class="link-login">
-                ¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a>
+                ¿Ya tienes cuenta? <a href="#" onclick="openLoginModal()">Inicia sesión</a>
             </p>
         </form>
     </div>
-</body>
 
+    <!-- Modal de Inicio de Sesión -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <h2>Iniciar Sesión</h2>
+            
+            <form id="loginForm" class="formulario">
+                <div class="textfield-wrapper">
+                    <input type="email" id="loginEmail" name="loginEmail" class="textfield" placeholder=" " required>
+                    <label for="loginEmail" class="textfield-label">Correo electrónico</label>
+                </div>
+
+                <div class="textfield-wrapper">
+                    <input type="password" id="loginPassword" name="loginPassword" class="textfield" placeholder=" " required>
+                    <label for="loginPassword" class="textfield-label">Contraseña</label>
+                    <span class="toggle-password" onclick="togglePassword('loginPassword', this)">
+                        <i class="bi bi-eye"></i>
+                    </span>
+                </div>
+
+                <div class="g-recaptcha" data-sitekey="6LcREa8rAAAAAAbobuz8FGo9BVKJznZjycCgOfNX" data-action="LOGIN">
+                </div>
+
+                <input type="submit" value="Iniciar Sesión">
+                
+                <p class="link-login">
+                    ¿No tienes cuenta? <a href="#" onclick="closeLoginModal()">Regístrate</a>
+                </p>
+                
+                <p class="link-login">
+                    <a href="#" onclick="showForgotPassword()">¿Olvidaste tu contraseña?</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script src="scriptRegistro.js"></script>
+</body>
 </html>
