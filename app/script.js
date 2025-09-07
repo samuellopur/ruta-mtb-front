@@ -15,8 +15,21 @@ fetch("navbar.html")
       mtbClose.addEventListener("click", () => {
         mtbBox.style.display = "none";
       });
+      const mtbUser = document.getElementById("mtbUser");// Cambiado aquí --> karen (intente resplicar las funciones de modal carrito para motar de registro y login)
+      const mtbAdmin = document.getElementById("mtbAdmin");
+      const mtbInSesion= document.getElementById("mtbInSesion"); 
+
+    if (mtbUser && mtbAdmin && mtbInSesion) {
+      mtbOpen.addEventListener("click", () => {
+        mtbUser.style.display = "inline-block";
+      });
+      mtbClose.addEventListener("click", () => {
+        mtbBox.style.display = "none";
+      });
+    }
     }
   });
+
 
 // Botón de conoce más - página de about us
 function mostrarDiv() {
@@ -32,6 +45,10 @@ function mostrarDiv() {
 
 function mostrarAdmin() {
   const mtbLinks = document.querySelector(".mtbUserVisual");
+  mtbLinks.classList.toggle("oculto");
+}
+function handleUserButton() { //Cambio la funcion  mostrarAdmin()-->scrpt.js por handleUser() -->scriptRegistro.js
+  const mtbLinks = document.querySelector(".mtbUserVisual"); 
   mtbLinks.classList.toggle("oculto");
 }
 function mostrarMenu() {
