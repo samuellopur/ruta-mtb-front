@@ -41,7 +41,7 @@ body {
 #box p {
     margin-bottom: 0.5rem;
     font-size: 1rem;
-    color: #666;
+    color: #333;
 }
 
 /* Formulario */
@@ -64,7 +64,7 @@ body {
 
 .formulario input:focus {
     border: 1px solid #7ab021;
-    box-shadow: 0 0 5px #2b3610;
+    box-shadow: 0 0 5px #2b3618;
 }
 
 .g-recaptcha {
@@ -74,18 +74,7 @@ body {
     margin: 16px 0;
 }
 
-#botonRecap {
-    display: none;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 0.8rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    outline: none;
-    transition: border 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Botón */
+/* Botón Registrarse */
 .formulario input[type="button"],
 .formulario input[type="submit"] {
     background: #7ab021;
@@ -245,14 +234,6 @@ body {
     margin-bottom: 0.5rem;
     color: #333;
     padding: 15px;
-}
-
-/* Botón para abrir modal */
-.open-modal-btn {
-    background: rgba(255, 255, 255, 0.1) !important;
-    border: 2px solid rgba(122, 176, 33, 0.8) !important;
-    color: rgba(255, 255, 255, 0.9) !important;
-    backdrop-filter: blur(10px);
 }
 
 .open-modal-btn:hover {
