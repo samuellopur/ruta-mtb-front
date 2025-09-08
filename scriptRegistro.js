@@ -513,11 +513,21 @@ function validatePasswords() {
     const confirmPassword = document.getElementById('confirmarContraseña').value;
     
     if (password !== confirmPassword) {
-        alert('Las contraseñas no coinciden');
+        Swal.fire({
+            icon: 'error',
+            title: 'Contraseñas no coinciden',
+            text: 'Por favor verifica que ambas contraseñas sean iguales.',
+            confirmButtonText: 'Aceptar'
+        });
         return false;
     }
     if (password.length < 6) {
-        alert('La contraseña debe tener al menos 6 caracteres');
+        Swal.fire({
+            icon: 'warning',
+            title: 'Contraseña muy corta',
+            text: 'La contraseña debe tener al menos 6 caracteres.',
+            confirmButtonText: 'Aceptar'
+        });
         return false;
     }
     return true;
@@ -531,8 +541,14 @@ function validateEmail(email) {
 // ======================= REGISTRO =======================
 function handleRegistration(formData) {
     localStorage.setItem('usuario', JSON.stringify(formData));
-    alert('Registro exitoso!');
-    mostrarUsuarioEnNav(formData.nombre);
+    Swal.fire({
+        icon: 'success',
+        title: '¡Registro exitoso!',
+        text: 'Tu usuario ha sido creado correctamente.',
+        confirmButtonText: 'Aceptar'
+    }).then(() => {
+        mostrarUsuarioEnNav(formData.nombre);
+    });
 }
 
 // ======================= LOGIN =======================
@@ -540,16 +556,32 @@ function handleLogin(formData) {
     const usuarioGuardado = JSON.parse(localStorage.getItem('usuario'));
 
     if (!usuarioGuardado) {
-        alert('No hay usuarios registrados. Regístrate primero.');
+        Swal.fire({
+            icon: 'warning',
+            title: 'Sin usuarios registrados',
+            text: 'Regístrate primero para iniciar sesión.',
+            confirmButtonText: 'Aceptar'
+        });
         return;
     }
 
     if (formData.email === usuarioGuardado.correo && formData.password === usuarioGuardado.contraseña) {
-        alert('Login exitoso!');
-        closeLoginModal();
-        mostrarUsuarioEnNav(usuarioGuardado.nombre);
+        Swal.fire({
+            icon: 'success',
+            title: '¡Login exitoso!',
+            text: `Bienvenido, ${usuarioGuardado.nombre}`,
+            confirmButtonText: 'Continuar'
+        }).then(() => {
+            closeLoginModal();
+            mostrarUsuarioEnNav(usuarioGuardado.nombre);
+        });
     } else {
-        alert('Credenciales incorrectas');
+        Swal.fire({
+            icon: 'error',
+            title: 'Credenciales incorrectas',
+            text: 'Verifica tu correo y contraseña.',
+            confirmButtonText: 'Intentar de nuevo'
+        });
     }
 }
 
@@ -594,11 +626,21 @@ document.addEventListener('DOMContentLoaded', function() {
             };
 
             if (!validateEmail(formData.correo)) {
-                alert('Por favor ingresa un email válido');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Email inválido',
+                    text: 'Por favor ingresa un email válido.',
+                    confirmButtonText: 'Aceptar'
+                });
                 return;
             }
             if (formData.nombre.trim() === '') {
-                alert('Por favor ingresa tu nombre completo');
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Nombre vacío',
+                    text: 'Por favor ingresa tu nombre completo.',
+                    confirmButtonText: 'Aceptar'
+                });
                 return;
             }
             handleRegistration(formData);
