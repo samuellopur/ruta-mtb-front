@@ -268,3 +268,74 @@ body {
         padding: 0.8rem;
     }
 }
+
+/* NUEVAS REGLAS para el checklist flotante */
+/* NUEVAS REGLAS para el checklist flotante */
+#passwordInfoContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none; /* Para que no bloquee los clics en los elementos de abajo */
+}
+
+#passwordInfo {
+    display: none; /* Oculto por defecto */
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 28px 22px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    min-width: 260px;
+    max-width: 340px;
+    opacity: 0;
+    transition: opacity 0.6s;
+    text-align: left;
+    transform: translate(460px, -110px); /* Posicionamiento inicial a la derecha del cuadro principal */
+    pointer-events: auto; /* Permite la interacción con la caja */
+}
+
+#passwordInfo h4 {
+    margin-bottom: 18px;
+    color: #7ab021;
+    font-weight: 700;
+    font-size: 19px;
+    text-align: center;
+}
+
+#passwordInfo ul {
+    list-style: none;
+    padding: 0;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#passwordInfo li {
+    display: flex;
+    align-items: center;
+}
+
+#passwordInfo li span {
+    margin-right: 8px;
+}
+
+/* Responsive para el checklist */
+@media (max-width: 700px) {
+    #passwordInfoContainer {
+        position: relative; /* Cambia a posición relativa en móviles */
+        top: 0;
+        left: 0;
+        transform: none;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    #passwordInfo {
+        display: block; /* Siempre visible en móviles */
+        opacity: 1 !important; /* Fuerza la visibilidad */
+        box-shadow: none; /* Quitamos la sombra */
+        transform: none; /* Resetea la posición */
+        width: calc(100% - 40px); /* Ajusta el ancho para que no desborde */
+    }
+}

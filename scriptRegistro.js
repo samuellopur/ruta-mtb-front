@@ -1,46 +1,4 @@
-
-
-fetch("navbar.html")
-    .then((response) => response.text())
-    .then((data) => {
-        document.getElementById("mtbNavbar").innerHTML = data;
-
-        // Mostrar el nombre del usuario si está logueado
-        const usuarioGuardado = JSON.parse(localStorage.getItem('usuario'));
-        if (usuarioGuardado) {
-            mostrarUsuarioEnNav(usuarioGuardado.nombre);
-        }
-
-        // ...código original de mtbUser, mtbAdmin, mtbInSesion...
-        if (typeof mtbUser !== 'undefined' && typeof mtbAdmin !== 'undefined' && typeof mtbInSesion !== 'undefined') {
-            mtbOpen.addEventListener("click", () => {
-                mtbUser.style.display = "inline-block";
-            });
-            mtbClose.addEventListener("click", () => {
-                mtbBox.style.display = "none";
-            });
-        }
-    });
-
-function handleUserButton() {
-    const usuarioGuardado = JSON.parse(localStorage.getItem('usuario'));
-
-    if (!usuarioGuardado) {
-        // Nadie logueado → abrir modal
-        openLoginModal();
-        return;
-    }
-
-    if (usuarioGuardado.correo === "admin@correo.com") { 
-        // Cambia el correo por el de tu admin
-        mostrarAdmin();
-    } else {
-        // Usuario normal → mostrar modal de perfil o mensaje
-        alert(`Hola ${usuarioGuardado.nombre}, aquí iría tu perfil de usuario.`);
-    }
-}
-
-// ======================= TOGGLE PASSWORD =======================
+// ======================= TOGGLE PASSWORD - GLOBAL =======================
 function togglePassword(inputId, toggleElement) {
     const passwordInput = document.getElementById(inputId);
     const icon = toggleElement.querySelector('i');
@@ -56,8 +14,7 @@ function togglePassword(inputId, toggleElement) {
     }
 }
 
-
-// ======================= MODAL =======================
+// ======================= MODALS - GLOBAL =======================
 function openLoginModal() {
     document.getElementById('loginModal').style.display = 'block';
     document.body.style.overflow = 'hidden';
@@ -79,47 +36,62 @@ function closeAdminModal() {
 }
 
 function showForgotPassword() {
-    alert('Función de recuperar contraseña - Aquí integrarías tu lógica de recuperación');
+    Swal.fire({
+        icon: 'info',
+        title: 'Recuperar Contraseña',
+        text: 'Aquí iría la lógica para enviar un enlace de recuperación a tu correo.'
+    });
 }
 
 window.onclick = function(event) {
     const modal = document.getElementById('loginModal');
+    const adminModal = document.getElementById('adminModal');
     if (event.target === modal) closeLoginModal();
+    if (event.target === adminModal) closeAdminModal();
 };
 
 document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') closeLoginModal();
+    if (event.key === 'Escape') {
+        closeLoginModal();
+        closeAdminModal();
+    }
 });
 
 // ======================= VALIDACIONES =======================
-function validatePasswords() {
-    const password = document.getElementById('contraseña').value;
-    const confirmPassword = document.getElementById('confirmarContraseña').value;
-    
-    if (password !== confirmPassword) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Contraseñas no coinciden',
-            text: 'Por favor verifica que ambas contraseñas sean iguales.',
-            confirmButtonText: 'Aceptar'
-        });
-        return false;
-    }
-    if (password.length < 6) {
-        Swal.fire({
-            icon: 'warning',
-            title: 'Contraseña muy corta',
-            text: 'La contraseña debe tener al menos 6 caracteres.',
-            confirmButtonText: 'Aceptar'
-        });
-        return false;
-    }
-    return true;
-}
-
 function validateEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
+}
+
+function validatePasswords() {
+    const passwordInput = document.getElementById('contraseña');
+    const confirmPasswordInput = document.getElementById('confirmarContraseña');
+    if (!passwordInput || !confirmPasswordInput) return false;
+
+    const password = passwordInput.value;
+    const confirmPassword = confirmPasswordInput.value;
+    
+    const isLengthValid = password.length >= 8;
+    const hasNumber = /\d/.test(password);
+    const hasSpecialChar = /[!@#$%^&*]/.test(password);
+    const hasUppercase = /[A-Z]/.test(password);
+    const passwordsMatch = password === confirmPassword;
+
+    const checklist = {
+        length: document.getElementById("check-length"),
+        number: document.getElementById("check-number"),
+        special: document.getElementById("check-special"),
+        uppercase: document.getElementById("check-uppercase"),
+        match: document.getElementById("check-match")
+    };
+
+    if (checklist.length) checklist.length.innerHTML = `${isLengthValid ? '<span style="color:green">✔️</span>' : '<span style="color:red">❌</span>'} Mínimo 8 caracteres`;
+    if (checklist.number) checklist.number.innerHTML = `${hasNumber ? '<span style="color:green">✔️</span>' : '<span style="color:red">❌</span>'} Al menos un número`;
+    if (checklist.special) checklist.special.innerHTML = `${hasSpecialChar ? '<span style="color:green">✔️</span>' : '<span style="color:red">❌</span>'} Al menos un carácter especial (!@#$%^&*)`;
+    if (checklist.uppercase) checklist.uppercase.innerHTML = `${hasUppercase ? '<span style="color:green">✔️</span>' : '<span style="color:red">❌</span>'} Al menos una mayúscula`;
+    if (checklist.match) checklist.match.innerHTML = `${passwordsMatch ? '<span style="color:green">✔️</span>' : '<span style="color:red">❌</span>'} Las contraseñas coinciden`;
+    
+    return isLengthValid && hasNumber && hasSpecialChar && hasUppercase && passwordsMatch;
 }
 
 // ======================= REGISTRO =======================
@@ -131,7 +103,7 @@ function handleRegistration(formData) {
         text: 'Tu usuario ha sido creado correctamente.',
         confirmButtonText: 'Aceptar'
     }).then(() => {
-        mostrarUsuarioEnNav(formData.nombre);
+        window.location.href = 'index.html'; 
     });
 }
 
@@ -157,7 +129,6 @@ function handleLogin(formData) {
             confirmButtonText: 'Continuar'
         }).then(() => {
             closeLoginModal();
-            mostrarUsuarioEnNav(usuarioGuardado.nombre);
             window.location.href = 'index.html';
         });
     } else {
@@ -170,70 +141,79 @@ function handleLogin(formData) {
     }
 }
 
-// ======================= LOGOUT =======================
-function handleLogout() {
-    localStorage.removeItem('usuario');
-    alert('Sesión cerrada');
-
-    const usuarioNav = document.getElementById('usuarioNav');
-    if (usuarioNav) {
-        usuarioNav.innerHTML = `<i class="bi bi-person"></i>`;
-    }
-}
-
-// ======================= NAV =======================
-function mostrarUsuarioEnNav(nombre) {
-    const usuarioNav = document.getElementById('usuarioNav');
-    if (usuarioNav) {
-        usuarioNav.innerHTML = `
-            <span style="font-weight:600; color:#7ab021;">${nombre}</span>
-            <button id="logoutBtn" style="margin-left:10px; padding:4px 8px; font-size:12px; cursor:pointer;">
-                Cerrar sesión
-            </button>
-        `;
-        document.getElementById('logoutBtn').addEventListener('click', handleLogout);
-    }
-}
-
-// ======================= DOM READY =======================
+// ======================= LÓGICA DE EVENTOS (DOM READY) =======================
 document.addEventListener('DOMContentLoaded', function() {
-    // ---- Registro ----
     const registroForm = document.getElementById('registroUsuario');
+    const loginForm = document.getElementById('loginForm');
+    const passwordInputs = document.querySelectorAll('.password-input');
+    const passwordInfo = document.getElementById("passwordInfo");
+    
+    // Nueva lógica para mostrar/ocultar el checklist flotante
+    let passwordFocusCount = 0;
+    function showPasswordInfo() {
+        if (passwordInfo && window.innerWidth > 700) {
+            passwordInfo.style.display = 'block';
+            setTimeout(() => passwordInfo.style.opacity = '1', 10);
+        }
+    }
+    function hidePasswordInfo() {
+        if (passwordInfo && window.innerWidth > 700) {
+            passwordInfo.style.opacity = '0';
+            setTimeout(() => passwordInfo.style.display = 'none', 600);
+        }
+    }
+    if (passwordInputs.length > 0) {
+        passwordInputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                passwordFocusCount++;
+                showPasswordInfo();
+            });
+            input.addEventListener('blur', function() {
+                // Usamos setTimeout para esperar si el usuario pasa de un campo al otro
+                setTimeout(function() {
+                    passwordFocusCount--;
+                    if (passwordFocusCount <= 0) {
+                        hidePasswordInfo();
+                        passwordFocusCount = 0;
+                    }
+                }, 10);
+            });
+            input.addEventListener('input', validatePasswords);
+        });
+    }
+    
+    // Evento de envío del formulario de registro
     if (registroForm) {
         registroForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            if (!validatePasswords()) return;
+
+            const nombre = document.getElementById('nombre').value.trim();
+            const correo = document.getElementById('Correo').value.trim();
+
+            if (nombre === '') {
+                Swal.fire({ icon: 'warning', title: 'Nombre vacío', text: 'Por favor, ingresa tu nombre completo.' });
+                return;
+            }
+            if (!validateEmail(correo)) {
+                Swal.fire({ icon: 'error', title: 'Email inválido', text: 'Por favor, ingresa un email válido.' });
+                return;
+            }
+            if (!validatePasswords()) {
+                Swal.fire({ icon: 'warning', title: 'Contraseña no válida', text: 'Por favor, asegúrate de que tu contraseña cumple con todos los requisitos.' });
+                return;
+            }
 
             const formData = {
-                nombre: document.getElementById('nombre').value,
-                correo: document.getElementById('Correo').value,
+                nombre: nombre,
+                correo: correo,
                 contraseña: document.getElementById('contraseña').value
             };
-
-            if (!validateEmail(formData.correo)) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Email inválido',
-                    text: 'Por favor ingresa un email válido.',
-                    confirmButtonText: 'Aceptar'
-                });
-                return;
-            }
-            if (formData.nombre.trim() === '') {
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'Nombre vacío',
-                    text: 'Por favor ingresa tu nombre completo.',
-                    confirmButtonText: 'Aceptar'
-                });
-                return;
-            }
+            
             handleRegistration(formData);
         });
     }
 
-    // ---- Login ----
-    const loginForm = document.getElementById('loginForm');
+    // Evento de envío del formulario de login
     if (loginForm) {
         loginForm.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -242,21 +222,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 password: document.getElementById('loginPassword').value
             };
             if (!validateEmail(formData.email)) {
-                alert('Por favor ingresa un email válido');
+                Swal.fire({ icon: 'error', title: 'Email inválido', text: 'Por favor, ingresa un email válido.' });
                 return;
             }
             if (formData.password.trim() === '') {
-                alert('Por favor ingresa tu contraseña');
+                Swal.fire({ icon: 'warning', title: 'Contraseña vacía', text: 'Por favor, ingresa tu contraseña.' });
                 return;
             }
             handleLogin(formData);
         });
     }
-
-    // ---- Mantener sesión ----
-    const usuarioGuardado = JSON.parse(localStorage.getItem('usuario'));
-    if (usuarioGuardado) {
-        mostrarUsuarioEnNav(usuarioGuardado.nombre);
-    }
 });
-

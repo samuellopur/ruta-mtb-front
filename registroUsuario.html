@@ -10,9 +10,7 @@
 
 <body>
     <div id="box">
-
-         
-         <a href="index.html"><img src="img/MBT_NEWLOGO.png" alt="Logo Ruta MTB" class="logo"></a>   
+        <a href="index.html"><img src="img/MBT_NEWLOGO.png" alt="Logo Ruta MTB" class="logo"></a>
         <h2>Registro de Usuario</h2>
         
         <form action="" id="registroUsuario" class="formulario">
@@ -27,7 +25,7 @@
             </div>
 
             <div class="textfield-wrapper">
-                <input type="password" id="contraseña" name="contraseña" class="textfield" placeholder=" " required>
+                <input type="password" id="contraseña" name="contraseña" class="textfield password-input" placeholder=" " required>
                 <label for="contraseña" class="textfield-label">Contraseña</label>
                 <span class="toggle-password" onclick="togglePassword('contraseña', this)">
                     <i class="bi bi-eye"></i>
@@ -35,7 +33,7 @@
             </div>
 
             <div class="textfield-wrapper">
-                <input type="password" id="confirmarContraseña" name="confirmarContraseña" class="textfield" placeholder=" " required>
+                <input type="password" id="confirmarContraseña" name="confirmarContraseña" class="textfield password-input" placeholder=" " required>
                 <label for="confirmarContraseña" class="textfield-label">Confirmar contraseña</label>
                 <span class="toggle-password" onclick="togglePassword('confirmarContraseña', this)">
                     <i class="bi bi-eye"></i>
@@ -45,13 +43,8 @@
             <div class="g-recaptcha" data-sitekey="6LcREa8rAAAAAAbobuz8FGo9BVKJznZjycCgOfNX" data-action="LOGIN">
             </div>
 
-            <!-- <input id="botonRecap" type="button" value="Registrarse" class="open-modal-btn" onclick="openLoginModal()"> -->
             <input id="botonRecap" type="submit" value="Registrarse">
 
-            
-            <!-- Botón para abrir modal de login -->
-
-            <!-- Enlace debajo del botón -->
             <p class="link-login">
                 ¿Ya tienes cuenta? <a href="#" onclick="openLoginModal()">Inicia sesión</a>
             </p>
@@ -61,18 +54,28 @@
         </form>
     </div>
 
-    <!-- Modal de Inicio de Sesión -->
+    <div id="passwordInfoContainer">
+        <div id="passwordInfo">
+            <h4>Indicaciones para la contraseña</h4>
+            <ul id="checklist">
+                <li id="check-length"><span>❌</span> Mínimo 8 caracteres</li>
+                <li id="check-number"><span>❌</span> Al menos un número</li>
+                <li id="check-special"><span>❌</span> Al menos un carácter especial (!@#$%^&*)</li>
+                <li id="check-uppercase"><span>❌</span> Al menos una mayúscula</li>
+                <li id="check-match"><span>❌</span> Las contraseñas coinciden</li>
+            </ul>
+        </div>
+    </div>
+
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeLoginModal()">&times;</span>
             <h2>Iniciar Sesión</h2>
-            
             <form id="loginForm" class="formulario">
                 <div class="textfield-wrapper">
                     <input type="email" id="loginEmail" name="loginEmail" class="textfield" placeholder=" " required>
                     <label for="loginEmail" class="textfield-label">Correo electrónico</label>
                 </div>
-
                 <div class="textfield-wrapper">
                     <input type="password" id="loginPassword" name="loginPassword" class="textfield" placeholder=" " required>
                     <label for="loginPassword" class="textfield-label">Contraseña</label>
@@ -80,16 +83,12 @@
                         <i class="bi bi-eye"></i>
                     </span>
                 </div>
-
                 <div class="g-recaptcha" data-sitekey="6LcREa8rAAAAAAbobuz8FGo9BVKJznZjycCgOfNX" data-action="LOGIN">
                 </div>
-
                 <input type="submit" value="Iniciar Sesión">
-                
                 <p class="link-login">
                     ¿No tienes cuenta? <a href="#" onclick="closeLoginModal()">Regístrate</a>
                 </p>
-                
                 <p class="link-login">
                     <a href="#" onclick="showForgotPassword()">¿Olvidaste tu contraseña?</a>
                 </p>
@@ -97,18 +96,15 @@
         </div>
     </div>
 
-    <!-- Inicio sesión admin -->
     <div id="adminModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeAdminModal()">&times;</span>
             <h2>Inicio sesión Admin</h2>
-            
             <form id="adminLoginForm" class="formulario">
                 <div class="textfield-wrapper">
                     <input type="email" id="adminLoginEmail" name="adminLoginEmail" class="textfield" placeholder=" " required>
                     <label for="adminLoginEmail" class="textfield-label">Correo electrónico</label>
                 </div>
-
                 <div class="textfield-wrapper">
                     <input type="password" id="adminLoginPassword" name="adminLoginPassword" class="textfield" placeholder=" " required>
                     <label for="adminLoginPassword" class="textfield-label">Contraseña</label>
@@ -116,22 +112,19 @@
                         <i class="bi bi-eye"></i>
                     </span>
                 </div>
-
                 <div class="g-recaptcha" data-sitekey="6LcREa8rAAAAAAbobuz8FGo9BVKJznZjycCgOfNX" data-action="LOGIN">
                 </div>
-
                 <input type="submit" value="Iniciar Sesión">
-                
                 <p class="link-login">
                     ¿No tienes cuenta? <a href="#" onclick="closeAdminModal()">Regístrate</a>
                 </p>
-                
                 <p class="link-login">
                     <a href="#" onclick="showForgotPassword()">¿Olvidaste tu contraseña?</a>
                 </p>
             </form>
         </div>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="scriptRegistro.js"></script>
 </body>
