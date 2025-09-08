@@ -1,18 +1,26 @@
 
-fetch("navbar.html")
-  .then((response) => response.text())
-  .then((data) => {
-    document.getElementById("mtbNavbar").innerHTML = data;
 
-    if (mtbUser && mtbAdmin && mtbInSesion) {
-      mtbOpen.addEventListener("click", () => {
-        mtbUser.style.display = "inline-block";
-      });
-      mtbClose.addEventListener("click", () => {
-        mtbBox.style.display = "none";
-      });
-    }
-  });
+fetch("navbar.html")
+    .then((response) => response.text())
+    .then((data) => {
+        document.getElementById("mtbNavbar").innerHTML = data;
+
+        // Mostrar el nombre del usuario si está logueado
+        const usuarioGuardado = JSON.parse(localStorage.getItem('usuario'));
+        if (usuarioGuardado) {
+            mostrarUsuarioEnNav(usuarioGuardado.nombre);
+        }
+
+        // ...código original de mtbUser, mtbAdmin, mtbInSesion...
+        if (typeof mtbUser !== 'undefined' && typeof mtbAdmin !== 'undefined' && typeof mtbInSesion !== 'undefined') {
+            mtbOpen.addEventListener("click", () => {
+                mtbUser.style.display = "inline-block";
+            });
+            mtbClose.addEventListener("click", () => {
+                mtbBox.style.display = "none";
+            });
+        }
+    });
 
 function handleUserButton() {
     const usuarioGuardado = JSON.parse(localStorage.getItem('usuario'));
@@ -150,6 +158,7 @@ function handleLogin(formData) {
         }).then(() => {
             closeLoginModal();
             mostrarUsuarioEnNav(usuarioGuardado.nombre);
+            window.location.href = 'index.html';
         });
     } else {
         Swal.fire({
@@ -177,7 +186,7 @@ function mostrarUsuarioEnNav(nombre) {
     const usuarioNav = document.getElementById('usuarioNav');
     if (usuarioNav) {
         usuarioNav.innerHTML = `
-            Hola, ${nombre} 
+            <span style="font-weight:600; color:#7ab021;">${nombre}</span>
             <button id="logoutBtn" style="margin-left:10px; padding:4px 8px; font-size:12px; cursor:pointer;">
                 Cerrar sesión
             </button>
