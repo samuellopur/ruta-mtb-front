@@ -458,6 +458,21 @@ function togglePassword(inputId, toggleElement) {
     }
 }
 
+function togglePasswordAdmin(inputId, toggleElement) {
+    const passwordInput = document.getElementById(inputId);
+    const icon = toggleElement.querySelector('i');
+    
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        icon.classList.remove('bi-eye');
+        icon.classList.add('bi-eye-slash');
+    } else {
+        passwordInput.type = 'password';
+        icon.classList.remove('bi-eye-slash');
+        icon.classList.add('bi-eye');
+    }
+}
+
 // ======================= MODAL =======================
 function openLoginModal() {
     document.getElementById('loginModal').style.display = 'block';
@@ -466,6 +481,16 @@ function openLoginModal() {
 
 function closeLoginModal() {
     document.getElementById('loginModal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+function openAdminModal() {
+    document.getElementById('adminModal').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeAdminModal() {
+    document.getElementById('adminModal').style.display = 'none';
     document.body.style.overflow = 'auto';
 }
 

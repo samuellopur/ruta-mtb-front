@@ -52,6 +52,9 @@
             <p class="link-login">
                 ¿Ya tienes cuenta? <a href="#" onclick="openLoginModal()">Inicia sesión</a>
             </p>
+            <p class="link-login">
+                ¿Eres Admin? <a href="#" onclick="openAdminModal()">Ingresa aquí</a>
+            </p>
         </form>
     </div>
 
@@ -71,6 +74,42 @@
                     <input type="password" id="loginPassword" name="loginPassword" class="textfield" placeholder=" " required>
                     <label for="loginPassword" class="textfield-label">Contraseña</label>
                     <span class="toggle-password" onclick="togglePassword('loginPassword', this)">
+                        <i class="bi bi-eye"></i>
+                    </span>
+                </div>
+
+                <div class="g-recaptcha" data-sitekey="6LcREa8rAAAAAAbobuz8FGo9BVKJznZjycCgOfNX" data-action="LOGIN">
+                </div>
+
+                <input type="submit" value="Iniciar Sesión">
+                
+                <p class="link-login">
+                    ¿No tienes cuenta? <a href="#" onclick="closeLoginModal()">Regístrate</a>
+                </p>
+                
+                <p class="link-login">
+                    <a href="#" onclick="showForgotPassword()">¿Olvidaste tu contraseña?</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Inicio sesión admin -->
+    <div id="adminModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAdminModal()">&times;</span>
+            <h2>Inicio sesión Admin</h2>
+            
+            <form id="loginForm" class="formulario">
+                <div class="textfield-wrapper">
+                    <input type="email" id="loginEmail" name="loginEmail" class="textfield" placeholder=" " required>
+                    <label for="loginEmail" class="textfield-label">Correo electrónico</label>
+                </div>
+
+                <div class="textfield-wrapper">
+                    <input type="password" id="loginPassword" name="loginPassword" class="textfield" placeholder=" " required>
+                    <label for="loginPassword" class="textfield-label">Contraseña</label>
+                    <span class="toggle-password" onclick="('togglePasswordAdmin', this)">
                         <i class="bi bi-eye"></i>
                     </span>
                 </div>
