@@ -458,20 +458,20 @@ function togglePassword(inputId, toggleElement) {
     }
 }
 
-function togglePasswordAdmin(inputId, toggleElement) {
-    const passwordInput = document.getElementById(inputId);
-    const icon = toggleElement.querySelector('i');
+// function togglePasswordAdmin(inputId, toggleElement) {
+//     const passwordInput = document.getElementById(inputId);
+//     const icon = toggleElement.querySelector('i');
     
-    if (passwordInput.type === 'password') {
-        passwordInput.type = 'text';
-        icon.classList.remove('bi-eye');
-        icon.classList.add('bi-eye-slash');
-    } else {
-        passwordInput.type = 'password';
-        icon.classList.remove('bi-eye-slash');
-        icon.classList.add('bi-eye');
-    }
-}
+//     if (passwordInput.type === 'password') {
+//         passwordInput.type = 'text';
+//         icon.classList.remove('bi-eye');
+//         icon.classList.add('bi-eye-slash');
+//     } else {
+//         passwordInput.type = 'password';
+//         icon.classList.remove('bi-eye-slash');
+//         icon.classList.add('bi-eye');
+//     }
+// }
 
 // ======================= MODAL =======================
 function openLoginModal() {
