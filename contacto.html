@@ -15,32 +15,34 @@
 
 <body class="mtbContacto">
     <div id="mtbNavbar"></div>
-    <div class="row m-0">
-        <div class="col">
-            <h1 class="text-center fw-bold pt-4">Contáctanos</h1>
-        </div>
-    </div>
+    
     <main class="row m-0 g-3">
 
+        <div class="div-titulo" id="titulo-contacto">
+            <div class="col">
+                <h1 class="text-center fw-bold pt-4 borde-texto">Contáctanos</h1>
+            </div>
+        </div>
+
         <article class="mtbCardExample col-md-6 p-5" >
-            <h2 class="text-center fw-bold">¿Cómo podemos ayudarte?</h2>
+            <h2 class="text-center fw-bold borde-texto">¿Cómo podemos ayudarte?</h2>
             <img src="img/RUTAMTB_SLOGAN.png" alt="Logo RutaMTB">
             <br>
-            <p>Si eres cliente actual de RutaMTB, comunícate con nuestro equipo de soporte técnico a través de tu
+            <p class="borde-texto">Si eres cliente actual de RutaMTB, comunícate con nuestro equipo de soporte técnico a través de tu
                 cuenta, para obtener el servicio más rápido. O llena el siguiente formulario, te responderemos lo
                 más pronto posible.</p>
         </article>
 
         
-            <form class="mtbCardExample col-md-6 p-5" action="https://formspree.io/f/xwpqwgbk" method="POST">
+            <form class="mtbCardExample col-md-6 p-5" action="https://formspree.io/f/xwpqwgbk" method="POST" id="form-contacto">
                 <h2 class="text-center fw-bold">Formulario</h2>
                 <div class="mb-3">
-                    <label for="name" class="form-label">¿Cuál es tu nombre?</label>
+                    <label for="name" class="form-label borde-texto">¿Cuál es tu nombre?</label>
                     <input type="text" class="form-control" id="name" name="nombre" placeholder="Nombre Ejemplo"
                         required>
                 </div>
                 <div class="mb-3">
-                    <label for="email" class="form-label">¿Cuál es tu correo electrónico? </label>
+                    <label for="email" class="form-label borde-texto">¿Cuál es tu correo electrónico? </label>
                     <input type="email" class="form-control" id="email" name="correo" placeholder="nombre@ejemplo.com"
                         required>
                 </div>

@@ -10,7 +10,7 @@
 }
 
 body {
-    background: gainsboro;
+    background: #ffff
 }
 
 /* ========================================= */
@@ -308,8 +308,24 @@ h3 {
 }
 
 /* Aplicable únicamente a la sección de contacto*/
-.mtbCardExample {padding: 20px; text-align: center;}
+.mtbCardExample {
+    background-image: url(/img/lado\ izq.jpg);
+    background-size: cover;
+    background-position:left;
+    padding: 20px; 
+    text-align: center;}
 .mtbCardExample img {display: block; width: 50%; margin: 0 auto;}
+#form-contacto{
+    background-image: url(img/lado\ derechoi.jpg);
+    background-size: cover;
+    background-position: right;
+}
+.borde-texto {
+  font-size: 15 px;
+  color: rgb(231, 223, 223);
+  -webkit-text-stroke: 10 px #fcf5f5;
+  text-shadow: 3 px 2px 5px rgba(105, 103, 103, 0.5); /* opcional para darle más contraste */
+}
 
 /*Catalogo*/
 .mtbCatalogo {
@@ -450,7 +466,7 @@ encabezadoTablaAdmin {
 
 
 
-/*estilo cgpt*/
+/*estilo */
 
 
 h2 {
@@ -643,7 +659,7 @@ footer a {
 footer a:hover {
   color: #7AB021;
 }
-/*banner*
+/*banner*/
 /* Asegura que el carrusel tenga altura mínima */
 #heroCarrucel .carousel-item {
   height: 100vh; /* ocupa toda la altura de la pantalla */
