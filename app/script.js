@@ -124,8 +124,13 @@ function actualizarCarrito() {
   cartItems.innerHTML = "";
 
   if (carrito.length === 0) {
-    cartItems.innerHTML =
-      '<p>Carrito vacío</p>';
+    cartItems.innerHTML = `
+      <div class="mtbEmptyCart">
+      <p><strong>¡Empieza a comprar!</strong></p>
+      <p>Recuerda iniciar sesión para agregar productos</p>
+      <img src="img/IMG_003.png" alt="Empieza a comprar">
+      </div>
+    `;
     return;
   }
 

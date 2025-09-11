@@ -51,9 +51,6 @@
             <p class="link-login">
                 ¿Ya tienes cuenta? <a href="#" onclick="openLoginModal()">Inicia sesión</a>
             </p>
-            <p class="link-login">
-                ¿Eres Admin? <a href="#" onclick="openAdminModal()">Ingresa aquí</a>
-            </p>
         </form>
     </div>
 
@@ -132,7 +129,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- <script src="scriptRegistro.js"></script> -->
+    <script src="scriptRegistro.js"></script>
     <script>
         // ======================= TOGGLE PASSWORD - GLOBAL =======================
         function togglePassword(inputId, toggleElement) {
@@ -328,6 +325,12 @@
                     const nombre = document.getElementById('nombre').value.trim();
                     const correo = document.getElementById('Correo').value.trim();
 
+const recaptchaResponse = document.querySelector('textarea[name="g-recaptcha-response"]');
+if (!recaptchaResponse || !recaptchaResponse.value) {
+    Swal.fire({ icon: 'warning', title: 'Completa el reCAPTCHA', text: 'Por favor, verifica que eres humano antes de continuar.' });
+    return;
+}
+
                     if (nombre === '') {
                         Swal.fire({ icon: 'warning', title: 'Nombre vacío', text: 'Por favor, ingresa tu nombre completo.' });
                         return;
@@ -361,6 +364,8 @@
                         email: document.getElementById('loginEmail').value,
                         password: document.getElementById('loginPassword').value
                     };
+
+                    
                     if (!validateEmail(formData.email)) {
                         Swal.fire({ icon: 'error', title: 'Email inválido', text: 'Por favor, ingresa un email válido.' });
                         return;

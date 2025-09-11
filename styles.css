@@ -13,6 +13,19 @@ body {
     background: #ffff
 }
 
+.mtbSmallButton {
+    display: inline-block;
+    text-align: center;
+    margin: 7px 0;
+    padding: 4px 7px;
+    background: #7ab021;
+    color: white;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 7px;
+}
+
 /* ========================================= */
 /* MTB - Estilos Navbar (Barra de Navegación */
 .oculto {display: block !important;}
@@ -26,6 +39,7 @@ nav {
     height: 75px;
     background: #333;
     font-size: 0;
+    z-index: 2;
 }
 
 .mtb-usuario{
@@ -144,6 +158,17 @@ nav {
     overflow: hidden;
 }
 
+.mtbEmptyCart {
+    text-align: center;
+    padding: 48px;
+}
+
+.mtbEmptyCart img {
+    width: 200px;
+    margin: 0 auto;
+    border-radius: 7px;
+}
+
 .infoCarrito {
     position: absolute;
     bottom: 0;
@@ -153,6 +178,11 @@ nav {
     padding: 14px;
     color: black;
     background: gainsboro;
+}
+
+/* Solo por Bootstrap */
+.carritoProductos * {
+    margin-bottom: 0 !important;
 }
 
 .mtbCartButton {
@@ -244,12 +274,11 @@ h1 {
 
 .clase-parrafo,
 #texto-oculto-mision-vision {
-    margin: 25px auto;
     padding: 25px;
     text-align: justify;
     background-color: rgb(255, 255, 255);
     box-shadow: 0 0 7px grey;
-    width: 60%;
+    width: 100%;
 }
 
 .img-quienes-somos {
@@ -298,53 +327,110 @@ button:hover {
     gap: 100px;
 }
 
-.tarjetas-presentacion {
-    flex: 0 0 calc((100% - 200px)/3);
-    max-width: 330px;
-    padding: 10px;
-    background-color: rgb(202, 235, 194);
-    border-radius: 10px;
-}
-
-.tarjetas-presentacion img {
-    width: calc(100% - 10px);
-    border-radius: 50%;
-    margin: 20px 0;
-}
-
-.tarjetas-presentacion h3 {
-    text-align: center;
-    margin: 10px 0;
-    font-size: 25px;
-}
-
-.tarjetas-presentacion p {
-    padding: 10px;
-    text-align: justify;
-}
-
 h3 {
     text-align: center;
 }
 
-/* Aplicable únicamente a la sección de contacto*/
+/* Aplicable únicamente a la sección de contacto y conócenos*/
+.mtbContactoPage {
+    background-image: url(img/IMG_002.jpg);
+    background-repeat: no-repeat;
+    background-size: cover; 
+    background-attachment: fixed;
+}
+
+.mtbConocenosPage {
+    background-image: url(img/IMG_004.jpg);
+    background-repeat: no-repeat;
+    background-size: cover; 
+    background-attachment: fixed;
+}
+
 .mtbCardExample {
-    background-image: url(/img/lado\ izq.jpg);
     background-size: cover;
     background-position:left;
     padding: 20px; 
     text-align: center;}
+
 .mtbCardExample img {display: block; width: 50%; margin: 0 auto;}
-#form-contacto{
-    background-image: url(img/lado\ derechoi.jpg);
-    background-size: cover;
-    background-position: right;
-}
+
 .borde-texto {
   font-size: 15 px;
-  color: rgb(231, 223, 223);
+  color: black;
   -webkit-text-stroke: 10 px #fcf5f5;
   text-shadow: 3 px 2px 5px rgba(105, 103, 103, 0.5); /* opcional para darle más contraste */
+}
+
+.mtbCardPresentation {
+    display: block;
+    background: #283618;
+    color: white;
+    border-radius: 7px;
+    margin: 14px 0;
+}
+
+.mtbCardPresentation * {
+    font-size: 14px;
+}
+
+.mtbCardPresentationImg {
+    display: inline-block;
+    vertical-align: top;
+    width: 75px;
+    margin: 14px 0;
+    transition: 0.5s;
+}
+
+.mtbCardPresentationImg img {
+    width: 100%;
+    border-radius: 7px;
+}
+
+.mtbCardPresentationDescription {
+    display: inline-block;
+    padding: 20px;
+    width: calc(100% - 100px);
+    vertical-align: top;
+    text-align: left !important;
+    transition: 0.3s;
+}
+
+.mtbCardPresentationLinks {
+    display: block;
+}
+
+.mtbCardPresentationLinks a {
+    padding: 4px 7px;
+    color: white;
+    gap: 1;
+}
+
+.mtbCardPresentationLinks i {
+    font-size: 25px;
+}
+
+.mtbCardDescriptionMore {
+    display: none;
+}
+
+.mtbCardPresentationDescription h4 {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.mtbCardPresentation:hover .mtbCardDescriptionMore {
+    display: inline;
+}
+
+.mtbCardPresentation:hover .mtbCardPresentationImg {
+    width: 150px;
+    height: 150px;
+    transition: 0.3s;
+}
+
+.mtbCardPresentation:hover .mtbCardPresentationDescription {
+    width: calc(100% - 200px);
+    transition: 0.3s;
 }
 
 /*Catalogo*/
@@ -403,6 +489,7 @@ h3 {
         top: 75px;
         left: 0;
         background: #333;
+        z-index: 3;
     }
 
     .mtbMobileButtons {
@@ -700,8 +787,11 @@ footer a:hover {
   left: 50%;
   transform: translate(-50%, -50%);
   bottom: auto; /* evita que se pegue abajo */
+  background: rgba(0, 0, 0, 0.75);
+  padding: 24px;
+  border-radius: 7px;
   text-align: center;
-  z-index: 10;
+  z-index: 1;
 }
 
 /* Colores de los textos (según tu guía de estilos) */

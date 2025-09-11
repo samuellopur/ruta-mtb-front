@@ -192,37 +192,42 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Evento de envío del formulario de registro
-    if (registroForm) {
-        registroForm.addEventListener('submit', function(e) {
-            e.preventDefault();
+if (registroForm) {
+    registroForm.addEventListener('submit', function(e) {
+        e.preventDefault();
 
-            const nombre = document.getElementById('nombre').value.trim();
-            const correo = document.getElementById('Correo').value.trim();
+        const nombre = document.getElementById('nombre').value.trim();
+        const correo = document.getElementById('Correo').value.trim();
 
-            if (nombre === '') {
-                Swal.fire({ icon: 'warning', title: 'Nombre vacío', text: 'Por favor, ingresa tu nombre completo.' });
-                return;
-            }
-            if (!validateEmail(correo)) {
-                Swal.fire({ icon: 'error', title: 'Email inválido', text: 'Por favor, ingresa un email válido.' });
-                return;
-            }
-            if (!validatePasswords()) {
-                Swal.fire({ icon: 'warning', title: 'Contraseña no válida', text: 'Por favor, asegúrate de que tu contraseña cumple con todos los requisitos.' });
-                return;
-            }
+        // Validar reCAPTCHA
+        const recaptchaResponse = document.querySelector('textarea[name="g-recaptcha-response"]');
+        if (!recaptchaResponse || !recaptchaResponse.value) {
+            Swal.fire({ icon: 'warning', title: 'Completa el reCAPTCHA', text: 'Por favor, verifica que eres humano antes de continuar.' });
+            return;
+        }
 
-            const formData = {
-                id: Date.now(),
-                nombre: nombre,
-                correo: correo,
-                password: document.getElementById('contraseña').value,
-                role: "user",
-            };
-            
-            handleRegistration(formData);
-        });
-    }
+        if (nombre === '') {
+            Swal.fire({ icon: 'warning', title: 'Nombre vacío', text: 'Por favor, ingresa tu nombre completo.' });
+            return;
+        }
+        if (!validateEmail(correo)) {
+            Swal.fire({ icon: 'error', title: 'Email inválido', text: 'Por favor, ingresa un email válido.' });
+            return;
+        }
+        if (!validatePasswords()) {
+            Swal.fire({ icon: 'warning', title: 'Contraseña no válida', text: 'Por favor, asegúrate de que tu contraseña cumple con todos los requisitos.' });
+            return;
+        }
+
+        const formData = {
+            nombre: nombre,
+            correo: correo,
+            contraseña: document.getElementById('contraseña').value
+        };
+        
+        handleRegistration(formData);
+    });
+}
 
     // Evento de envío del formulario de login
     if (loginForm) {
