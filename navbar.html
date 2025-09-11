@@ -29,12 +29,28 @@
         </div>
         </div>
         <div class="mtbMobileButtons">
-            <a href="registroUsuario.html" onclick="handleUserButton(); return false;"><div>  <!--Cambiar funcion de montrarAdmin() a handleUserBotton()-->
-                <span id="usuarioNav"> <i class="bi bi-person-circle"></i></span> 
-            </div></a>
+            <div class="mtb-usuario">
+                <div class="mtb-panel panel-1">
+                    <p>Bienvenido</p>
+                    <button onclick="window.location.href='registroUsuario.html'">Inicia Sesión</button>
+                </div>
+                <div class="mtb-panel panel-2">
+                    <p>Hola, <span id="nombre-login">Antonio</span></p>
+                    <button onclick="logOut()">Salir</button>
+                </div>
+                <div class="mtb-panel  panel-3">
+                    <p>Hola, <span id="nombre-login">Antonio</span></p>
+                    <button onclick="window.location.href='vistaAdmin.html'">Administrar</button>
+                    <button onclick="logOut()">Salir</button>
+                </div>
+            </div>
             <a href="#" id="mtbOpen"><i class="bi bi-cart-fill"></i></a>
             <a class="botonHamburguesa" onclick="mostrarMenu()"><i class="bi bi-list"></i></a>
         </div>
+
+
+
+        
 
         <div class="mtbCarrito">
                 <div id="mtbBox" class="carritoProductos">

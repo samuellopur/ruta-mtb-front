@@ -1,3 +1,5 @@
+
+
 // ======================= TOGGLE PASSWORD - GLOBAL =======================
 function togglePassword(inputId, toggleElement) {
     const passwordInput = document.getElementById(inputId);
@@ -96,7 +98,7 @@ function validatePasswords() {
 
 // ======================= REGISTRO =======================
 function handleRegistration(formData) {
-    localStorage.setItem('usuario', JSON.stringify(formData));
+    localStorage.setItem('mtb-usuarios', JSON.stringify(formData));
     Swal.fire({
         icon: 'success',
         title: '¡Registro exitoso!',
@@ -109,7 +111,7 @@ function handleRegistration(formData) {
 
 // ======================= LOGIN =======================
 function handleLogin(formData) {
-    const usuarioGuardado = JSON.parse(localStorage.getItem('usuario'));
+    const usuarioGuardado = JSON.parse(localStorage.getItem('mtb-usuarios'));
 
     if (!usuarioGuardado) {
         Swal.fire({
@@ -147,6 +149,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const loginForm = document.getElementById('loginForm');
     const passwordInputs = document.querySelectorAll('.password-input');
     const passwordInfo = document.getElementById("passwordInfo");
+
+    // Para traer los datos quemados
+    let data = JSON.parse(localStorage.getItem("mtb-usuarios"));
+      if (!data || data.length === 0) {
+        data = users;
+        localStorage.setItem("mtb-usuarios", JSON.stringify(data));
+      }
     
     // Nueva lógica para mostrar/ocultar el checklist flotante
     let passwordFocusCount = 0;
@@ -204,9 +213,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             const formData = {
+                id: Date.now(),
                 nombre: nombre,
                 correo: correo,
-                contraseña: document.getElementById('contraseña').value
+                password: document.getElementById('contraseña').value,
+                role: "user",
             };
             
             handleRegistration(formData);

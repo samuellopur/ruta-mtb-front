@@ -28,6 +28,26 @@ nav {
     font-size: 0;
 }
 
+.mtb-usuario{
+   display: inline-block;
+   vertical-align: top;
+   margin: 14px;
+}
+
+.mtb-panel button{
+    background: #7AB021;
+    padding: 7px;
+    border: none;
+    border-radius: 7px;
+}
+
+.mtb-panel * {
+    display: inline-block;
+    color: white;
+    margin: 7px;
+
+}
+
 /* Solo Imagen del Navbar*/
 .section1 {
     display: inline-block;

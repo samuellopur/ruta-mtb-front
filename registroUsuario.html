@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +13,7 @@
     <div id="box">
         <a href="index.html"><img src="img/MBT_NEWLOGO.png" alt="Logo Ruta MTB" class="logo"></a>
         <h2>Registro de Usuario</h2>
-        
+
         <form action="" id="registroUsuario" class="formulario">
             <div class="textfield-wrapper">
                 <input type="text" id="nombre" name="nombre" class="textfield" placeholder=" " required>
@@ -25,7 +26,8 @@
             </div>
 
             <div class="textfield-wrapper">
-                <input type="password" id="contraseña" name="contraseña" class="textfield password-input" placeholder=" " required>
+                <input type="password" id="contraseña" name="contraseña" class="textfield password-input"
+                    placeholder=" " required>
                 <label for="contraseña" class="textfield-label">Contraseña</label>
                 <span class="toggle-password" onclick="togglePassword('contraseña', this)">
                     <i class="bi bi-eye"></i>
@@ -33,7 +35,8 @@
             </div>
 
             <div class="textfield-wrapper">
-                <input type="password" id="confirmarContraseña" name="confirmarContraseña" class="textfield password-input" placeholder=" " required>
+                <input type="password" id="confirmarContraseña" name="confirmarContraseña"
+                    class="textfield password-input" placeholder=" " required>
                 <label for="confirmarContraseña" class="textfield-label">Confirmar contraseña</label>
                 <span class="toggle-password" onclick="togglePassword('confirmarContraseña', this)">
                     <i class="bi bi-eye"></i>
@@ -77,7 +80,8 @@
                     <label for="loginEmail" class="textfield-label">Correo electrónico</label>
                 </div>
                 <div class="textfield-wrapper">
-                    <input type="password" id="loginPassword" name="loginPassword" class="textfield" placeholder=" " required>
+                    <input type="password" id="loginPassword" name="loginPassword" class="textfield" placeholder=" "
+                        required>
                     <label for="loginPassword" class="textfield-label">Contraseña</label>
                     <span class="toggle-password" onclick="togglePassword('loginPassword', this)">
                         <i class="bi bi-eye"></i>
@@ -102,11 +106,13 @@
             <h2>Inicio sesión Admin</h2>
             <form id="adminLoginForm" class="formulario">
                 <div class="textfield-wrapper">
-                    <input type="email" id="adminLoginEmail" name="adminLoginEmail" class="textfield" placeholder=" " required>
+                    <input type="email" id="adminLoginEmail" name="adminLoginEmail" class="textfield" placeholder=" "
+                        required>
                     <label for="adminLoginEmail" class="textfield-label">Correo electrónico</label>
                 </div>
                 <div class="textfield-wrapper">
-                    <input type="password" id="adminLoginPassword" name="adminLoginPassword" class="textfield" placeholder=" " required>
+                    <input type="password" id="adminLoginPassword" name="adminLoginPassword" class="textfield"
+                        placeholder=" " required>
                     <label for="adminLoginPassword" class="textfield-label">Contraseña</label>
                     <span class="toggle-password" onclick="togglePassword('adminLoginPassword', this)">
                         <i class="bi bi-eye"></i>
@@ -126,6 +132,248 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="scriptRegistro.js"></script>
+    <!-- <script src="scriptRegistro.js"></script> -->
+    <script>
+        // ======================= TOGGLE PASSWORD - GLOBAL =======================
+        function togglePassword(inputId, toggleElement) {
+            const passwordInput = document.getElementById(inputId);
+            const icon = toggleElement.querySelector('i');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('bi-eye');
+                icon.classList.add('bi-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('bi-eye-slash');
+                icon.classList.add('bi-eye');
+            }
+        }
+
+        // ======================= MODALS - GLOBAL =======================
+        function openLoginModal() {
+            document.getElementById('loginModal').style.display = 'block';
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').style.display = 'none';
+        }
+
+        function openAdminModal() {
+            document.getElementById('adminModal').style.display = 'block';
+        }
+
+        function closeAdminModal() {
+            document.getElementById('adminModal').style.display = 'none';
+        }
+
+        // ======================= VALIDACIONES =======================
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(String(email).toLowerCase());
+        }
+
+        function validatePasswords() {
+            const password = document.getElementById('contraseña').value;
+            const confirmPassword = document.getElementById('confirmarContraseña').value;
+            let valid = true;
+
+            // Longitud mínima
+            if (password.length < 8) {
+                document.getElementById('check-length').innerHTML = '<span style="color: red;">❌</span> Mínimo 8 caracteres';
+                valid = false;
+            } else {
+                document.getElementById('check-length').innerHTML = '<span style="color: green;">✔️</span> Mínimo 8 caracteres';
+            }
+
+            // Al menos un número
+            if (!/\d/.test(password)) {
+                document.getElementById('check-number').innerHTML = '<span style="color: red;">❌</span> Al menos un número';
+                valid = false;
+            } else {
+                document.getElementById('check-number').innerHTML = '<span style="color: green;">✔️</span> Al menos un número';
+            }
+
+            // Al menos un carácter especial
+            if (!/[!@#$%^&*]/.test(password)) {
+                document.getElementById('check-special').innerHTML = '<span style="color: red;">❌</span> Al menos un carácter especial (!@#$%^&*)';
+                valid = false;
+            } else {
+                document.getElementById('check-special').innerHTML = '<span style="color: green;">✔️</span> Al menos un carácter especial (!@#$%^&*)';
+            }
+
+            // Al menos una mayúscula
+            if (!/[A-Z]/.test(password)) {
+                document.getElementById('check-uppercase').innerHTML = '<span style="color: red;">❌</span> Al menos una mayúscula';
+                valid = false;
+            } else {
+                document.getElementById('check-uppercase').innerHTML = '<span style="color: green;">✔️</span> Al menos una mayúscula';
+            }
+
+            // Coincidencia de contraseñas
+            if (password !== confirmPassword) {
+                document.getElementById('check-match').innerHTML = '<span style="color: red;">❌</span> Las contraseñas coinciden';
+                valid = false;
+            } else {
+                document.getElementById('check-match').innerHTML = '<span style="color: green;">✔️</span> Las contraseñas coinciden';
+            }
+
+            return valid;
+        }
+
+        // ======================= REGISTRO =======================
+        function handleRegistration(formData) {
+            let usuarios = JSON.parse(localStorage.getItem('mtb-usuarios')) || [];
+            // Verifica si el correo ya existe
+            if (usuarios.some(u => u.correo === formData.correo)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Correo ya registrado',
+                    text: 'Ya existe un usuario con ese correo.',
+                    confirmButtonText: 'Aceptar'
+                });
+                return;
+            }
+            usuarios.push(formData);
+            localStorage.setItem('mtb-usuarios', JSON.stringify(usuarios));
+            Swal.fire({
+                icon: 'success',
+                title: '¡Registro exitoso!',
+                text: 'Tu usuario ha sido creado correctamente.',
+                confirmButtonText: 'Aceptar'
+            }).then(() => {
+                window.location.href = 'index.html';
+            });
+        }
+
+        // ======================= LOGIN =======================
+        function handleLogin(formData) {
+            const usuarios = JSON.parse(localStorage.getItem('mtb-usuarios')) || [];
+            const usuario = usuarios.find(u => u.correo === formData.email && u.password === formData.password);
+            if (!usuario) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Credenciales incorrectas',
+                    text: 'Verifica tu correo y contraseña.',
+                    confirmButtonText: 'Intentar de nuevo'
+                });
+                return;
+            }
+            Swal.fire({
+                icon: 'success',
+                title: '¡Login exitoso!',
+                text: `Bienvenido, ${usuario.nombre}`,
+                confirmButtonText: 'Continuar'
+            }).then(() => {
+                closeLoginModal();
+                window.location.href = 'index.html';
+                const validarUsuario = [{
+                    id: usuario.id,
+                    nombre: usuario.nombre,
+                    correo: usuario.correo,
+                    password: usuario.password,
+                    role: usuario.role,
+                    verification: true
+                }];
+                localStorage.setItem("mtb-validarUsuario", JSON.stringify(validarUsuario));
+            });
+        }
+
+        // ======================= LÓGICA DE EVENTOS (DOM READY) =======================
+        document.addEventListener('DOMContentLoaded', function () {
+            const registroForm = document.getElementById('registroUsuario');
+            const loginForm = document.getElementById('loginForm');
+            const passwordInputs = document.querySelectorAll('.password-input');
+            const passwordInfo = document.getElementById("passwordInfo");
+
+            // Inicializa el array de usuarios si no existe
+            if (!localStorage.getItem("mtb-usuarios")) {
+                // Si tienes usuarios quemados en usuarios.js, puedes importarlos aquí
+                // Ejemplo: import { users } from './app/usuarios.js';
+                // localStorage.setItem("mtb-usuarios", JSON.stringify(users));
+                localStorage.setItem("mtb-usuarios", JSON.stringify([
+
+                    {
+                        id: 1,
+                        nombre: "Admin",
+                        correo: "admin@gmail.com",
+                        password: "Admin12345*",
+                        role: "admin"
+                    },
+
+                    {
+                        id: 2,
+                        nombre: "Diego",
+                        correo: "diego@gmail.com",
+                        password: "Diego12345*",
+                        role: "user"
+                    }
+                ]));
+            }
+
+            // Muestra/oculta las indicaciones de contraseña al hacer foco en el campo de contraseña
+            passwordInputs.forEach(input => {
+                input.addEventListener('focus', () => {
+                    passwordInfo.style.display = 'block';
+                });
+                input.addEventListener('blur', () => {
+                    passwordInfo.style.display = 'none';
+                });
+            });
+
+            // Evento de envío del formulario de registro
+            if (registroForm) {
+                registroForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    const nombre = document.getElementById('nombre').value.trim();
+                    const correo = document.getElementById('Correo').value.trim();
+
+                    if (nombre === '') {
+                        Swal.fire({ icon: 'warning', title: 'Nombre vacío', text: 'Por favor, ingresa tu nombre completo.' });
+                        return;
+                    }
+                    if (!validateEmail(correo)) {
+                        Swal.fire({ icon: 'error', title: 'Email inválido', text: 'Por favor, ingresa un email válido.' });
+                        return;
+                    }
+                    if (!validatePasswords()) {
+                        Swal.fire({ icon: 'warning', title: 'Contraseña no válida', text: 'Por favor, asegúrate de que tu contraseña cumple con todos los requisitos.' });
+                        return;
+                    }
+
+                    const formData = {
+                        id: Date.now(),
+                        nombre: nombre,
+                        correo: correo,
+                        password: document.getElementById('contraseña').value,
+                        role: "user",
+                    };
+
+                    handleRegistration(formData);
+                });
+            }
+
+            // Evento de envío del formulario de login
+            if (loginForm) {
+                loginForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const formData = {
+                        email: document.getElementById('loginEmail').value,
+                        password: document.getElementById('loginPassword').value
+                    };
+                    if (!validateEmail(formData.email)) {
+                        Swal.fire({ icon: 'error', title: 'Email inválido', text: 'Por favor, ingresa un email válido.' });
+                        return;
+                    }
+                    if (formData.password.trim() === '') {
+                        Swal.fire({ icon: 'warning', title: 'Contraseña vacía', text: 'Por favor, ingresa tu contraseña.' });
+                        return;
+                    }
+                    handleLogin(formData);
+                });
+            }
+        });
+    </script>
 </body>
+
 </html>
