@@ -88,6 +88,7 @@ function agregarAlCarrito(dataId) {
     }
     localStorage.setItem("carrito", JSON.stringify(carrito));
     actualizarCarrito();
+    mtbCarritoData();
   }
 }
 
@@ -96,6 +97,7 @@ function aumentarCantidad(mtbId) {
     index.cantidad += 1;
     localStorage.setItem("carrito", JSON.stringify(carrito));
     actualizarCarrito();
+    mtbCarritoData();
 }
 function reducirCantidad(mtbId) {
   const index = carrito.find(index => index.id == mtbId);
@@ -107,19 +109,14 @@ function reducirCantidad(mtbId) {
     
     localStorage.setItem("carrito", JSON.stringify(carrito));
     actualizarCarrito();
+    mtbCarritoData();
 }
 function borrarCantidad(mtbId) {
     const index = carrito.find(index => index.id == mtbId);
     carrito.splice(index, 1)
     localStorage.setItem("carrito", JSON.stringify(carrito));
     actualizarCarrito();
-}
-
-function calcularTotal() {
-  return carrito.reduce((total, item) => {
-    const precio = parseInt(item.precio.replace(/\D/g, ""));
-    return total + precio;
-  }, 0);
+    mtbCarritoData();
 }
 
 function actualizarCarrito() {
@@ -149,21 +146,36 @@ function actualizarCarrito() {
     `;
     cartItems.appendChild(productoCarrito);
   });
-
-//   const total = calcularTotal();
-//   const totalItem = document.createElement("li");
-//   totalItem.innerHTML = `<span class="dropdown-item-text fw-bold">Total: $${total.toLocaleString()}</span>`;
-//   cartItems.appendChild(totalItem);
-
-//   const vaciarBtnItem = document.createElement("li");
-//   vaciarBtnItem.innerHTML = `
-//   <button class="dropdown-item text-danger" onclick="vaciarCarrito()">Vaciar carrito</button>
-// `;
-//   cartItems.appendChild(vaciarBtnItem);
-
 }
 
-actualizarCarrito();
+// Función de Datos de Carrito (Tener cuidado de no borrar)
+function mtbCarritoData() {
+  let mtbInfo1 = document.getElementById("mtbInfo1");
+  let mtbInfo2 = document.getElementById("mtbInfo2");
+  let mtbInfo3 = document.getElementById("mtbInfo3");
+  let mtbInfo4 = document.getElementById("mtbInfo4");
+  let mtbDataInfo1 = 0;
+  let mtbDataInfo2 = 0;
+  let mtbDataInfo3 = 0;
+  let mtbDataInfo4 = 0;
+
+  carrito.forEach(product => {
+    mtbDataInfo1 += product.cantidad;
+    let mtbTempData = (product.price * product.cantidad);
+    mtbDataInfo2 += mtbTempData;
+  })
+  if (mtbDataInfo2 < 100000) {
+    mtbDataInfo3 = 50000;
+  } else {
+    mtbDataInfo3 = 0;
+  }
+  mtbDataInfo4 = (mtbDataInfo2 + mtbDataInfo3);
+
+  mtbInfo1.innerText = `${mtbDataInfo1}`;
+  mtbInfo2.innerText = `${mtbDataInfo2.toLocaleString('es-CO')}`;
+  mtbInfo3.innerText = `${mtbDataInfo3.toLocaleString('es-CO')}`;
+  mtbInfo4.innerText = `${mtbDataInfo4.toLocaleString('es-CO')}`;
+}
 
 function actualizarPanelUsuario() {
   const validarUsuario = JSON.parse(localStorage.getItem("mtb-validarUsuario")) || [{ verification: false, role: null }];
