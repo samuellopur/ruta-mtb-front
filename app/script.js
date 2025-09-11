@@ -28,6 +28,19 @@ fetch("navbar.html")
       });
     }
     }
+    
+    if (!localStorage.getItem("mtb-validarUsuario")) {
+      localStorage.setItem("mtb-validarUsuario", JSON.stringify([
+          {
+              id: null,
+              nombre: null,
+              correo: null,
+              password: null,
+              role: null,
+              verification: false
+          },
+      ]))};
+    actualizarPanelUsuario();
   });
 
 
@@ -151,3 +164,54 @@ function actualizarCarrito() {
 }
 
 actualizarCarrito();
+
+function actualizarPanelUsuario() {
+  const validarUsuario = JSON.parse(localStorage.getItem("mtb-validarUsuario")) || [{ verification: false, role: null }];
+  const usuario = validarUsuario[0];
+
+  const panel1 = document.querySelector('.mtb-panel.panel-1');
+  const panel2 = document.querySelector('.mtb-panel.panel-2');
+  const panel3 = document.querySelector('.mtb-panel.panel-3');
+
+  // Oculta todas las cajas primero
+  if (panel1) panel1.style.display = "none";
+  if (panel2) panel2.style.display = "none";
+  if (panel3) panel3.style.display = "none";
+
+  // Muestra la caja correspondiente
+  if (!usuario.verification) {
+    if (panel1) panel1.style.display = "block";
+  } else if (usuario.verification && usuario.role === "user") {
+    if (panel2) {
+      panel2.style.display = "block";
+      // Actualiza el nombre si existe
+      const nombreSpan = panel2.querySelector("#nombre-login");
+      if (nombreSpan) nombreSpan.textContent = usuario.nombre || "";
+    }
+  } else if (usuario.verification && usuario.role === "admin") {
+    if (panel3) {
+      panel3.style.display = "block";
+      // Actualiza el nombre si existe
+      const nombreSpan = panel3.querySelector("#nombre-login");
+      if (nombreSpan) nombreSpan.textContent = usuario.nombre || "";
+    }
+  }
+}
+
+
+function logOut() {
+    // Limpia el usuario actual
+    localStorage.setItem("mtb-validarUsuario", JSON.stringify([{
+        id: null,
+        nombre: null,
+        correo: null,
+        password: null,
+        role: null,
+        verification: false
+    }]));
+    // Actualiza los paneles de usuario
+    window.location.href = 'index.html';
+    actualizarPanelUsuario();
+}
+
+
