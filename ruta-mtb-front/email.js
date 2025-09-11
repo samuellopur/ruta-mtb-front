@@ -3,9 +3,19 @@ function enviarCorreo(serviceID, templateID, templateParams) {
   return emailjs.send(serviceID, templateID, templateParams)
     .then(function(response) {
       console.log('Correo enviado con éxito!', response.status, response.text);
-      alert('¡Correo enviado con éxito!');
+      Swal.fire({
+        icon: 'success',
+        title: '¡Correo enviado!',
+        text: 'Tu mensaje fue enviado correctamente. Pronto te contactaremos.',
+        confirmButtonText: 'Aceptar'
+      });
     }, function(error) {
       console.error('Error al enviar el correo:', error);
-      alert('Hubo un error al enviar el correo.');
+      Swal.fire({
+        icon: 'error',
+        title: 'Error al enviar',
+        text: 'Hubo un error al enviar el correo. Por favor, intenta de nuevo más tarde.',
+        confirmButtonText: 'Aceptar'
+      });
     });
 }
