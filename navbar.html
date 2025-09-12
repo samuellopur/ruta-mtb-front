@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Navbar</title>
-        <script src="script.js" defer></script>
+    <script src="script.js" defer></script>
     <script src="catalog.js" type="module" defer></script>
     <script src="carrito.js" defer></script>
+    <script src="scriptRegistro.js" defer></script> <!--Link de registro-->
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -24,24 +25,35 @@
             <a href="catalog.html">Catálogo</a>
             <a href="contacto.html">Contáctenos</a>
             <a href="aboutUs.html">Quiénes somos</a>
+            <div class="mtbMobilePanel">
+                        <div class="mtb-usuario">
+                <div class="mtb-panel panel-1">
+                    <p>Bienvenido</p>
+                    <button onclick="window.location.href='registroUsuario.html'">Inicia Sesión</button>
+                </div>
+                <div class="mtb-panel panel-2">
+                    <p>Hola, <span id="nombre-login">Antonio</span></p>
+                    <button onclick="logOut()">Salir</button>
+                </div>
+                <div class="mtb-panel  panel-3">
+                    <p>Hola, <span id="nombre-login">Antonio</span></p>
+                    <button onclick="window.location.href='vistaAdmin.html'">Administrar</button>
+                    <button onclick="logOut()">Salir</button>
+                </div>
+            </div>
+            </div>
 
         </div>
         </div>
         <div class="mtbMobileButtons">
-            <a href="#" onclick="mostrarAdmin()"><div>
-                <i class="bi bi-person-circle"></i>
-            </div></a>
-            <a href="#" id="mtbOpen"><i class="bi bi-cart-fill"></i></a>
+
+            <a href="#" id="mtbOpen" onclick="actualizarCarrito();"><i class="bi bi-cart-fill"></i></a>
             <a class="botonHamburguesa" onclick="mostrarMenu()"><i class="bi bi-list"></i></a>
         </div>
 
-        <div class="mtbUserVisual">
-            <h3>Hola, Usuario</h3>
-            <p>Eres admin</p>
-            <a href="vistaAdmin.html"><div>
-                Administrador</i>
-            </div></a>
-        </div>
+
+
+        
 
         <div class="mtbCarrito">
                 <div id="mtbBox" class="carritoProductos">

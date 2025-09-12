@@ -1,7 +1,5 @@
-/* Diseño página de about us */
+/* Fuentes importadas */
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
-
-/* Fuentes importadas*/
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
 /* Reset básico */
@@ -29,20 +27,26 @@ body {
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     width: 100%;
     max-width: 400px;
+    height: 625px;
     text-align: center;
+}
+
+.logo {
+    width: 150px;
+    border-radius: 10%;
 }
 
 /* Título */
 #box h2 {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.2rem;
     color: #333;
-    padding: 15px;
+    padding: 8px 8px 12px 8px;
 }
 
 #box p {
-    margin-bottom: 1.5rem;
-    font-size: 0.9rem;
-    color: #666;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: #333;
 }
 
 /* Formulario */
@@ -56,7 +60,7 @@ body {
 .formulario input[type="text"],
 .formulario input[type="email"],
 .formulario input[type="password"] {
-    padding: 0.8rem;
+    padding: 0.7rem;
     border: 1px solid #ccc;
     border-radius: 8px;
     outline: none;
@@ -65,30 +69,20 @@ body {
 
 .formulario input:focus {
     border: 1px solid #7ab021;
-    box-shadow: 0 0 5px #2b3610;
+    box-shadow: 0 0 5px #2b3618;
 }
 
 .g-recaptcha {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 16px 0;
+    margin: 1px;
 }
 
-#botonRecap {
-    display: none;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 0.8rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    outline: none;
-    transition: border 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Botón */
-.formulario input[type="button"] {
-    background:  #7ab021;
+/* Botón Registrarse */
+.formulario input[type="button"],
+.formulario input[type="submit"] {
+    background: #7ab021;
     color: #fff;
     padding: 0.8rem;
     border: none;
@@ -96,34 +90,18 @@ body {
     cursor: pointer;
     font-weight: bold;
     transition: background 0.3s ease, transform 0.2s ease;
+    margin-bottom: 10px;
 }
 
-.formulario input[type="button"]:hover {
-    background: linear-gradient(#2b3618, #7ab021);
+.formulario input[type="button"]:hover,
+.formulario input[type="submit"]:hover {
     background: #2b3618;
     transform: scale(1.05);
 }
 
-.textfield-label {
-    position: absolute;
-    z-index: 1;
-    top: var(--label-inset-block-start);
-    left: var(--label-inset-inline-start);
-    color: var(--x-card-text-color-subdued);
-    font-size: var(--label-font-size);
-}
-
-.textfield:not(:placeholder-shown):not(.textfield--label-outside)+.textfield-label {
-    opacity: 1;
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-}
-
-
-
 .textfield-wrapper {
     position: relative;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .textfield {
@@ -133,10 +111,12 @@ body {
     border-radius: 8px;
     font-size: 1rem;
     outline: none;
+    background: #fff;
+    color: #333;
 }
 
 .textfield:focus {
-    border-color: #BC6C25;
+    border-color: #7ab021;
     box-shadow: 0 0 4px #7ab021;
 }
 
@@ -157,7 +137,7 @@ body {
     top: -8px;
     left: 8px;
     font-size: 0.75rem;
-    color: #BC6C25;
+    color: #7ab021;
     background: #fff;
     padding: 0 4px;
 }
@@ -173,6 +153,189 @@ body {
     z-index: 2;
     user-select: none;
 }
-.textfield-wrapper {
-    position: relative;
+
+.toggle-password:hover {
+    color: #2b3618;
+}
+
+.link-login {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.link-login, .link-login a {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.link-login a {
+    color: #7ab021;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.link-login a:hover {
+    color: #2b3618;
+    text-decoration: underline;
+}
+
+.botonRecap{
+    margin: 5px;
+}
+
+/* Estilos del Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 90%;
+    animation: modalSlideIn 0.3s ease-out;
+    text-align: center;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    color: #666;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: #333;
+}
+
+.modal h2 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    color: #333;
+    padding: 15px;
+}
+
+.open-modal-btn:hover {
+    background: rgba(122, 176, 33, 0.8) !important;
+    color: #fff !important;
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(122, 176, 33, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    #box {
+        margin: 20px;
+        padding: 1rem;
+    }
+    
+    .modal-content {
+        margin: 20px;
+        width: calc(100% - 40px);
+    }
+    
+    .textfield {
+        padding: 0.8rem;
+    }
+}
+
+/* NUEVAS REGLAS para el checklist flotante */
+/* NUEVAS REGLAS para el checklist flotante */
+#passwordInfoContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none; /* Para que no bloquee los clics en los elementos de abajo */
+}
+
+#passwordInfo {
+    display: none; /* Oculto por defecto */
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 28px 22px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    min-width: 260px;
+    max-width: 340px;
+    opacity: 0;
+    transition: opacity 0.6s;
+    text-align: left;
+    transform: translate(460px, -110px); /* Posicionamiento inicial a la derecha del cuadro principal */
+    pointer-events: auto; /* Permite la interacción con la caja */
+}
+
+#passwordInfo h4 {
+    margin-bottom: 18px;
+    color: #7ab021;
+    font-weight: 700;
+    font-size: 19px;
+    text-align: center;
+}
+
+#passwordInfo ul {
+    list-style: none;
+    padding: 0;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#passwordInfo li {
+    display: flex;
+    align-items: center;
+}
+
+#passwordInfo li span {
+    margin-right: 8px;
+}
+
+/* Responsive para el checklist */
+@media (max-width: 700px) {
+    #passwordInfoContainer {
+        position: relative; /* Cambia a posición relativa en móviles */
+        top: 0;
+        left: 0;
+        transform: none;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    #passwordInfo {
+        display: block; /* Siempre visible en móviles */
+        opacity: 1 !important; /* Fuerza la visibilidad */
+        box-shadow: none; /* Quitamos la sombra */
+        transform: none; /* Resetea la posición */
+        width: calc(100% - 40px); /* Ajusta el ancho para que no desborde */
+    }
 }

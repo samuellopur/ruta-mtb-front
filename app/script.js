@@ -15,8 +15,34 @@ fetch("navbar.html")
       mtbClose.addEventListener("click", () => {
         mtbBox.style.display = "none";
       });
+      const mtbUser = document.getElementById("mtbUser");// Cambiado aquí --> karen (intente resplicar las funciones de modal carrito para motar de registro y login)
+      const mtbAdmin = document.getElementById("mtbAdmin");
+      const mtbInSesion= document.getElementById("mtbInSesion"); 
+
+    if (mtbUser && mtbAdmin && mtbInSesion) {
+      mtbOpen.addEventListener("click", () => {
+        mtbUser.style.display = "inline-block";
+      });
+      mtbClose.addEventListener("click", () => {
+        mtbBox.style.display = "none";
+      });
     }
+    }
+    
+    if (!localStorage.getItem("mtb-validarUsuario")) {
+      localStorage.setItem("mtb-validarUsuario", JSON.stringify([
+          {
+              id: null,
+              nombre: null,
+              correo: null,
+              password: null,
+              role: null,
+              verification: false
+          },
+      ]))};
+    actualizarPanelUsuario();
   });
+
 
 // Botón de conoce más - página de about us
 function mostrarDiv() {
@@ -32,6 +58,10 @@ function mostrarDiv() {
 
 function mostrarAdmin() {
   const mtbLinks = document.querySelector(".mtbUserVisual");
+  mtbLinks.classList.toggle("oculto");
+}
+function handleUserButton() { //Cambio la funcion  mostrarAdmin()-->scrpt.js por handleUser() -->scriptRegistro.js
+  const mtbLinks = document.querySelector(".mtbUserVisual"); 
   mtbLinks.classList.toggle("oculto");
 }
 function mostrarMenu() {
@@ -58,6 +88,7 @@ function agregarAlCarrito(dataId) {
     }
     localStorage.setItem("carrito", JSON.stringify(carrito));
     actualizarCarrito();
+    mtbCarritoData();
   }
 }
 
@@ -66,6 +97,7 @@ function aumentarCantidad(mtbId) {
     index.cantidad += 1;
     localStorage.setItem("carrito", JSON.stringify(carrito));
     actualizarCarrito();
+    mtbCarritoData();
 }
 function reducirCantidad(mtbId) {
   const index = carrito.find(index => index.id == mtbId);
@@ -77,19 +109,14 @@ function reducirCantidad(mtbId) {
     
     localStorage.setItem("carrito", JSON.stringify(carrito));
     actualizarCarrito();
+    mtbCarritoData();
 }
 function borrarCantidad(mtbId) {
     const index = carrito.find(index => index.id == mtbId);
     carrito.splice(index, 1)
     localStorage.setItem("carrito", JSON.stringify(carrito));
     actualizarCarrito();
-}
-
-function calcularTotal() {
-  return carrito.reduce((total, item) => {
-    const precio = parseInt(item.precio.replace(/\D/g, ""));
-    return total + precio;
-  }, 0);
+    mtbCarritoData();
 }
 
 function actualizarCarrito() {
@@ -97,8 +124,13 @@ function actualizarCarrito() {
   cartItems.innerHTML = "";
 
   if (carrito.length === 0) {
-    cartItems.innerHTML =
-      '<p>Carrito vacío</p>';
+    cartItems.innerHTML = `
+      <div class="mtbEmptyCart">
+      <p><strong>¡Empieza a comprar!</strong></p>
+      <p>Recuerda iniciar sesión para agregar productos</p>
+      <img src="img/IMG_003.png" alt="Empieza a comprar">
+      </div>
+    `;
     return;
   }
 
@@ -119,18 +151,84 @@ function actualizarCarrito() {
     `;
     cartItems.appendChild(productoCarrito);
   });
-
-//   const total = calcularTotal();
-//   const totalItem = document.createElement("li");
-//   totalItem.innerHTML = `<span class="dropdown-item-text fw-bold">Total: $${total.toLocaleString()}</span>`;
-//   cartItems.appendChild(totalItem);
-
-//   const vaciarBtnItem = document.createElement("li");
-//   vaciarBtnItem.innerHTML = `
-//   <button class="dropdown-item text-danger" onclick="vaciarCarrito()">Vaciar carrito</button>
-// `;
-//   cartItems.appendChild(vaciarBtnItem);
-
 }
 
-actualizarCarrito();
+// Función de Datos de Carrito (Tener cuidado de no borrar)
+function mtbCarritoData() {
+  let mtbInfo1 = document.getElementById("mtbInfo1");
+  let mtbInfo2 = document.getElementById("mtbInfo2");
+  let mtbInfo3 = document.getElementById("mtbInfo3");
+  let mtbInfo4 = document.getElementById("mtbInfo4");
+  let mtbDataInfo1 = 0;
+  let mtbDataInfo2 = 0;
+  let mtbDataInfo3 = 0;
+  let mtbDataInfo4 = 0;
+
+  carrito.forEach(product => {
+    mtbDataInfo1 += product.cantidad;
+    let mtbTempData = (product.price * product.cantidad);
+    mtbDataInfo2 += mtbTempData;
+  })
+  if (mtbDataInfo2 < 100000) {
+    mtbDataInfo3 = 50000;
+  } else {
+    mtbDataInfo3 = 0;
+  }
+  mtbDataInfo4 = (mtbDataInfo2 + mtbDataInfo3);
+
+  mtbInfo1.innerText = `${mtbDataInfo1}`;
+  mtbInfo2.innerText = `${mtbDataInfo2.toLocaleString('es-CO')}`;
+  mtbInfo3.innerText = `${mtbDataInfo3.toLocaleString('es-CO')}`;
+  mtbInfo4.innerText = `${mtbDataInfo4.toLocaleString('es-CO')}`;
+}
+
+function actualizarPanelUsuario() {
+  const validarUsuario = JSON.parse(localStorage.getItem("mtb-validarUsuario")) || [{ verification: false, role: null }];
+  const usuario = validarUsuario[0];
+
+  const panel1 = document.querySelector('.mtb-panel.panel-1');
+  const panel2 = document.querySelector('.mtb-panel.panel-2');
+  const panel3 = document.querySelector('.mtb-panel.panel-3');
+
+  // Oculta todas las cajas primero
+  if (panel1) panel1.style.display = "none";
+  if (panel2) panel2.style.display = "none";
+  if (panel3) panel3.style.display = "none";
+
+  // Muestra la caja correspondiente
+  if (!usuario.verification) {
+    if (panel1) panel1.style.display = "block";
+  } else if (usuario.verification && usuario.role === "user") {
+    if (panel2) {
+      panel2.style.display = "block";
+      // Actualiza el nombre si existe
+      const nombreSpan = panel2.querySelector("#nombre-login");
+      if (nombreSpan) nombreSpan.textContent = usuario.nombre || "";
+    }
+  } else if (usuario.verification && usuario.role === "admin") {
+    if (panel3) {
+      panel3.style.display = "block";
+      // Actualiza el nombre si existe
+      const nombreSpan = panel3.querySelector("#nombre-login");
+      if (nombreSpan) nombreSpan.textContent = usuario.nombre || "";
+    }
+  }
+}
+
+
+function logOut() {
+    // Limpia el usuario actual
+    localStorage.setItem("mtb-validarUsuario", JSON.stringify([{
+        id: null,
+        nombre: null,
+        correo: null,
+        password: null,
+        role: null,
+        verification: false
+    }]));
+    // Actualiza los paneles de usuario
+    window.location.href = 'index.html';
+    actualizarPanelUsuario();
+}
+
+
