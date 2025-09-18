@@ -58,9 +58,9 @@ function mtbLoadNav() {
         </div>
         <div class="mtbNavLink" id="mtbNavLink">
             <a href="/pages/index.html"><span>Inicio</span></a>
-            <a href="/pagescatalog.html"><span>Catálogo</span></a>
-            <a href="/pagescontact.html"><span>Contacto</span></a>
-            <a href="/pagesabout.html"><span>Conocenos</span></a>
+            <a href="/pages/catalog.html"><span>Catálogo</span></a>
+            <a href="/pages/contact.html"><span>Contacto</span></a>
+            <a href="/pages/about.html"><span>Conocenos</span></a>
             <a id="mtbLinkTextHref" href="#"><span id="mtbLinkTextUser">Cargando...</span></a>
             <a id="mtbLinkEspecial" href="#" onclick="mtbCartModalClick(); mtbBurguerClick();"><span>Carrito</span></a>
         </div>
