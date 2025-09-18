@@ -21,23 +21,23 @@ document.addEventListener("DOMContentLoaded", () => {
     mtbCatalog = JSON.parse(localStorage.getItem("mtbCatalog"));
     mtbUsersData = JSON.parse(localStorage.getItem("mtbUsers"));
     mtbUserValidate = JSON.parse(localStorage.getItem("mtbCheck"));
-    if (window.location.pathname.includes("catalog.html")) {
+    if (window.location.pathname.includes("/pages/catalog.html")) {
         console.log("Estás en la página de carrito");
         mtbViewCatalog(mtbCatalog);
     }
-    if (window.location.pathname.includes("user.html")) {
+    if (window.location.pathname.includes("/pages/user.html")) {
         console.log("Estás en la página de usuario");
         mtbPanelUserCart();
     }
-    if (window.location.pathname.includes("admin.html")) {
+    if (window.location.pathname.includes("/pages/admin.html")) {
         console.log("Estás en la página de admin");
         mtbPanelAdminCart();
     }
-    if (!window.location.pathname.includes("login.html") || mtbUserValidate[0].id === 1) {
+    if (!window.location.pathname.includes("/pages/login.html") || mtbUserValidate[0].id === 1) {
         console.log("No se cargará el carrito por condiciones de la página");
         mtbCartRefresh();
     }
-    if (window.location.pathname.includes("login.html")) {
+    if (window.location.pathname.includes("/pages/login.html")) {
         console.log("Estás en la página de login");
         mtbLoadContent('mtbLogin');
     }
