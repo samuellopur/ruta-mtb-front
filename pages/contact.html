@@ -55,6 +55,37 @@
         </div>
     </div>
     <main class="mtbMain">
+                <div class="mtbStaticPage">
+            <div class="mtbStaticPageSection">
+            <h3 class="text-center fw-bold borde-texto">¿Cómo podemos ayudarte?</h3>
+            <img src="../img/RUTAMTB_SLOGAN.png" alt="Logo RutaMTB">
+            <p class="borde-texto">Si eres cliente actual de RutaMTB, comunícate con nuestro equipo de soporte técnico a través de tu
+                cuenta, para obtener el servicio más rápido. O llena el siguiente formulario, te responderemos lo
+                más pronto posible.</p>
+            </div>
+            <div class="mtbStaticPageSection">
+                <h3>Formulario</h3>
+                <form class="mbtContactForm" action="https://formspree.io/f/xwpqwgbk" method="POST" id="form-contacto">
+                <div class="mb-3">
+                    <label for="name" >¿Cuál es tu nombre?</label>
+                    <input type="text" id="name" name="nombre" placeholder="Nombre Ejemplo" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" >¿Cuál es tu correo electrónico? </label>
+                    <input type="email" id="email" name="correo" placeholder="nombre@ejemplo.com" required>
+                </div>
+                <div class="mb-3">
+                    <label for="phone" >Ingresa tu número de contacto </label>
+                    <input type="tel" id="phone" name="telefono" pattern="[0-9]{10}" placeholder="+57 (300) 000 0000">
+                </div>
+                <div class="mb-3">
+                    <label for="message" >Introduce tu mensaje</label>
+                    <textarea id="message" name="mensaje" rows="6" required></textarea>
+                </div>
+                <button type="submit" class="mtbSmallButton d-flex justify-content-end">Enviar <i class="bi bi-send ps-2"></i></button>
+            </form>
+            </div>
+        </div>
     </main>
 
     <footer class="mtbFooter">

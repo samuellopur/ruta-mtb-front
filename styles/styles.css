@@ -263,6 +263,122 @@ input {
     margin-bottom: 7px;
 }
 
+/* MTB - Estilos de las páginas contacto/about */
+.mtbStaticPage {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.mtbStaticPageSection {
+    flex: 1;
+    min-width: 200px;
+    font-size: var(--SZ);
+    padding: 21px;
+}
+
+.mtbStaticPageSection p {
+    padding: 7px 0;
+    font-size: calc(var(--SZ) * 2);
+    text-align: center;
+}
+
+.mtbStaticPageSection h3 {
+    color: var(--C1);
+    font-size: calc(var(--SZ) * 3);
+    text-align: center;
+    margin: 14px 0;
+    font-weight: 800;    
+}
+
+.mtbStaticPageSection img {
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.mtbStaticPageSection button {
+    margin: 7px auto;
+}
+
+.mtbMisionVision {
+    display: none;
+    background: var(--C4);
+    padding: 14px;
+    border-radius: 7px;
+}
+
+.mtbCardPresentation {
+    display: block;
+    background: var(--C2);
+    color: var(--C4);
+    border-radius: 7px;
+    margin: 7px 0;
+    padding: 7px 14px;
+}
+
+.mtbCardPresentation * {
+    font-size: calc(var(--SZ) * 2);
+}
+
+.mtbCardPresentationImg {
+    display: inline-block;
+    vertical-align: top;
+    width: 75px;
+    margin: 7px 0;
+    transition: 0.5s;
+}
+
+.mtbCardPresentationImg img {
+    width: 100%;
+    border-radius: 7px;
+}
+
+.mtbCardPresentationDescription {
+    display: inline-block;
+    padding: 7px;
+    width: calc(100% - 100px);
+    vertical-align: top;
+    transition: 0.3s;
+}
+
+.mtbCardPresentationDescription p{
+    text-align: left !important;
+}
+
+.mtbCardPresentationLinks {
+    display: block;
+}
+
+.mtbCardPresentationLinks a {
+    padding: 4px 7px;
+    color: var(--C4);
+    gap: 1;
+}
+
+.mtbCardPresentationLinks i {
+    font-size: 25px;
+}
+
+.mtbCardDescriptionMore {
+    display: none;
+}
+
+.mtbCardPresentation:hover .mtbCardDescriptionMore {
+    display: inline;
+}
+
+.mtbCardPresentation:hover .mtbCardPresentationImg {
+    width: 150px;
+    height: 150px;
+    transition: 0.3s;
+}
+
+.mtbCardPresentation:hover .mtbCardPresentationDescription {
+    width: calc(100% - 200px);
+    transition: 0.3s;
+}
+
+
 /* MTB - Estilos de la página catálogo */
 
 .mtbCataFilter {
@@ -477,16 +593,22 @@ input {
     padding-left: 20%;
 }
 
-.mtbLoginForm {
+.mtbLoginForm, .mbtContactForm {
     width: 80%;
     background: var(--C4);
     margin: 21px auto;
-    padding: 7px;
+    padding: 14px;
     border-radius: 7px;
     z-index: 9;
 }
 
-.mtbLoginForm input {
+.mtbLoginForm label, .mbtContactForm label {
+    display: block;
+    font-size: calc(var(--SZ) * 2);
+    padding: 0 7px;
+}
+
+.mtbLoginForm input, .mbtContactForm input, .mbtContactForm textarea {
     display: block;
     width: calc(100% - 42px);
     margin: 14px;
@@ -497,7 +619,7 @@ input {
     transition: 0.5s;
 }
 
-.mtbLoginForm input:focus{
+.mtbLoginForm input:focus, .mbtContactForm input:focus{
     outline: 2px solid var(--C1);
     transition: 0.5s;
 }
@@ -526,7 +648,7 @@ input {
     border-radius: 7px;
 }
 
-.mtbLoginForm button {
+.mtbLoginForm button, .mbtContactForm button {
     display: block;
     margin: 14px auto;
     padding: 14px;
@@ -611,6 +733,37 @@ input {
         top: 0;
         right: 0;
     }
+
+/* MTB - Contacto/About*/
+
+.mtbCardPresentationDescription {
+    display: inline-block;
+    padding: 7px;
+    width: calc(100% - 100px);
+    vertical-align: top;
+    transition: 0.3s;
+}
+
+.mtbCardPresentationLinks a {
+    padding: 4px 7px;
+    color: var(--C4);
+    gap: 1;
+}
+
+.mtbCardPresentation:hover .mtbCardPresentationImg {
+    display: block;
+    margin: 7px auto;
+    width: 150px;
+    height: 150px;
+    transition: 0.3s;
+}
+
+.mtbCardPresentation:hover .mtbCardPresentationDescription {
+    display: block;
+    width: 100%;
+    transition: 0.3s;
+}
+
 
     /* MTB - Catálogo */
     .mtbCataFilter h3,

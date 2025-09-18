@@ -51,7 +51,7 @@ function mtbLoadNav() {
     mtbNav.innerHTML =
         `
     <div class="mtbNavLogo">
-            <img src="#" alt="#">
+            <img src="../img/MTB_NEWLOGO.png" alt="Logo de Ruta MTB">
         </div>
         <div>
             <a href="#" id="mtbNavBurguer" class="mtbNavBurguer" onclick="mtbBurguerClick()"><span><i class="bi bi-list"></i></span></a>
@@ -69,6 +69,12 @@ function mtbLoadNav() {
         </div>
     `
     mtbNavValidate();
+}
+
+// DIV: Mostrar/Ocultar div específico 
+function mtbToggleDiv(mtbData) {
+    const div = document.getElementById(`${mtbData}`);
+    div.classList.toggle("mtbViewNone");
 }
 
 // Validación de Navbar (Login/Registro y Generalidades)
@@ -878,6 +884,7 @@ function mtbLogOut() {
     window.location.href = "catalog.html";
 }
 
+window.mtbToggleDiv = mtbToggleDiv;
 window.mtbBurguerClick = mtbBurguerClick;
 window.mtbCartModalClick = mtbCartModalClick;
 window.mtbCartAdd = mtbCartAdd;
