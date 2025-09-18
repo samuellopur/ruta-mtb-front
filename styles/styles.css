@@ -1,0 +1,828 @@
+/* Iconografía y fuentes */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+:root {
+    --C1: #7AB021;
+    --C2: #2B3618;
+    --C3: #333333;
+    --C4: #FFFFFF;
+    --C5: #DCDCDC;
+    --F1: 'Lato', sans-serif;
+    --F2: 'Montserrat', sans-serif;
+    --SZ: 7px;
+    font-size: 21px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--F1);
+}
+
+p,
+a,
+i,
+span,
+button,
+label,
+input {
+    font-family: var(--F2);
+}
+
+.mtbViewNone {
+    display: block !important;
+}
+
+/* MTB - Estilos de la barra de navegación */
+
+.mtbNav {
+    width: 100%;
+    min-height: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: start;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 3;
+}
+
+.mtbNavLogo {
+    width: 200px;
+    height: 75px;
+    padding: 14px;
+}
+
+.mtbNavLogo img {
+    width: 100%;
+}
+
+.mtbNavLink {
+    width: calc(100% -200px);
+    height: 75px;
+    padding: 14px;
+}
+
+.mtbNavLink a,
+.mtbNavBurguer {
+    display: inline-block;
+    padding: calc(var(--SZ) * 1.5);
+    margin: 0 0 0 14px;
+    font-size: calc(var(--SZ) * 2);
+    text-decoration: none;
+    color: var(--C1);
+    font-weight: bold;
+    border-radius: 7px;
+}
+
+.mtbNavLink a:hover,
+.mtbNavBurguer:hover {
+    background: var(--C1);
+    color: var(--C4);
+}
+
+.mtbNavLink p {
+    display: inline-block;
+    font-size: 0.9rem;
+}
+
+.mtbNavAlert {
+    display: none;
+    width: 100%;
+    background: var(--C1);
+    color: var(--C4);
+    text-align: center;
+    padding: 7px;
+    font-size: calc(var(--SZ) * 2);
+    z-index: 2;
+}
+
+#mtbNavBurguer {
+    display: none;
+    font-size: 1rem;
+}
+
+/* MTB - Estilos del main generales */
+
+.mtbMain {
+    width: 100%;
+    min-height: 100vh;
+    font-size: 0;
+    background: var(--C5);
+    position: relative;
+}
+
+/* MTB - Estilos del footer generales */
+.mtbFooter {
+    width: 100%;
+    min-height: 200px;
+    background: var(--C3);
+}
+
+/* MTB - Modal del Carrito */
+.mtbCartModal {
+    display: none;
+}
+
+.mtbCartModalBack {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.9);
+    width: 100vw;
+    height: 100vh;
+    z-index: 4;
+}
+
+.mtbCartModalContent {
+    display: block;
+    float: right;
+    width: 400px;
+    height: 100vh;
+    background: var(--C4);
+    font-size: 0;
+}
+
+.mtbCartModalPanelTop {
+    position: relative;
+    background: var(--C3);
+    overflow: hidden;
+    height: 50px;
+    padding: 7px 14px;
+}
+
+.mtbCartModalPanelTop h3 {
+    font-size: calc(var(--SZ) * 3);
+    color: var(--C4);
+}
+
+.mtbCartModalPanelTop button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 21px;
+}
+
+.mtbCartModalAdd {
+    height: calc(100vh - 200px);
+    overflow-y: scroll;
+}
+
+.mtbCartModalCard {
+    background: var(--C3);
+    color: var(--C4);
+    width: 100%;
+}
+
+.CardCartImg img {
+    display: block;
+    height: 50px;
+    margin: 14px auto;
+    border-radius: 7px;
+}
+
+.mtbCartModalCard .CardCartImg {
+    display: inline-block;
+    width: 100px;
+    vertical-align: top;
+
+}
+
+.mtbCartModalCard .CardCartContent {
+    display: inline-block;
+    width: calc(100% - 150px);
+    font-size: calc(var(--SZ) * 2);
+    vertical-align: top;
+    padding: 14px;
+}
+
+.mtbCartModalCard .CardCartContent h3 {
+    font-size: calc(var(--SZ) * 2.5);
+}
+
+.mtbCartModalCard .CardCartButtons {
+    display: inline-block;
+    width: 50px;
+    vertical-align: top;
+}
+
+#mtbCartModalPanelBottom {
+    width: 100%;
+    height: 150px;
+    padding: 14px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: var(--C3);
+    color: var(--C4);
+}
+
+#mtbCartModalPanelBottom p {
+    font-size: calc(var(--SZ) * 2);
+}
+
+#mtbCartModalPanelBottom strong {
+    font-size: calc(var(--SZ) * 2.5);
+}
+
+.mtbPayModal {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    padding: 42px;
+    background: var(--C1);
+    color: var(--C4);
+    z-index: 8;
+}
+
+.mtbPayModal h3 {
+    font-size: calc(var(--SZ) * 4);
+    margin-bottom: 14px;
+}
+
+.mtbPayModal p {
+    font-size: calc(var(--SZ) * 3);
+    margin-bottom: 14px;
+}
+
+.mtbPayModal .mtbPayDetail {
+    font-size: calc(var(--SZ) * 2);
+    margin-bottom: 7px;
+}
+
+/* MTB - Estilos de las páginas contacto/about */
+.mtbStaticPage {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.mtbStaticPageSection {
+    flex: 1;
+    min-width: 200px;
+    font-size: var(--SZ);
+    padding: 21px;
+}
+
+.mtbStaticPageSection p {
+    padding: 7px 0;
+    font-size: calc(var(--SZ) * 2);
+    text-align: center;
+}
+
+.mtbStaticPageSection h3 {
+    color: var(--C1);
+    font-size: calc(var(--SZ) * 3);
+    text-align: center;
+    margin: 14px 0;
+    font-weight: 800;    
+}
+
+.mtbStaticPageSection img {
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.mtbStaticPageSection button {
+    margin: 7px auto;
+}
+
+.mtbMisionVision {
+    display: none;
+    background: var(--C4);
+    padding: 14px;
+    border-radius: 7px;
+}
+
+.mtbCardPresentation {
+    display: block;
+    background: var(--C2);
+    color: var(--C4);
+    border-radius: 7px;
+    margin: 7px 0;
+    padding: 7px 14px;
+}
+
+.mtbCardPresentation * {
+    font-size: calc(var(--SZ) * 2);
+}
+
+.mtbCardPresentationImg {
+    display: inline-block;
+    vertical-align: top;
+    width: 75px;
+    margin: 7px 0;
+    transition: 0.5s;
+}
+
+.mtbCardPresentationImg img {
+    width: 100%;
+    border-radius: 7px;
+}
+
+.mtbCardPresentationDescription {
+    display: inline-block;
+    padding: 7px;
+    width: calc(100% - 100px);
+    vertical-align: top;
+    transition: 0.3s;
+}
+
+.mtbCardPresentationDescription p{
+    text-align: left !important;
+}
+
+.mtbCardPresentationLinks {
+    display: block;
+}
+
+.mtbCardPresentationLinks a {
+    padding: 4px 7px;
+    color: var(--C4);
+    gap: 1;
+}
+
+.mtbCardPresentationLinks i {
+    font-size: 25px;
+}
+
+.mtbCardDescriptionMore {
+    display: none;
+}
+
+.mtbCardPresentation:hover .mtbCardDescriptionMore {
+    display: inline;
+}
+
+.mtbCardPresentation:hover .mtbCardPresentationImg {
+    width: 150px;
+    height: 150px;
+    transition: 0.3s;
+}
+
+.mtbCardPresentation:hover .mtbCardPresentationDescription {
+    width: calc(100% - 200px);
+    transition: 0.3s;
+}
+
+
+/* MTB - Estilos de la página catálogo */
+
+.mtbCataFilter {
+    background: var(--C3);
+    color: var(--C4);
+    display: inline-block;
+    width: 222px;
+    padding: 14px;
+    margin: 14px;
+    min-height: 50px;
+    vertical-align: top;
+    border-radius: 7px;
+}
+
+.mtbCataFilter h3,
+.mtbCataFilter a,
+.mtbCataFilter p {
+    display: block;
+    font-size: calc(var(--SZ) * 3);
+    margin: 0 7px 7px 0;
+}
+
+.mtbCataFilter a {
+    background: var(--C4);
+    color: var(--C3);
+    display: block;
+    font-size: calc(var(--SZ) * 2);
+    text-decoration: none;
+    padding: 7px 14px;
+    border-radius: 7px;
+}
+
+.mtbCataProducts h3,
+.mtbCataProducts a {
+    display: block;
+    font-size: calc(var(--SZ) * 3);
+    margin: 3.5px 7px 3.5px 0;
+}
+
+.mtbCataProducts p {
+    font-size: calc(var(--SZ) * 2)
+}
+
+.mtbCataProducts .mtbCataPrice {
+    font-size: calc(var(--SZ) * 2.5)
+}
+
+.mtbCataProducts img {
+    display: block;
+    height: 100px;
+    margin: 0 auto;
+}
+
+.mtbCataTag {
+    display: inline-block;
+    background: var(--C5);
+    color: var(--C3);
+    font-size: calc(var(--SZ) * 1.5) !important;
+    border-radius: 7px;
+    margin: 0 7px 0 0;
+    padding: 4px;
+}
+
+.mtbCataProducts {
+    display: inline-flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: calc(100% - 250px);
+    margin: 14px 0;
+    min-height: 50px;
+}
+
+.mtbCataCard {
+    background: var(--C4);
+    margin: 14px 0;
+    display: inline-block;
+    width: 250px;
+    padding: 14px;
+    border-radius: 4px;
+}
+
+/* PANEL: Visuales de paneles Usuario/Admin */
+.mtbPanel {
+    background: var(--C4);
+    width: 80%;
+    padding: 14px;
+    margin: 0 auto;
+}
+
+.mtbPanel h2 {
+    font-size: calc(var(--SZ) * 3);
+}
+
+.mtbPanel p {
+    font-size: calc(var(--SZ) * 2);
+}
+
+.mtbPanelUserCart, .mtbPanelAdminCart {
+    margin: 14px 0;
+}
+
+.mtbPanelUserCartCard {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.mtbPanelUserCartCard:nth-child(2n) {
+    background: var(--C5);
+}
+
+.mtbPanelUserCartCard p{
+    flex: 1;
+    padding: 7px;
+}
+
+.mtbPanelUserCartCard button {
+    flex: 0 0 auto;
+    margin: 7px;
+}
+
+.mtbPanelUserCartCard img {
+    flex: 0 0 auto;
+    width: 30px;
+    height: 30px;
+    margin: 4px 7px;
+    background: var(--C3);
+}
+
+.mtbPanelUserPurchase {
+    margin: 14px 0;
+}
+
+.mtbPanelUserPurchaseCard {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 14px;
+}
+
+.mtbPanelUserPurchaseCard:nth-child(2n) {
+    background: var(--C5);
+}
+
+.mtbPurchaseFirstInfo {
+    font-size: calc(var(--SZ) * 2.5) !important;
+    flex: 0 0 100%;
+}
+
+.mtbPurchaseSecondInfo {
+    display: flex;
+    flex: 0 0 100%;
+    padding: 3px;
+}
+
+.mtbPurchaseSecondInfo div {
+    width: 50px;
+}
+.mtbPurchaseSecondInfo img {
+    width: 20px;
+    height: 20px;
+    background: var(--C3);
+}
+
+.mtbPurchaseSecondInfo p {
+    padding: 0 4px;
+}
+
+/* PANEL: Específico para el CRUD */
+#mtbPanelAdminCRUD { display: none;}
+
+.mtbPanelAdminCRUD {
+    flex-wrap: wrap;
+    flex-direction: column;
+    background: var(--C3);
+    font-size: calc(var(--SZ) * 2);
+    color: var(--C4);
+    padding: 14px;
+    border-radius: 7px;
+}
+
+.mtbPanelAdminCRUD p, .mtbPanelAdminCRUD label {
+    display: block;
+}
+
+.mtbPanelAdminCRUD label {
+    padding: 14px 0 0;
+}
+
+/* LOGIN/REGISTRO - Vista */
+.mtbLoginPanel {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.mtbLoginPanelSection1 {
+    flex: 1;
+    padding: 84px 0 0;
+}
+
+.mtbLoginPanelSection2 {
+    flex: 1;
+}
+
+.mtbLoginPanelSection1 h2 {
+    font-size: calc(var(--SZ) * 4);
+    padding-left: 20%;
+}
+.mtbLoginWelcome {
+    font-size: calc(var(--SZ) * 3);
+    padding-left: 20%;
+}
+
+.mtbLoginForm, .mbtContactForm {
+    width: 80%;
+    background: var(--C4);
+    margin: 21px auto;
+    padding: 14px;
+    border-radius: 7px;
+    z-index: 9;
+}
+
+.mtbLoginForm label, .mbtContactForm label {
+    display: block;
+    font-size: calc(var(--SZ) * 2);
+    padding: 0 7px;
+}
+
+.mtbLoginForm input, .mbtContactForm input, .mbtContactForm textarea {
+    display: block;
+    width: calc(100% - 42px);
+    margin: 14px;
+    padding: 14px;
+    border: none;
+    outline: 2px solid var(--C5);
+    border-radius: 7px;
+    transition: 0.5s;
+}
+
+.mtbLoginForm input:focus, .mbtContactForm input:focus{
+    outline: 2px solid var(--C1);
+    transition: 0.5s;
+}
+
+.mtbLoginForm .g-recaptcha {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mtbTogglePass {
+    display: block;
+    float: right;
+    font-size: calc(var(--SZ) * 3);
+    color: var(--C1);
+    transform: translate(-42px, -42px);
+    cursor: pointer;
+}
+
+.mtbLoginCheckValidation {
+    width: calc(100% - 42px);
+    margin: 14px;
+    padding: 14px;
+    background: var(--C5);
+    font-size: 14px;
+    border-radius: 7px;
+}
+
+.mtbLoginForm button, .mbtContactForm button {
+    display: block;
+    margin: 14px auto;
+    padding: 14px;
+    border: none;
+    background: var(--C1);
+    color: var(--C4);
+    border-radius: 7px;
+    font-weight: bold;
+    transition: 0.5s;
+}
+
+.mtbLoginForm button:hover {
+    background: var(--C4);
+    color: var(--C1);
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.mtbLoginForm p {
+    font-size: calc(var(--SZ) * 2);
+    text-align: center;
+    padding: 4px 0;
+}
+
+.mtbLoginForm a {
+    color: var(--C1);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Globales */
+.mtbSmallButton {
+    display: block;
+    padding: 4px 7px;
+    border-radius: 7px;
+    background: var(--C1);
+    color: var(--C4);
+    border: none;
+    margin: 7px 0;
+}
+
+.mtbSmallButton:hover {
+    background: var(--C4);
+    color: var(--C1);
+    cursor: pointer;
+}
+
+.mtbBackgroundBlack {
+    background: var(--C3);
+}
+.mtbBackgroundWhite {
+    background: var(--C5);
+}
+.mtbBackgroundWhiteToBlack {
+    background: linear-gradient(to bottom, var(--C5), var(--C3));
+}
+
+/* MTB - Media Query (De lo posible dejar siempre al final del CSS) */
+@media (max-width: 1000px) {
+
+    /* MTB - Navbar */
+
+    .mtbNavLink {
+        display: none;
+        width: 100%;
+        padding: 0;
+    }
+
+    .mtbNavLink a {
+        display: block;
+        background: var(--C3);
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+    }
+
+    #mtbNavBurguer {
+        display: inline-block;
+        width: 42px;
+        margin: calc(var(--SZ) * 1.5);
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+/* MTB - Contacto/About*/
+
+.mtbCardPresentationDescription {
+    display: inline-block;
+    padding: 7px;
+    width: calc(100% - 100px);
+    vertical-align: top;
+    transition: 0.3s;
+}
+
+.mtbCardPresentationLinks a {
+    padding: 4px 7px;
+    color: var(--C4);
+    gap: 1;
+}
+
+.mtbCardPresentation:hover .mtbCardPresentationImg {
+    display: block;
+    margin: 7px auto;
+    width: 150px;
+    height: 150px;
+    transition: 0.3s;
+}
+
+.mtbCardPresentation:hover .mtbCardPresentationDescription {
+    display: block;
+    width: 100%;
+    transition: 0.3s;
+}
+
+
+    /* MTB - Catálogo */
+    .mtbCataFilter h3,
+    .mtbCataFilter a,
+    .mtbCataFilter p {
+        display: inline-block;
+        font-size: calc(var(--SZ) * 2);
+    }
+
+    .mtbCataFilter {
+        display: block;
+        width: calc(100% - 28px);
+        margin: 14px auto;
+    }
+
+    .mtbCataFilter a {
+        font-size: calc(var(--SZ) * 1.5);
+        padding: 4px;
+    }
+
+    .mtbCataProducts {
+        width: 100%;
+        margin: 0;
+    }
+
+    /* MTB - Carrito Modal */
+    .mtbCartModalContent {
+        width: 100%;
+    }
+
+    /* MTB - Panel */
+    .mtbPanel {
+    width: 100%;
+    margin: 0;
+    }
+
+    /* MTB - Login/Registro*/
+    /* LOGIN/REGISTRO - Vista */
+.mtbLoginPanel {
+    flex-direction: column;
+}
+
+.mtbLoginPanelSection1 h2, .mtbLoginWelcome{
+    text-align: center;
+    padding: 0 21px;
+}
+
+.mtbLoginForm {
+    width: 100%;
+    padding: 7px;
+}
+
+.mtbLoginPanelSection2 {
+    padding: 0;
+    margin: 0;
+}
+
+.mtbLoginPanelSection2 {
+    width: 100%;
+    padding: 14px;
+}
+}

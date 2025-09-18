@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruta MTB - Inicio</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="../app/script.js" type="module" defer></script>
+</head>
+<body>
+    
+    <nav id="mtbNav" class="mtbNav mtbBackgroundBlack"></nav>
+    <div class="mtbCartModal" id="mtbCartModal">
+        <div class="mtbCartModalBack">
+            <div id="mtbCartModalContent" class="mtbCartModalContent animate__animated animate__slideInRight">
+                <div class="mtbCartModalPanelTop">
+                    <button onclick="mtbCartModalClick()" class="mtbSmallButton"><i class="bi bi-x-lg"></i></button>
+                    <h3>Carrito</h3>
+                </div>
+                <div id="mtbCartModalAdd" class="mtbCartModalAdd">
+                <div class="mtbCartModalCard">
+                    <div class="CardCartImg">
+                        <img src="#" alt="#">
+                    </div>
+                    <div class="CardCartContent">
+                        <h3>Título</h3>
+                        <p>Cantidad: <span>1</span></p>
+                        <p>Precio: $<span>1000</span></p>
+                    </div>
+                    <div class="CardCartButtons">
+                        <button class="mtbSmallButton" onclick=""><i class="bi bi-plus-lg"></i></button>
+                        <button class="mtbSmallButton" onclick=""><i class="bi bi-dash-lg"></i></button>
+                        <button class="mtbSmallButton" onclick=""><i class="bi bi-trash-fill"></i></button>
+                    </div>
+                </div>
+                <div class="mtbCartModalCard">
+                    <div class="CardCartImg">
+                        <img src="#" alt="#">
+                    </div>
+                    <div class="CardCartContent">
+                        <h3>Título</h3>
+                        <p>Cantidad: <span>1</span></p>
+                        <p>Precio: $<span>1000</span></p>
+                    </div>
+                    <div class="CardCartButtons">
+                        <button class="mtbSmallButton" onclick=""><i class="bi bi-plus-lg"></i></button>
+                        <button class="mtbSmallButton" onclick=""><i class="bi bi-dash-lg"></i></button>
+                        <button class="mtbSmallButton" onclick=""><i class="bi bi-trash-fill"></i></button>
+                    </div>
+                </div>
+                </div>
+                <div id="mtbCartModalPanelBottom"></div>
+            </div>
+        </div>
+    </div>
+    <main class="mtbMain">
+                <div class="mtbStaticPage">
+            <div class="mtbStaticPageSection">
+            <h3 class="text-center fw-bold borde-texto">¿Cómo podemos ayudarte?</h3>
+            <img src="../img/RUTAMTB_SLOGAN.png" alt="Logo RutaMTB">
+            <p class="borde-texto">Si eres cliente actual de RutaMTB, comunícate con nuestro equipo de soporte técnico a través de tu
+                cuenta, para obtener el servicio más rápido. O llena el siguiente formulario, te responderemos lo
+                más pronto posible.</p>
+            </div>
+            <div class="mtbStaticPageSection">
+                <h3>Formulario</h3>
+                <form class="mbtContactForm" action="https://formspree.io/f/xwpqwgbk" method="POST" id="form-contacto">
+                <div class="mb-3">
+                    <label for="name" >¿Cuál es tu nombre?</label>
+                    <input type="text" id="name" name="nombre" placeholder="Nombre Ejemplo" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" >¿Cuál es tu correo electrónico? </label>
+                    <input type="email" id="email" name="correo" placeholder="nombre@ejemplo.com" required>
+                </div>
+                <div class="mb-3">
+                    <label for="phone" >Ingresa tu número de contacto </label>
+                    <input type="tel" id="phone" name="telefono" pattern="[0-9]{10}" placeholder="+57 (300) 000 0000">
+                </div>
+                <div class="mb-3">
+                    <label for="message" >Introduce tu mensaje</label>
+                    <textarea id="message" name="mensaje" rows="6" required></textarea>
+                </div>
+                <button type="submit" class="mtbSmallButton d-flex justify-content-end">Enviar <i class="bi bi-send ps-2"></i></button>
+            </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="mtbFooter">
+
+    </footer>
+
+</body>
+</html>

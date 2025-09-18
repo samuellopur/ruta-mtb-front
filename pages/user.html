@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruta MTB - Inicio</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="../app/script.js" type="module" defer></script>
+</head>
+<body>
+    
+    <nav id="mtbNav" class="mtbNav mtbBackgroundBlack"></nav>
+    <div class="mtbCartModal" id="mtbCartModal">
+        <div class="mtbCartModalBack">
+            <div id="mtbCartModalContent" class="mtbCartModalContent animate__animated animate__slideInRight">
+                <div class="mtbCartModalPanelTop">
+                    <button onclick="mtbCartModalClick()" class="mtbSmallButton"><i class="bi bi-x-lg"></i></button>
+                    <h3>Carrito</h3>
+                </div>
+                <div id="mtbCartModalAdd" class="mtbCartModalAdd">
+                <div class="mtbCartModalCard">
+                    <div class="CardCartImg">
+                        <img src="#" alt="#">
+                    </div>
+                    <div class="CardCartContent">
+                        <h3>Título</h3>
+                        <p>Cantidad: <span>1</span></p>
+                        <p>Precio: $<span>1000</span></p>
+                    </div>
+                    <div class="CardCartButtons">
+                        <button class="mtbSmallButton" onclick=""><i class="bi bi-plus-lg"></i></button>
+                        <button class="mtbSmallButton" onclick=""><i class="bi bi-dash-lg"></i></button>
+                        <button class="mtbSmallButton" onclick=""><i class="bi bi-trash-fill"></i></button>
+                    </div>
+                </div>
+                <div class="mtbCartModalCard">
+                    <div class="CardCartImg">
+                        <img src="#" alt="#">
+                    </div>
+                    <div class="CardCartContent">
+                        <h3>Título</h3>
+                        <p>Cantidad: <span>1</span></p>
+                        <p>Precio: $<span>1000</span></p>
+                    </div>
+                    <div class="CardCartButtons">
+                        <button class="mtbSmallButton" onclick=""><i class="bi bi-plus-lg"></i></button>
+                        <button class="mtbSmallButton" onclick=""><i class="bi bi-dash-lg"></i></button>
+                        <button class="mtbSmallButton" onclick=""><i class="bi bi-trash-fill"></i></button>
+                    </div>
+                </div>
+                </div>
+                <div id="mtbCartModalPanelBottom"></div>
+            </div>
+        </div>
+    </div>
+    <main class="mtbMain">
+        <div class="mtbRound mtbPanel">
+            <h2>Hola, <span id="mtbPanelWelcome">Usuario</span></h2>
+            <p>Correo: <span id="mtbPanelMail"></span></p>
+            <p>Direccion: <span id="mtbPanelAddress"></span></p>
+            <p>Télefono: <span id="mtbPanelPhone"></span></p>
+            <button class="mtbSmallButton" onclick="mtbUserChangePassword()">Modificar Datos</button>
+            <button class="mtbSmallButton" onclick="mtbLogOut()">Cerrar Sesión</button>
+        </div>
+        <div class="mtbRounf mtbPanel">
+            <h2>Carrito</h2>
+            <p>Es una visual básica, para gestionar el carrito abre el modal que se encuentra en Menú > Carrito</p>
+            <div class="mtbPanelUserCart" id="mtbPanelUserCart">
+            <div class="mtbPanelUserCartCard">
+                <img src="#" alt="#">
+                <p>Título</p>
+                <p>Precio</p>
+                <p>Cantidad</p>
+                <p>Total</p>
+            </div>
+            </div>
+        </div>
+        <div class="mtbRounf mtbPanel">
+            <h2>Compras</h2>
+            <div class="mtbPanelUserPurchase" id="mtbPanelUserPurchase">
+            <div class="mtbPanelUserPurchaseCard">
+                <p class="mtbPurchaseFirstInfo"><strong>ID: </strong><span>123456789</span>. <strong>Fecha: </strong><span>12/12/2012</span>.  <strong>Pagado: </strong>$<span>1000</span>.  <strong>Estado: </strong><span>Entregado</span>.</p>
+                <div class="mtbPurchaseSecondInfo">
+                <div></div>
+                <img src="#" alt="#">
+                <p><span>Título</span> <span>Cantidad</span></p>
+                </div>
+                <div class="mtbPurchaseSecondInfo">
+                <div></div>
+                <img src="#" alt="#">
+                <p><span>Título</span> <span>Cantidad</span></p>
+                </div>
+            </div>
+            <div class="mtbPanelUserPurchaseCard">
+                <p class="mtbPurchaseFirstInfo"><strong>ID: </strong><span>123456789</span>. <strong>Fecha: </strong><span>12/12/2012</span>.  <strong>Pagado: </strong>$<span>1000</span>.  <strong>Estado: </strong><span>Entregado</span>.</p>
+                <div class="mtbPurchaseSecondInfo">
+                <img src="#" alt="#">
+                <p><span>Título</span> <span>Cantidad</span></p>
+                </div>
+                <div class="mtbPurchaseSecondInfo">
+                <img src="#" alt="#">
+                <p><span>Título</span> <span>Cantidad</span></p>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="mtbFooter">
+
+    </footer>
+
+</body>
+</html>
