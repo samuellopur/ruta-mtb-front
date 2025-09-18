@@ -57,10 +57,10 @@ function mtbLoadNav() {
             <a href="#" id="mtbNavBurguer" class="mtbNavBurguer" onclick="mtbBurguerClick()"><span><i class="bi bi-list"></i></span></a>
         </div>
         <div class="mtbNavLink" id="mtbNavLink">
-            <a href="index.html"><span>Inicio</span></a>
-            <a href="catalog.html"><span>Catálogo</span></a>
-            <a href="contact.html"><span>Contacto</span></a>
-            <a href="about.html"><span>Conocenos</span></a>
+            <a href="/pages/index.html"><span>Inicio</span></a>
+            <a href="/pagescatalog.html"><span>Catálogo</span></a>
+            <a href="/pagescontact.html"><span>Contacto</span></a>
+            <a href="/pagesabout.html"><span>Conocenos</span></a>
             <a id="mtbLinkTextHref" href="#"><span id="mtbLinkTextUser">Cargando...</span></a>
             <a id="mtbLinkEspecial" href="#" onclick="mtbCartModalClick(); mtbBurguerClick();"><span>Carrito</span></a>
         </div>
