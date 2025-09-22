@@ -115,6 +115,7 @@ input {
 /* MTB - Estilos del main generales */
 
 .mtbMain {
+    display: block;
     width: 100%;
     min-height: 100vh;
     font-size: 0;
@@ -124,9 +125,42 @@ input {
 
 /* MTB - Estilos del footer generales */
 .mtbFooter {
+    display: flex;
     width: 100%;
+    padding: 21px 0;
     min-height: 200px;
     background: var(--C3);
+}
+
+.mtbFooterSection {
+    flex: 1;
+    padding: 0 10%;
+}
+
+.mtbFooterSection p, .mtbFooterSection a {
+    font-size: calc(var(--SZ) * 2);
+    color: var(--C4);
+    display: block;
+    margin: 4px 0;
+}
+
+.mtbFooterSection img {
+    height: 50px;
+}
+
+/* MTB - Páginas de Documentación*/
+.mtbStaticInfo {
+    padding: 10%;
+}
+.mtbStaticInfo h3 {
+    color: var(--C1);
+    font-size: calc(var(--SZ) * 4);
+    margin: 14px 0;
+}
+.mtbStaticInfo p {
+    color: var(--C3);
+    font-size: calc(var(--SZ) * 3);
+    margin: 14px 0;
 }
 
 /* MTB - Modal del Carrito */
@@ -442,6 +476,11 @@ input {
     padding: 4px;
 }
 
+.mtbCataSelled {
+    color: var(--C1);
+    font-weight: bolder;
+}
+
 .mtbCataProducts {
     display: inline-flex;
     justify-content: space-around;
@@ -458,6 +497,74 @@ input {
     width: 250px;
     padding: 14px;
     border-radius: 4px;
+}
+
+/* INICIO: Adicionales */
+.mtbIndexReferences h3,
+.mtbIndexReferences a {
+    display: block;
+    font-size: calc(var(--SZ) * 3);
+    margin: 3.5px 7px 3.5px 0;
+}
+
+.mtbIndexReferences p {
+    font-size: calc(var(--SZ) * 2)
+}
+
+.mtbIndexReferences .mtbCataPrice {
+    font-size: calc(var(--SZ) * 2.5)
+}
+
+.mtbIndexReferences img {
+    display: block;
+    height: 100px;
+    margin: 0 auto;
+}
+
+.mtbIndexReferences {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 21px;
+    max-width: calc(100% - 84px);
+    margin: 0 auto;
+    min-height: 50px;
+}
+
+.mtbIndex h2 {
+    font-size: calc(var(--SZ) * 4);
+    color: var(--C1);
+    font-weight: 800;
+    text-align: center;
+    padding: 21px;
+}
+
+.mtbIndexWelcome {
+    padding: 7px 0 0;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.mtbIndexWelcome h2, .mtbIndexWelcome p {
+    color: var(--C1);
+    padding: 7px;
+    text-align: center;
+    display: inline-block;
+}
+
+.mtbIndexWelcome p {
+    font-size: calc(var(--SZ) * 2);
+}
+.mtbIndexWelcome video {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 7px;
+    overflow: hidden;
 }
 
 /* PANEL: Visuales de paneles Usuario/Admin */
@@ -699,11 +806,54 @@ input {
 .mtbBackgroundBlack {
     background: var(--C3);
 }
+
 .mtbBackgroundWhite {
     background: var(--C5);
 }
+
 .mtbBackgroundWhiteToBlack {
     background: linear-gradient(to bottom, var(--C5), var(--C3));
+}
+
+.mtbBackgroundIndex {
+    background-image: url("/img/IMG_002.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.mtbBackgroundIndexTwo {
+    background-image: url("/img/IMG_004.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.btn-whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px; 
+  width: 60px;
+  height: 60px;
+  background-color: var(--C1); 
+  color: var(--C4);
+  border-radius: 50%;
+  display: flex;           
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  text-decoration: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 20;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-whatsapp:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  color: var(--C4); 
 }
 
 /* MTB - Media Query (De lo posible dejar siempre al final del CSS) */

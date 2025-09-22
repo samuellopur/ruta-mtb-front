@@ -54,12 +54,61 @@
             </div>
         </div>
     </div>
-    <main class="mtbMain">
+    <main class="mtbMain mtbIndex mtbBackgroundIndex">
+        <!-- <div class="mtbIndexWelcome">
+            <video src="/img/VID_001.webm" autoplay loop></video>
+        </div> -->
+        <h2>Lo más vendido</h2>
+        <div class="mtbIndexReferences" id="mtbIndexReferencesSelled">
+            <div class="mtbCataCard">
+            <p class="mtbCataTag">${i.type}</p>
+            <p class="mtbCataTag">${i.category}</p>
+            <img src="${i.img}" alt="${i.title}">
+            <h3>${i.title}</h3>
+            <p>${i.description}</p>
+            <p class="mtbCataPrice">$<span>${i.price.toLocaleString('es-CO')}</span></p>
+            <button class="mtbSmallButton">Agregar</button>
+            </div>
+            <div class="mtbCataCard">
+            <p class="mtbCataTag">${i.type}</p>
+            <p class="mtbCataTag">${i.category}</p>
+            <img src="${i.img}" alt="${i.title}">
+            <h3>${i.title}</h3>
+            <p>${i.description}</p>
+            <p class="mtbCataPrice">$<span>${i.price.toLocaleString('es-CO')}</span></p>
+            <button class="mtbSmallButton">Agregar</button>
+            </div>
+            <div class="mtbCataCard">
+            <p class="mtbCataTag">${i.type}</p>
+            <p class="mtbCataTag">${i.category}</p>
+            <img src="${i.img}" alt="${i.title}">
+            <h3>${i.title}</h3>
+            <p>${i.description}</p>
+            <p class="mtbCataPrice">$<span>${i.price.toLocaleString('es-CO')}</span></p>
+            <button class="mtbSmallButton">Agregar</button>
+            </div>
+        </div>
+        <h2>Lo más nuevo</h2>
+        <div class="mtbIndexReferences" id="mtbIndexReferencesNew"></div>
     </main>
 
     <footer class="mtbFooter">
-
+        <div class="mtbFooterSection">
+            <img src="/img/logo-super.png" alt="Superintendencia de Industria y Comercio">
+            <p>Ruta MTB</p>
+            
+        </div>
+        <div class="mtbFooterSection">
+            <a href="/pages/polices.html">Política</a>
+            <a href="/pages/shipping.html">Envíos</a>
+            <a href="/pages/terms.html">Terminos</a>
+            <a href="/pages/documentation.html">Documentación</a>
+        </div>
     </footer>
+    <a href="https://wa.me/573001112233" target="_blank" class="btn-whatsapp" data-bs-toggle="tooltip"
+        data-bs-placement="left" title="Chatea con nosotros">
+        <i class="bi bi-whatsapp"></i>
+    </a>
 
 </body>
 </html>

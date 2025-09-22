@@ -33,13 +33,17 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("Estás en la página de admin");
         mtbPanelAdminCart();
     }
-    if (!window.location.pathname === ("/pages/login.html") || mtbUserValidate[0].id === 1) {
+    if (!window.location.pathname === ("/pages/login.html") || mtbUserValidate[0].verification === false) {
         console.log("No se cargará el carrito por condiciones de la página");
         mtbCartRefresh();
     }
     if (window.location.pathname === ("/pages/login.html")) {
         console.log("Estás en la página de login");
         mtbLoadContent('mtbLogin');
+    }
+    if (window.location.pathname === ("/pages/index.html")) {
+        console.log("Estás en la página de inicio");
+        mtbIndexFunction();
     }
     mtbLoadNav();
 
@@ -105,6 +109,87 @@ function mtbNavValidate() {
 function mtbBurguerClick() {
     const mtbNavMenu = document.getElementById("mtbNavLink");
     mtbNavMenu.classList.toggle("mtbViewNone");
+}
+
+// INICIO (Index): Funciones para ver lo último agregado y lo más vendido
+function mtbIndexFunction() {
+    const div1 = document.getElementById("mtbIndexReferencesNew");
+    div1.innerHTML = ``
+    const div1Content = mtbCatalog.slice(-3).reverse();
+    div1Content.forEach(i => {
+        const newDiv1 = document.createElement('div');
+        newDiv1.className = "mtbCataCard";
+        newDiv1.innerHTML =
+            `
+            <p class="mtbCataTag">${i.type}</p>
+            <p class="mtbCataTag">${i.category}</p>
+            <img src="${i.img}" alt="${i.title}">
+            <h3>${i.title}</h3>
+            <p>${i.description}</p>
+        `
+        div1.appendChild(newDiv1);
+    })
+
+    const div2 = document.getElementById("mtbIndexReferencesSelled");
+    div2.innerHTML = ``
+    const div2Content = [];
+    mtbUsersData.forEach(user => {
+        user.purchase.forEach(purchase => {
+            const mtbUserPurchaseList = purchase.cartList || [];
+
+            if (mtbUserPurchaseList.length !== 0) {
+                mtbUserPurchaseList.forEach(i => {
+                    const mtbExist = div2Content.find(e => e.id == i.id);
+                    if (mtbExist) {
+                        mtbExist.amount += i.amount;
+                    } else {
+                        div2Content.push({ id: i.id, amount: i.amount });
+                    }
+                });
+            }
+        });
+    });
+
+    div2Content.sort((a, b) => b.amount - a.amount);
+    console.log(div2Content)
+    if (div2Content.length >= 3) {
+        div2Content.forEach(i => {
+        const product = mtbCatalog.find(e => e.id == i.id)
+        const newDiv2 = document.createElement('div');
+        let amountSelled;
+        if (i.amount >= 1 && i.amount < 4) {
+            amountSelled = `Ventas +1`
+        } else if (i.amount >= 5) {
+            amountSelled = `Ventas +5`
+        }
+        newDiv2.className = "mtbCataCard";
+        newDiv2.innerHTML =
+            `
+            <p class="mtbCataTag">${product.type}</p>
+            <p class="mtbCataTag">${product.category}</p>
+            <img src="${product.img}" alt="${product.title}">
+            <h3>${product.title}</h3>
+            <p>${product.description}</p>
+            <p class="mtbCataSelled">${amountSelled}</p>
+        `
+        div2.appendChild(newDiv2);
+    })
+    } else {
+        const newDiv2 = document.createElement('div');
+        newDiv2.className = "mtbCataCard";
+        newDiv2.innerHTML =
+            `
+            <p class="mtbCataTag">Anuncio</p>
+            <img src="/img/IMG_003.png" alt="Anuncio">
+            <h3>¡Ayúdanos a crecer!</h3>
+            <p>El apartado se complementará con más compras de los usuarios</p>
+        `
+        div2.appendChild(newDiv2);
+    }
+
+
+
+
 }
 
 // Función para ver catálogo
@@ -346,6 +431,7 @@ function mtbCartModalPay(cartOk, cartDelete) {
 function mtbCartModalClick() {
     const mtbCartModalMenu = document.getElementById("mtbCartModal");
     mtbCartModalMenu.classList.toggle("mtbViewNone");
+    mtbCartRefresh();
 }
 
 // VENTA/PAY: Lógica al momento de la compra
@@ -397,17 +483,17 @@ function mtbPanelUserCart() {
     const mtbUserCartList = mtbUserCart.cart
     cart.innerHTML = "";
     const purchase = document.getElementById("mtbPanelUserPurchase");
-    const mtbUserPurchaseList = mtbUserCart.purchase
+    const mtbUserPurchaseList = mtbUserCart.purchase;
     purchase.innerHTML = "";
 
     if (mtbUserCartList.length != 0) {
-    mtbUserCartList.forEach(i => {
-        const data = mtbCatalog.find(e => e.id === i.id)
-        const div = document.createElement("div");
-        div.className = "mtbPanelUserCartCard";
-        const mtbTotal = data.price * i.amount;
-        div.innerHTML =
-            `
+        mtbUserCartList.forEach(i => {
+            const data = mtbCatalog.find(e => e.id === i.id)
+            const div = document.createElement("div");
+            div.className = "mtbPanelUserCartCard";
+            const mtbTotal = data.price * i.amount;
+            div.innerHTML =
+                `
             <img src="${data.img}" alt="${data.title}">
             <p>${data.title}</p>
             <p>${data.type}</p>
@@ -415,33 +501,33 @@ function mtbPanelUserCart() {
             <p>${i.amount}</p>
             <p>$${mtbTotal.toLocaleString('es-CO')}</p>
     `;
-        cart.appendChild(div);
-    });
+            cart.appendChild(div);
+        });
     }
 
     if (mtbUserPurchaseList.length != 0) {
-    mtbUserPurchaseList.forEach(i => {
-        const div = document.createElement("div");
-        div.className = "mtbPanelUserPurchaseCard";
-        div.innerHTML =
-            `
+        mtbUserPurchaseList.forEach(i => {
+            const div = document.createElement("div");
+            div.className = "mtbPanelUserPurchaseCard";
+            div.innerHTML =
+                `
             <p class="mtbPurchaseFirstInfo"><strong>ID: </strong><span>${i.idPurchase}</span>. <strong>Fecha: </strong><span>${i.date}</span>.  <strong>Pagado: </strong>$<span>${i.pay.toLocaleString('es-CO')}</span>.  <strong>Estado: </strong><span>${i.status}</span>.</p>
         `;
-        const mtbProductsOfPurchase = i.cartList
-        mtbProductsOfPurchase.forEach(u => {
-            const data = mtbCatalog.find(e => e.id === u.id);
-            const div2 = document.createElement("div");
-            div2.className = "mtbPurchaseSecondInfo";
-            div2.innerHTML = 
-            `
+            const mtbProductsOfPurchase = i.cartList
+            mtbProductsOfPurchase.forEach(u => {
+                const data = mtbCatalog.find(e => e.id === u.id);
+                const div2 = document.createElement("div");
+                div2.className = "mtbPurchaseSecondInfo";
+                div2.innerHTML =
+                    `
                 <img src="${data.img}" alt="${data.title}">
                 <p><span>${data.title}</span> X<span>${u.amount}</span></p>
             `;
-            div.appendChild(div2);
-        })
+                div.appendChild(div2);
+            })
 
-        purchase.appendChild(div);
-    });
+            purchase.appendChild(div);
+        });
     }
 }
 
@@ -479,6 +565,41 @@ function mtbPanelAdminCart() {
     `;
         cart.appendChild(div);
     });
+
+    const purchase = document.getElementById("mtbPanelUserPurchase");
+    purchase.innerHTML = ``
+    let amount = 0;
+    mtbUsersData.forEach(user => {
+        const mtbUserPurchaseList = user.purchase;
+        if (mtbUserPurchaseList.length != 0) {
+            mtbUserPurchaseList.forEach(i => {
+                const div = document.createElement("div");
+                div.className = "mtbPanelUserPurchaseCard";
+                div.innerHTML =
+                    `
+            <p class="mtbPurchaseFirstInfo"><strong>ID: </strong><span>${i.idPurchase}</span>. <strong>Fecha: </strong><span>${i.date}</span>.  <strong>Pagado: </strong>$<span>${i.pay.toLocaleString('es-CO')}</span>.  <strong>Estado: </strong><span>${i.status}</span>. <strong>Comprado por: </strong><span>${user.name}</span>.</p></p>
+        `;
+                const mtbProductsOfPurchase = i.cartList
+                mtbProductsOfPurchase.forEach(u => {
+                    const data = mtbCatalog.find(e => e.id === u.id);
+                    const div2 = document.createElement("div");
+                    div2.className = "mtbPurchaseSecondInfo";
+                    div2.innerHTML =
+                        `
+            <img src="${data.img}" alt="${data.title}">
+            <p><span>${data.title}</span> X<span>${u.amount}</span></p>
+        `;
+                    div.appendChild(div2);
+                })
+
+                purchase.appendChild(div);
+                amount += i.pay;
+            });
+            const divAmount = document.getElementById("mtbAmountTotal");
+            divAmount.innerText = amount.toLocaleString('es-CO');
+        }
+    })
+
 }
 
 function mtbCRUDClose() {
@@ -557,7 +678,7 @@ function mtbCRUD(mtbData) {
         if (title.value && price.value && description.value && category.value && type.value && stock.value) {
             const mtbInfo = mtbCatalog.find(i => i.id == mtbData);
             let id = mtbInfo ? mtbInfo.id : parseInt(Date.now());
-            img = mtbInfo ? mtbInfo.img : "img.png";
+            img = mtbInfo ? mtbInfo.img : "/img/IMG_003.png";
             title = title.value;
             price = parseInt(price.value);
             description = description.value;
