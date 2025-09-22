@@ -119,6 +119,7 @@ function mtbIndexFunction() {
     div1Content.forEach(i => {
         const newDiv1 = document.createElement('div');
         newDiv1.className = "mtbCataCard";
+        newDiv1.classList.add("animate__animated", "animate__fadeIn");
         newDiv1.innerHTML =
             `
             <p class="mtbCataTag">${i.type}</p>
@@ -163,6 +164,7 @@ function mtbIndexFunction() {
             amountSelled = `Ventas +5`
         }
         newDiv2.className = "mtbCataCard";
+        newDiv2.classList.add("animate__animated", "animate__fadeIn");
         newDiv2.innerHTML =
             `
             <p class="mtbCataTag">${product.type}</p>
@@ -177,6 +179,7 @@ function mtbIndexFunction() {
     } else {
         const newDiv2 = document.createElement('div');
         newDiv2.className = "mtbCataCard";
+        newDiv2.classList.add("animate__animated", "animate__fadeIn");
         newDiv2.innerHTML =
             `
             <p class="mtbCataTag">Anuncio</p>
@@ -204,6 +207,7 @@ function mtbViewCatalog(mtbData) {
     mtbData.forEach(i => {
         const mtbDiv = document.createElement("div");
         mtbDiv.className = "mtbCataCard";
+        mtbDiv.classList.add("animate__animated", "animate__fadeIn");
         mtbDiv.setAttribute = ("data-mtbId", i.id);
         mtbDiv.innerHTML =
             `

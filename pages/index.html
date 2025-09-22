@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ruta MTB - Inicio</title>
+    <title>Inicio - Ruta MTB</title>
+    <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../styles/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="../app/script.js" type="module" defer></script>
@@ -55,48 +56,41 @@
         </div>
     </div>
     <main class="mtbMain mtbIndex mtbBackgroundIndex">
-        <!-- <div class="mtbIndexWelcome">
+        <div class="mtbIndexWelcome">
+            <div class="mtbIndexWelcomeText">
+                <h2 span="">Te damos la bienvenida a Ruta MTB</h2>
+                <p>El mejor lugar para comprar todo sobre el mundo de las bicicletas MTB</p>
+            </div>
             <video src="/img/VID_001.webm" autoplay loop></video>
-        </div> -->
-        <h2>Lo más vendido</h2>
-        <div class="mtbIndexReferences" id="mtbIndexReferencesSelled">
+        </div>
+        <h2>¿Qué te ofrecemos?</h2>
+        <div class="mtbIndexReferences">
             <div class="mtbCataCard">
-            <p class="mtbCataTag">${i.type}</p>
-            <p class="mtbCataTag">${i.category}</p>
-            <img src="${i.img}" alt="${i.title}">
-            <h3>${i.title}</h3>
-            <p>${i.description}</p>
-            <p class="mtbCataPrice">$<span>${i.price.toLocaleString('es-CO')}</span></p>
-            <button class="mtbSmallButton">Agregar</button>
+            <p class="mtbCataTag">Anuncio</p>
+            <h3 class="mtbCataSelled">+20 Productos</h3>
+            <p>Para que puedas elegir</p>
             </div>
             <div class="mtbCataCard">
-            <p class="mtbCataTag">${i.type}</p>
-            <p class="mtbCataTag">${i.category}</p>
-            <img src="${i.img}" alt="${i.title}">
-            <h3>${i.title}</h3>
-            <p>${i.description}</p>
-            <p class="mtbCataPrice">$<span>${i.price.toLocaleString('es-CO')}</span></p>
-            <button class="mtbSmallButton">Agregar</button>
+            <p class="mtbCataTag">Anuncio</p>
+            <h3 class="mtbCataSelled">Marcas</h3>
+            <p>Varias marcas a tu disposición</p>
             </div>
             <div class="mtbCataCard">
-            <p class="mtbCataTag">${i.type}</p>
-            <p class="mtbCataTag">${i.category}</p>
-            <img src="${i.img}" alt="${i.title}">
-            <h3>${i.title}</h3>
-            <p>${i.description}</p>
-            <p class="mtbCataPrice">$<span>${i.price.toLocaleString('es-CO')}</span></p>
-            <button class="mtbSmallButton">Agregar</button>
+            <p class="mtbCataTag">Anuncio</p>
+            <h3 class="mtbCataSelled">Soporte</h3>
+            <p>Orientación sobre la compra</p>
             </div>
         </div>
+        <h2>Lo más vendido</h2>
+        <div class="mtbIndexReferences" id="mtbIndexReferencesSelled"></div>
         <h2>Lo más nuevo</h2>
         <div class="mtbIndexReferences" id="mtbIndexReferencesNew"></div>
     </main>
 
     <footer class="mtbFooter">
         <div class="mtbFooterSection">
+            <img src="/img/MTB_NEWLOGOWHITE.png" alt="Superintendencia de Industria y Comercio">
             <img src="/img/logo-super.png" alt="Superintendencia de Industria y Comercio">
-            <p>Ruta MTB</p>
-            
         </div>
         <div class="mtbFooterSection">
             <a href="/pages/polices.html">Política</a>
