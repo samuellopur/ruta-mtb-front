@@ -126,6 +126,7 @@ input {
 /* MTB - Estilos del footer generales */
 .mtbFooter {
     display: flex;
+    flex-wrap: wrap;
     width: 100%;
     padding: 21px 0;
     min-height: 200px;

@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("Estás en la página de admin");
         mtbPanelAdminCart();
     }
-    if (!window.location.pathname === ("/pages/login.html") || mtbUserValidate[0].verification === false) {
+    if (!window.location.pathname === ("/pages/login.html") || mtbUserValidate[0].id === 1) {
         console.log("No se cargará el carrito por condiciones de la página");
         mtbCartRefresh();
     }
