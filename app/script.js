@@ -1,28 +1,63 @@
 // Módulos
 import { mtbProducts, mtbUsers, mtbCheck } from "./data.js";
+import { authService, productService, initializeApp } from "./api-service.js";
 
-// DATA: Datos Quemados en LocalStorage
+// DATA: Datos Quemados en LocalStorage (fallback)
 let mtbCatalog = JSON.parse(localStorage.getItem("mtbCatalog")) || [];
 let mtbUsersData = JSON.parse(localStorage.getItem("mtbUsers")) || [];
 let mtbUserValidate = JSON.parse(localStorage.getItem("mtbCheck")) || [];
 let mtbUserCart = [];
+let useBackend = true; // Flag para determinar si usar backend o datos locales
 
 // Al cargar la página
-document.addEventListener("DOMContentLoaded", () => {
-    if (!mtbCatalog || mtbCatalog.length === 0) {
-        localStorage.setItem("mtbCatalog", JSON.stringify(mtbProducts));
-    };
+document.addEventListener("DOMContentLoaded", async () => {
+    // Inicializar la aplicación con datos del backend
+    try {
+        const initResult = await initializeApp();
+        console.log('App initialized:', initResult);
+        
+        // Si la inicialización falló, usar datos locales como fallback
+        if (!initResult.productsLoaded) {
+            useBackend = false;
+            console.log('Using local fallback data');
+            
+            // Cargar datos locales si no existen
+            if (!mtbCatalog || mtbCatalog.length === 0) {
+                localStorage.setItem("mtbCatalog", JSON.stringify(mtbProducts));
+                mtbCatalog = mtbProducts;
+            }
+        } else {
+            mtbCatalog = JSON.parse(localStorage.getItem("mtbCatalog"));
+        }
+    } catch (error) {
+        console.error('Failed to initialize app:', error);
+        useBackend = false;
+        
+        // Usar datos locales como fallback
+        if (!mtbCatalog || mtbCatalog.length === 0) {
+            localStorage.setItem("mtbCatalog", JSON.stringify(mtbProducts));
+            mtbCatalog = mtbProducts;
+        }
+    }
+    
+    // Inicializar datos de usuarios (solo para fallback)
     if (!mtbUsersData || mtbUsersData.length === 0) {
         localStorage.setItem("mtbUsers", JSON.stringify(mtbUsers));
-    };
+        mtbUsersData = mtbUsers;
+    }
+    
     if (!mtbUserValidate || mtbUserValidate.length === 0) {
         localStorage.setItem("mtbCheck", JSON.stringify(mtbCheck));
-    };
-    mtbCatalog = JSON.parse(localStorage.getItem("mtbCatalog"));
+        mtbUserValidate = mtbCheck;
+    }
+    
+    // Actualizar referencias después de la carga
     mtbUsersData = JSON.parse(localStorage.getItem("mtbUsers"));
     mtbUserValidate = JSON.parse(localStorage.getItem("mtbCheck"));
+    
+    // Ejecutar funciones específicas de cada página
     if (window.location.pathname === ("/pages/catalog.html")) {
-        console.log("Estás en la página de carrito");
+        console.log("Estás en la página de catálogo");
         mtbViewCatalog(mtbCatalog);
     }
     if (window.location.pathname === ("/pages/user.html")) {
@@ -46,7 +81,6 @@ document.addEventListener("DOMContentLoaded", () => {
         mtbIndexFunction();
     }
     mtbLoadNav();
-
 })
 
 // Carga de NavBar por INNER
@@ -677,30 +711,77 @@ function mtbCRUD(mtbData) {
             imgLabel.textContent = "Nada seleccionado";
         }
     });
-    form.addEventListener("submit", e => {
+    form.addEventListener("submit", async e => {
         e.preventDefault();
         if (title.value && price.value && description.value && category.value && type.value && stock.value) {
-            const mtbInfo = mtbCatalog.find(i => i.id == mtbData);
-            let id = mtbInfo ? mtbInfo.id : parseInt(Date.now());
-            img = mtbInfo ? mtbInfo.img : "/img/IMG_003.png";
-            title = title.value;
-            price = parseInt(price.value);
-            description = description.value;
-            category = category.value;
-            type = type.value;
-            stock = stock.value;
-            if (mtbData) {
-                const producto = mtbCatalog.map(u => u.id === mtbData ? { id, img, title, price, description, category, type, stock } : u);
-                localStorage.setItem("mtbCatalog", JSON.stringify(producto));
-                mtbAlert(4);
-                mtbCRUDClose();
+            const productData = {
+                title: title.value,
+                price: parseInt(price.value),
+                description: description.value,
+                category: category.value,
+                type: type.value,
+                stock: parseInt(stock.value),
+                img: mtbData ? mtbInfo.img : "/img/IMG_003.png"
+            };
+            
+            if (useBackend) {
+                // Usar API del backend
+                try {
+                    if (mtbData) {
+                        // Actualizar producto existente
+                        const result = await productService.updateProduct(mtbData, productData);
+                        if (result.success) {
+                            mtbAlert(4); // Modificado exitosamente
+                            // Recargar productos del backend
+                            await productService.getAllProducts();
+                            mtbCatalog = JSON.parse(localStorage.getItem("mtbCatalog"));
+                        } else {
+                            mtbAlert(6); // Error
+                        }
+                    } else {
+                        // Crear nuevo producto
+                        const result = await productService.createProduct(productData);
+                        if (result.success) {
+                            mtbAlert(5); // Agregado exitosamente
+                            // Recargar productos del backend
+                            await productService.getAllProducts();
+                            mtbCatalog = JSON.parse(localStorage.getItem("mtbCatalog"));
+                        } else {
+                            mtbAlert(6); // Error
+                        }
+                    }
+                } catch (error) {
+                    console.error('Product operation error:', error);
+                    mtbAlert(6); // Error
+                }
             } else {
-                const producto = JSON.parse(localStorage.getItem("mtbCatalog")) || [];
-                producto.push({ id, img, title, price, description, category, type, stock });
-                localStorage.setItem("mtbCatalog", JSON.stringify(producto));
-                mtbAlert(5);
-                mtbCRUDClose();
+                // Lógica local (fallback)
+                let id = mtbInfo ? mtbInfo.id : parseInt(Date.now());
+                const product = {
+                    id,
+                    img: productData.img,
+                    title: productData.title,
+                    price: productData.price,
+                    description: productData.description,
+                    category: productData.category,
+                    type: productData.type,
+                    stock: productData.stock
+                };
+                
+                if (mtbData) {
+                    const updatedCatalog = mtbCatalog.map(u => u.id === mtbData ? product : u);
+                    localStorage.setItem("mtbCatalog", JSON.stringify(updatedCatalog));
+                    mtbAlert(4);
+                } else {
+                    const catalog = JSON.parse(localStorage.getItem("mtbCatalog")) || [];
+                    catalog.push(product);
+                    localStorage.setItem("mtbCatalog", JSON.stringify(catalog));
+                    mtbAlert(5);
+                }
+                mtbCatalog = JSON.parse(localStorage.getItem("mtbCatalog"));
             }
+            
+            mtbCRUDClose();
             mtbPanelAdminCart();
             form.reset();
         } else {
@@ -709,15 +790,35 @@ function mtbCRUD(mtbData) {
     })
 }
 
-function mtbCRUDDelete(mtbData) {
-    const index = mtbCatalog.findIndex(i => i.id == mtbData);
-    mtbCatalog.splice(index, 1)
-    localStorage.setItem("mtbCatalog", JSON.stringify(mtbCatalog));
+async function mtbCRUDDelete(mtbData) {
+    if (useBackend) {
+        // Usar API del backend
+        try {
+            const result = await productService.deleteProduct(mtbData);
+            if (result.success) {
+                mtbAlert(7); // Eliminado exitosamente
+                // Recargar productos del backend
+                await productService.getAllProducts();
+                mtbCatalog = JSON.parse(localStorage.getItem("mtbCatalog"));
+            } else {
+                mtbAlert(6); // Error
+            }
+        } catch (error) {
+            console.error('Delete product error:', error);
+            mtbAlert(6); // Error
+        }
+    } else {
+        // Lógica local (fallback)
+        const index = mtbCatalog.findIndex(i => i.id == mtbData);
+        mtbCatalog.splice(index, 1);
+        localStorage.setItem("mtbCatalog", JSON.stringify(mtbCatalog));
+        mtbAlert(7);
+    }
+    
     mtbPanelAdminCart();
-    mtbAlert(7);
 }
 
-// LOGIN/REGISTRO: Lógica
+// LOGIN/REGISTRO: Lógica actualizada para usar API
 function mtbTogglePass(id, toggle) {
     const password = document.getElementById(id);
     const icon = toggle.querySelector('i');
@@ -738,7 +839,7 @@ function mtbFormFocus(mtbReference) {
     reference.addEventListener("input", () => mtbValidate(mtbReference));
 }
 
-function mtbFormSubmit(mtbTypeForm) {
+async function mtbFormSubmit(mtbTypeForm) {
     const name = document.getElementById('mtbToggleName');
     const surname = document.getElementById('mtbToggleSurname');
     const mail = document.getElementById('mtbToggleMail');
@@ -749,18 +850,15 @@ function mtbFormSubmit(mtbTypeForm) {
     if (mtbTypeForm === "mtbRegister") {
         if (mtbValidate('mtbToggleName') && mtbValidate('mtbToggleSurname') && mtbValidate('mtbToggleMail') && mtbValidate('mtbTogglePass') && mtbValidate('mtbTogglePassConfirm')) {
             const mtbData = {
-                id: Date.now(),
                 name: name.value,
                 surname: surname.value,
-                mail: mail.value,
+                email: mail.value,
                 password: pass.value,
-                address: " ",
-                phone: " ",
-                role: 2,
-                cart: [],
-                purchase: []
+                username: name.value + surname.value, // Generar username
+                address: "Sin dirección",
+                phone: "0000000000"
             };
-            mtbFormHandle(mtbTypeForm, mtbData);
+            await mtbFormHandle(mtbTypeForm, mtbData);
         } else {
             check.innerHTML = "";
             div = document.createElement("p");
@@ -772,10 +870,10 @@ function mtbFormSubmit(mtbTypeForm) {
     if (mtbTypeForm === "mtbLogin") {
         if (mtbValidate('mtbToggleMail') && mtbValidate('mtbTogglePass')) {
             const mtbData = {
-                mail: mail.value,
+                email: mail.value,
                 password: pass.value,
             };
-            mtbFormHandle(mtbTypeForm, mtbData);
+            await mtbFormHandle(mtbTypeForm, mtbData);
         } else {
             check.innerHTML = "";
             div = document.createElement("p");
@@ -785,34 +883,89 @@ function mtbFormSubmit(mtbTypeForm) {
     }
 }
 
-function mtbFormHandle(mtbType, mtbData) {
-    let users = JSON.parse(localStorage.getItem('mtbUsers')) || [];
-
-    if (mtbType === "mtbRegister") {
-        if (users.some(u => u.mail === mtbData.mail)) {
-            mtbAlert(11);
-            return;
+async function mtbFormHandle(mtbType, mtbData) {
+    const check = document.getElementById("mtbLoginCheckValidation");
+    
+    if (useBackend) {
+        // Usar API del backend
+        if (mtbType === "mtbRegister") {
+            try {
+                const result = await authService.register(mtbData);
+                if (result.success) {
+                    mtbAlert(12); // Usuario creado exitosamente
+                    window.location.href = 'catalog.html';
+                } else {
+                    if (result.error.includes('already in use') || result.error.includes('Conflict')) {
+                        mtbAlert(11); // Email ya en uso
+                    } else {
+                        // Mostrar error específico
+                        const div = document.createElement("p");
+                        div.textContent = result.error;
+                        check.appendChild(div);
+                    }
+                }
+            } catch (error) {
+                console.error('Registration error:', error);
+                const div = document.createElement("p");
+                div.textContent = "Error en el servidor. Intenta nuevamente.";
+                check.appendChild(div);
+            }
         }
-        users.push(mtbData);
-        localStorage.setItem('mtbUsers', JSON.stringify(users));
-        mtbAlert(12);
-        window.location.href = 'catalog.html';
-        mtbFormHandle("mtbLogin", mtbData)
-    }
 
-    if (mtbType === "mtbLogin") {
-        const user = users.find(u => u.mail === mtbData.mail && u.password === mtbData.password);
-        if (!user) {
-            mtbAlert(13);
-            return;
+        if (mtbType === "mtbLogin") {
+            try {
+                const result = await authService.login(mtbData.email, mtbData.password);
+                if (result.success) {
+                    window.location.href = 'catalog.html';
+                } else {
+                    mtbAlert(13); // Datos incorrectos
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                mtbAlert(13); // Datos incorrectos
+            }
         }
-        const mtbValidateUser = [{
-            id: user.id,
-            verification: true
-        }];
-        localStorage.setItem("mtbCheck", JSON.stringify(mtbValidateUser));
-        window.location.href = 'catalog.html';
+    } else {
+        // Usar datos locales (fallback)
+        let users = JSON.parse(localStorage.getItem('mtbUsers')) || [];
 
+        if (mtbType === "mtbRegister") {
+            if (users.some(u => u.mail === mtbData.email)) {
+                mtbAlert(11);
+                return;
+            }
+            const newUser = {
+                id: Date.now(),
+                name: mtbData.name,
+                surname: mtbData.surname,
+                mail: mtbData.email,
+                password: mtbData.password,
+                address: mtbData.address,
+                phone: mtbData.phone,
+                role: 2,
+                cart: [],
+                purchase: []
+            };
+            users.push(newUser);
+            localStorage.setItem('mtbUsers', JSON.stringify(users));
+            mtbAlert(12);
+            window.location.href = 'catalog.html';
+            mtbFormHandle("mtbLogin", mtbData);
+        }
+
+        if (mtbType === "mtbLogin") {
+            const user = users.find(u => u.mail === mtbData.email && u.password === mtbData.password);
+            if (!user) {
+                mtbAlert(13);
+                return;
+            }
+            const mtbValidateUser = [{
+                id: user.id,
+                verification: true
+            }];
+            localStorage.setItem("mtbCheck", JSON.stringify(mtbValidateUser));
+            window.location.href = 'catalog.html';
+        }
     }
 }
 
@@ -1003,9 +1156,16 @@ function mtbAlert(mtbAlertData) {
 function mtbUserChangePassword() {
     mtbAlert(8);
 }
+
 function mtbLogOut() {
-    mtbUserValidate.splice(0, mtbUserValidate.length);
-    localStorage.setItem("mtbCheck", JSON.stringify(mtbUserValidate));
+    if (useBackend) {
+        // Usar servicio de autenticación del backend
+        authService.logout();
+    } else {
+        // Lógica local (fallback)
+        mtbUserValidate.splice(0, mtbUserValidate.length);
+        localStorage.setItem("mtbCheck", JSON.stringify(mtbUserValidate));
+    }
     window.location.href = "catalog.html";
 }
 
