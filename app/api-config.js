@@ -65,40 +65,73 @@ export function detectEnvironment() {
     console.log('API Base URL configured to:', API_CONFIG.BASE_URL);
 }
 
-// Función para hacer peticiones HTTP con manejo de errores
+// Función para hacer peticiones HTTP con manejo de errores mejorado
 export async function apiRequest(endpoint, options = {}) {
     const url = getApiUrl(endpoint);
     
     const defaultOptions = {
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
         }
     };
     
-    // Obtener token del localStorage si existe
+    // Obtener token del localStorage si existe (solo para endpoints que lo requieren)
     const token = localStorage.getItem('authToken');
-    if (token) {
+    if (token && !endpoint.includes('/auth/')) {
         defaultOptions.headers['Authorization'] = `Bearer ${token}`;
     }
     
     const finalOptions = { ...defaultOptions, ...options };
     
+    // Merge headers correctly
+    if (options.headers) {
+        finalOptions.headers = { ...defaultOptions.headers, ...options.headers };
+    }
+    
+    console.log('🌐 Making API request:', {
+        url,
+        method: finalOptions.method || 'GET',
+        headers: finalOptions.headers
+    });
+    
     try {
         const response = await fetch(url, finalOptions);
         
+        console.log('📡 API Response:', {
+            status: response.status,
+            statusText: response.statusText,
+            url: response.url
+        });
+        
         if (!response.ok) {
-            const errorData = await response.json().catch(() => ({}));
+            let errorData = {};
+            try {
+                errorData = await response.json();
+            } catch (e) {
+                errorData = { message: `HTTP error! status: ${response.status}` };
+            }
+            
+            console.error('❌ API Error:', errorData);
             throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
         }
         
         const contentType = response.headers.get('content-type');
         if (contentType && contentType.includes('application/json')) {
-            return await response.json();
+            const data = await response.json();
+            console.log('✅ API Success:', data);
+            return data;
         } else {
-            return await response.text();
+            const text = await response.text();
+            console.log('✅ API Success (text):', text);
+            return text;
         }
     } catch (error) {
-        console.error('API Request failed:', error);
+        console.error('🚨 API Request failed:', {
+            url,
+            error: error.message,
+            stack: error.stack
+        });
         throw error;
     }
 }
