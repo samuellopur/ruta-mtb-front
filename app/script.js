@@ -1,7 +1,6 @@
 // Módulos
 import { mtbProducts, mtbUsers, mtbCheck } from "./data.js";
 import { authService, productService, initializeApp } from "./api-service.js";
-import { runDiagnostics } from "./diagnostics.js";
 
 // DATA: Datos Quemados en LocalStorage (fallback)
 let mtbCatalog = JSON.parse(localStorage.getItem("mtbCatalog")) || [];
@@ -14,14 +13,6 @@ let useBackend = true; // Flag para determinar si usar backend o datos locales
 document.addEventListener("DOMContentLoaded", async () => {
     // Inicializar la aplicación con datos del backend
     try {
-        console.log('🚀 Starting application initialization...');
-        
-        // Ejecutar diagnósticos en desarrollo
-        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-            console.log('🔧 Running diagnostics for development...');
-            setTimeout(() => runDiagnostics(), 2000);
-        }
-        
         const initResult = await initializeApp();
         console.log('App initialized:', initResult);
         
